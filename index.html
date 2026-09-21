@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Timetable Wallpaper Maker</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #26333a;
@@ -179,13 +179,13 @@
     .stage-content { position: absolute; inset: 0; z-index: 1; padding: clamp(1rem, 3.1%, 2.1rem); display: flex; flex-direction: column; }
     .safe-band {
       position: absolute; left: 7%; right: 7%; top: 4%; height: 7%;
-      border-top: 1px dashed var(--safe); border-bottom: 1px dashed var(--safe); opacity: .8;
+      border-top: 1px dashed var(--safe); border-bottom: 1px dashed var(--safe); opacity: .8; pointer-events: none;
     }
-    .phone .safe-band { top: 7%; height: 18%; }
+    .phone .safe-band { top: 7%; height: 21%; }
     .wallpaper-title { margin: 0; line-height: 1.05; letter-spacing: -.035em; font-family: "Fraunces", serif; font-weight: 700; color: var(--stage-ink); font-size: clamp(1.15rem, 3.2vw, 2.25rem); max-width: 72%; }
     .wallpaper-subtitle { font-size: clamp(.56rem, 1.3vw, .78rem); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; margin-top: .45rem; opacity: .62; }
 
-    /* Timetable Grid System */
+    /* Timetable Grid Container */
     .week-grid {
       flex: 1;
       min-height: 0;
@@ -264,13 +264,13 @@
       border-right: none;
     }
 
-    /* Clean Card: Subject & Location Only */
+    /* Class Cards with Type Badges */
     .class-block {
       position: absolute;
       left: 3px;
       right: 3px;
       border-radius: 6px;
-      padding: 4px 4px 4px 6px;
+      padding: 3px 4px 3px 6px;
       background: var(--card);
       color: var(--card-ink);
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -282,6 +282,13 @@
       box-sizing: border-box;
     }
 
+    .class-block-header {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      line-height: 1.15;
+    }
+
     .class-block strong {
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -289,11 +296,10 @@
       overflow: hidden;
       font-size: 0.65rem;
       font-weight: 800;
-      line-height: 1.15;
       word-break: break-word;
     }
 
-    .class-block span {
+    .class-block span.loc {
       display: block;
       font-size: 0.52rem;
       margin-top: 2px;
@@ -302,6 +308,21 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .session-badge {
+      display: inline-block;
+      font-size: 0.46rem;
+      font-weight: 800;
+      line-height: 1;
+      padding: 1px 3px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .badge-lab { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .badge-lec { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+    .badge-tut { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
 
     .stage-empty { position: absolute; inset: 37% 12% auto; text-align: center; font-size: clamp(.62rem, 1.2vw, .85rem); font-weight: 700; opacity: .68; line-height: 1.4; }
 
@@ -336,7 +357,7 @@
               <i data-lucide="sparkles" style="width:14px;height:14px"></i> wallpaper maker
             </div>
             <h1 class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58);">Class Timetable</h1>
-            <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Create your weekly schedule, style it your way, and download it as a phone or desktop wallpaper.</p>
+            <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Create your weekly schedule, differentiate Lectures and Labs, and generate a crop-free phone lockscreen.</p>
           </div>
         </div>
       </div>
@@ -395,11 +416,11 @@
 
               <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
-                  <label for="clock-offset" class="field-label">Top Clock Space</label>
+                  <label for="clock-offset" class="field-label">Top Clock Clearance</label>
                   <span id="offset-val" class="text-xs font-bold text-[#687880]">28%</span>
                 </div>
                 <input type="range" id="clock-offset" min="15" max="42" value="28" class="w-full accent-[#d96555]">
-                <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at the top so the phone lock clock doesn't cover your subjects.</p>
+                <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at top so phone lock widgets & clock won't cover your classes.</p>
               </div>
             </div>
           </section>
@@ -410,11 +431,11 @@
               <i data-lucide="plus-circle" class="text-[#bc5546]" style="width:19px;height:19px"></i>
               <h2 class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58);">Add a class</h2>
             </div>
-            <p class="canva-text text-sm text-[#718084] mt-1">Use one subject across multiple days, with different times and locations for each day.</p>
+            <p class="canva-text text-sm text-[#718084] mt-1">Add Lecture, Lab, or Tutorial schedules under the same subject.</p>
             <form id="class-form" class="mt-5 space-y-4" novalidate="">
               <div>
                 <label class="canva-text field-label block mb-2" for="subject">Subject name</label>
-                <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off" placeholder="e.g. ENTEC, ESD, CSP">
+                <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off" placeholder="e.g. ESD, CSP, ENTEC">
               </div>
               <fieldset class="border-0 p-0 m-0">
                 <legend class="canva-text field-label block mb-2">Day of the week</legend>
@@ -471,7 +492,7 @@
                   <i data-lucide="eye" style="width:14px;height:14px"></i> live composition
                 </div>
                 <h2 class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58);">Your live wallpaper</h2>
-                <p class="canva-text text-sm text-[#718084] mt-1">Dashed safe band shows where typical phone clocks and indicators sit.</p>
+                <p class="canva-text text-sm text-[#718084] mt-1">Dynamic view showing differentiated lectures, labs, and time axis.</p>
               </div>
               <span class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64);">Anti-Crop Active</span>
             </div>
@@ -573,20 +594,31 @@
       daySchedules.innerHTML = selectedDays.map(dayName => {
         const value = saved[dayName] || {};
         const key = dayName.toLowerCase();
+        const currentType = value.type || "Lecture";
         return `<div class="control-card p-3" data-schedule-day="${dayName}">
-          <div class="font-bold text-sm mb-2 text-[#425157]">${dayName}</div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-sm text-[#425157]">${dayName}</span>
+            <div class="flex items-center gap-1">
+              <label class="text-[0.7rem] font-bold text-[#69777b]" for="${key}-type">Type:</label>
+              <select id="${key}-type" data-schedule="type" class="text-xs font-bold border border-[#d7d2ca] rounded-md px-2 py-1 bg-white text-[#425157]">
+                <option value="Lecture" ${currentType === "Lecture" ? "selected" : ""}>Lecture (L)</option>
+                <option value="Lab" ${currentType === "Lab" ? "selected" : ""}>Lab (LAB)</option>
+                <option value="Tutorial" ${currentType === "Tutorial" ? "selected" : ""}>Tutorial (TUT)</option>
+              </select>
+            </div>
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <div>
               <label class="field-label block mb-1" for="${key}-start">Start time</label>
-              <input id="${key}-start" data-schedule="start" class="field-control" type="time" value="${value.start || "09:00"}">
+              <input id="${key}-start" data-schedule="start" class="field-control" type="time" value="${value.start || "08:30"}">
             </div>
             <div>
               <label class="field-label block mb-1" for="${key}-end">End time</label>
-              <input id="${key}-end" data-schedule="end" class="field-control" type="time" value="${value.end || "10:00"}">
+              <input id="${key}-end" data-schedule="end" class="field-control" type="time" value="${value.end || "10:30"}">
             </div>
             <div>
               <label class="field-label block mb-1" for="${key}-location">Location</label>
-              <input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" placeholder="e.g. BK8" value="${value.location || ""}">
+              <input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" placeholder="e.g. BK8, M.MIKRO" value="${value.location || ""}">
             </div>
           </div>
         </div>`;
@@ -599,6 +631,7 @@
         daySchedules.querySelectorAll('[data-schedule-day]').forEach(row => {
           const d = row.getAttribute("data-schedule-day");
           currentData[d] = {
+            type: row.querySelector('[data-schedule="type"]').value,
             start: row.querySelector('[data-schedule="start"]').value,
             end: row.querySelector('[data-schedule="end"]').value,
             location: row.querySelector('[data-schedule="location"]').value.trim()
@@ -639,7 +672,6 @@
       renderClasses();
     }
 
-    // Auto-detect resolution from user's current screen
     document.getElementById("auto-detect-screen").addEventListener("click", () => {
       const dpr = window.devicePixelRatio || 1;
       const screenW = Math.round(screen.width * dpr);
@@ -655,7 +687,7 @@
       document.getElementById("screen-ratio").value = "custom";
 
       const status = document.getElementById("download-status");
-      status.textContent = `Detected screen: ${w}×${h}px`;
+      status.textContent = `Screen detected: ${w}×${h}px`;
       status.classList.remove("hidden-ui");
       setTimeout(() => status.classList.add("hidden-ui"), 3500);
     });
@@ -672,8 +704,8 @@
       if (classes.length === 0) {
         return {
           activeDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          windowStart: 480, // 8:00 AM
-          windowEnd: 1080   // 6:00 PM
+          windowStart: 480,
+          windowEnd: 1080
         };
       }
 
@@ -714,12 +746,12 @@
 
       stageEmpty.classList.toggle("hidden-ui", classes.length > 0);
 
-      // Day headers
+      // Render Day Headers
       headersContainer.innerHTML = activeDays.map(d => `
         <div class="day-head">${d.substring(0, 3)}</div>
       `).join("");
 
-      // Left axis time markers (every 1-2 hours)
+      // Render Time Axis Markers
       const stepMinutes = windowMinutes <= 360 ? 60 : 120;
       let timeHtml = "";
       for (let t = windowStart; t <= windowEnd; t += stepMinutes) {
@@ -731,12 +763,12 @@
       }
       timesColumn.innerHTML = timeHtml;
 
-      // Render Day Columns
+      // Render Columns
       columnsContainer.innerHTML = activeDays.map(d => `
         <div class="day-column" data-day-column="${d}"></div>
       `).join("");
 
-      // Render cards: ONLY Subject Name and Location
+      // Render cards: Subject + Badge + Location
       classes.forEach(item => {
         const daysList = item.days || [item.day];
         daysList.forEach(dayName => {
@@ -758,9 +790,21 @@
           block.style.height = height + "%";
           block.style.borderLeftColor = item.color || "var(--accent)";
 
+          let badgeHtml = "";
+          if (detail.type === "Lab") {
+            badgeHtml = `<span class="session-badge badge-lab">LAB</span>`;
+          } else if (detail.type === "Tutorial") {
+            badgeHtml = `<span class="session-badge badge-tut">TUT</span>`;
+          } else if (detail.type === "Lecture") {
+            badgeHtml = `<span class="session-badge badge-lec">L</span>`;
+          }
+
           block.innerHTML = `
-            <strong>${item.subject}</strong>
-            ${detail.location ? `<span>${detail.location}</span>` : ""}
+            <div class="class-block-header">
+              <strong>${item.subject}</strong>
+              ${badgeHtml}
+            </div>
+            ${detail.location ? `<span class="loc">${detail.location}</span>` : ""}
           `;
           column.appendChild(block);
         });
@@ -795,10 +839,12 @@
           row.className = "entry-row";
           const content = document.createElement("div");
           content.innerHTML = "<div class='entry-subject'></div><div class='entry-meta'></div>";
-          content.querySelector(".entry-subject").textContent = item.subject;
-          content.querySelector(".entry-subject").style.color = item.color || "var(--card-ink)";
           
           const detail = item.schedule?.[dayName] || item;
+          const typeTag = detail.type ? ` [${detail.type}]` : "";
+          content.querySelector(".entry-subject").textContent = `${item.subject}${typeTag}`;
+          content.querySelector(".entry-subject").style.color = item.color || "var(--card-ink)";
+          
           content.querySelector(".entry-meta").textContent = formatTime(detail.start) + " – " + formatTime(detail.end) + (detail.location ? " · " + detail.location : "");
           
           const actions = document.createElement("div");
@@ -841,8 +887,9 @@
       const savedSchedule = {};
       activeDays.forEach(d => {
         savedSchedule[d] = (item.schedule && item.schedule[d]) || {
-          start: item.start || "09:00",
-          end: item.end || "10:00",
+          type: item.type || "Lecture",
+          start: item.start || "08:30",
+          end: item.end || "10:30",
           location: item.location || ""
         };
       });
@@ -874,7 +921,7 @@
         return;
       }
       deletingId = id;
-      row.querySelector(".entry-meta").textContent = "Tap the bin again to confirm deletion";
+      row.querySelector(".entry-meta").textContent = "Tap again to confirm delete";
       setTimeout(() => {
         if (deletingId === id) { deletingId = null; renderList(); }
       }, 3000);
@@ -895,6 +942,7 @@
         const row = daySchedules.querySelector(`[data-schedule-day="${dayName}"]`);
         if (!row) continue;
 
+        const type = row.querySelector('[data-schedule="type"]').value;
         const start = row.querySelector('[data-schedule="start"]').value;
         const end = row.querySelector('[data-schedule="end"]').value;
         const location = row.querySelector('[data-schedule="location"]').value.trim();
@@ -902,7 +950,7 @@
         if (!start || !end) return friendlyError(`Please choose start and end times for ${dayName}.`);
         if (timeToMinutes(end) <= timeToMinutes(start)) return friendlyError(`${dayName} must end after it starts.`);
 
-        schedule[dayName] = { start, end, location };
+        schedule[dayName] = { type, start, end, location };
       }
 
       const existing = editingId ? classes.find(item => item.id === editingId) : null;
@@ -930,7 +978,7 @@
           subject: "ENTEC",
           days: ["Monday"],
           schedule: {
-            Monday: { start: "08:30", end: "10:30", location: "DEWAN" }
+            Monday: { type: "Lecture", start: "08:30", end: "10:30", location: "DEWAN" }
           },
           color: "#e76f51"
         },
@@ -939,8 +987,8 @@
           subject: "ESD",
           days: ["Wednesday", "Monday"],
           schedule: {
-            Wednesday: { start: "08:30", end: "11:00", location: "M.MIKRO" },
-            Monday: { start: "14:00", end: "16:00", location: "BK8" }
+            Wednesday: { type: "Lab", start: "08:30", end: "11:00", location: "M.MIKRO" },
+            Monday: { type: "Lecture", start: "14:00", end: "16:00", location: "BK8" }
           },
           color: "#457b9d"
         },
@@ -949,7 +997,7 @@
           subject: "LP SOC",
           days: ["Thursday"],
           schedule: {
-            Thursday: { start: "11:00", end: "13:00", location: "BK8" }
+            Thursday: { type: "Lecture", start: "11:00", end: "13:00", location: "BK8" }
           },
           color: "#d97706"
         },
@@ -958,8 +1006,8 @@
           subject: "CSP",
           days: ["Tuesday", "Thursday"],
           schedule: {
-            Tuesday: { start: "14:00", end: "16:00", location: "BK8" },
-            Thursday: { start: "16:00", end: "18:00", location: "BK4" }
+            Tuesday: { type: "Lecture", start: "14:00", end: "16:00", location: "BK8" },
+            Thursday: { type: "Tutorial", start: "16:00", end: "18:00", location: "BK4" }
           },
           color: "#7b5ea7"
         },
@@ -968,7 +1016,7 @@
           subject: "PSM",
           days: ["Wednesday"],
           schedule: {
-            Wednesday: { start: "14:00", end: "17:00", location: "LAB" }
+            Wednesday: { type: "Lab", start: "14:00", end: "17:00", location: "LAB" }
           },
           color: "#2a9d8f"
         }
@@ -1016,7 +1064,6 @@
       const isPhone = previewMode === "phone";
       const canvas = document.createElement("canvas");
 
-      // Dynamic dimension assignment (Anti-Crop resolution matching)
       let width, height;
       if (!isPhone) {
         width = 1920;
@@ -1055,15 +1102,14 @@
         ctx.fill();
       }
 
-      // Safe outer margins
       const sideMargin = isPhone ? Math.round(width * 0.065) : 100;
       const bottomMargin = isPhone ? Math.round(height * 0.065) : 80;
 
-      // Lock Screen Clock Offset
+      // Safe Top Offset under Lockscreen Clock
       const clockClearancePercent = isPhone ? (parseInt(document.getElementById("clock-offset").value, 10) / 100) : 0.12;
       const gridTop = Math.round(height * clockClearancePercent);
 
-      // Optional Title (positioned just above timetable box)
+      // Header Title
       const showTitle = document.getElementById("show-title").checked;
       if (showTitle) {
         const titleText = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
@@ -1091,7 +1137,7 @@
       const headerH = isPhone ? Math.round(height * 0.034) : 60;
       const columnW = (gridW - timeW) / activeDays.length;
 
-      // Card Grid Backdrop
+      // Table grid background
       ctx.strokeStyle = theme.grid; 
       ctx.lineWidth = 2;
       ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
@@ -1099,7 +1145,7 @@
       ctx.fill(); 
       ctx.stroke();
 
-      // Divider Lines
+      // Horizontal and vertical dividers
       ctx.beginPath(); 
       ctx.moveTo(gridX, gridY + headerH); 
       ctx.lineTo(gridX + gridW, gridY + headerH);
@@ -1121,7 +1167,7 @@
       }
       ctx.stroke();
 
-      // Day Column Headers
+      // Day Column Titles
       ctx.fillStyle = theme.ink; 
       ctx.font = `800 ${isPhone ? Math.round(width * 0.026) : 20}px DM Sans`; 
       ctx.textAlign = "center";
@@ -1143,7 +1189,7 @@
       }
       ctx.globalAlpha = 1.0;
 
-      // Cards: Subject Name & Location Only
+      // Cards: Subject + LAB/TUT tag + Location
       classes.forEach(item => {
         const daysList = item.days || [item.day];
         daysList.forEach(dayName => {
@@ -1163,7 +1209,7 @@
           const w = columnW - (cardPadding * 2);
           const h = ((gridH - headerH) * blockHeight) - 6;
 
-          // Card background with soft shadow
+          // Card background
           ctx.fillStyle = theme.card; 
           ctx.shadowColor = "rgba(0,0,0,0.1)"; 
           ctx.shadowBlur = 6; 
@@ -1172,11 +1218,11 @@
           ctx.fill(); 
           ctx.shadowColor = "transparent";
 
-          // Accent color bar on the left
+          // Left border strip
           ctx.fillStyle = item.color || theme.accent; 
           ctx.fillRect(x, y, 6, h);
 
-          // Subject Text
+          // Subject Name
           ctx.fillStyle = theme.cardInk; 
           ctx.font = `800 ${isPhone ? Math.round(width * 0.026) : 18}px DM Sans`; 
           ctx.textAlign = "left";
@@ -1185,11 +1231,26 @@
           ctx.beginPath();
           ctx.rect(x + 10, y + 2, w - 14, h - 4);
           ctx.clip();
-          ctx.fillText(item.subject, x + 12, y + (isPhone ? 28 : 22));
           
-          // Location Text
+          ctx.fillText(item.subject, x + 12, y + (isPhone ? 28 : 22));
+
+          // Draw distinct badge for Lab or Tutorial
+          if (detail.type === "Lab") {
+            const subjWidth = ctx.measureText(item.subject).width;
+            ctx.fillStyle = "#0284c7";
+            ctx.font = `800 ${isPhone ? Math.round(width * 0.019) : 13}px DM Sans`;
+            ctx.fillText(" • LAB", x + 14 + subjWidth, y + (isPhone ? 28 : 22));
+          } else if (detail.type === "Tutorial") {
+            const subjWidth = ctx.measureText(item.subject).width;
+            ctx.fillStyle = "#b45309";
+            ctx.font = `800 ${isPhone ? Math.round(width * 0.019) : 13}px DM Sans`;
+            ctx.fillText(" • TUT", x + 14 + subjWidth, y + (isPhone ? 28 : 22));
+          }
+          
+          // Location text
           if (h > 42 && detail.location) {
             ctx.font = `500 ${isPhone ? Math.round(width * 0.021) : 14}px DM Sans`;
+            ctx.fillStyle = theme.cardInk;
             ctx.globalAlpha = 0.72;
             ctx.fillText(detail.location, x + 12, y + (isPhone ? 52 : 42));
             ctx.globalAlpha = 1.0;
@@ -1198,14 +1259,13 @@
         });
       });
 
-      // Trigger Direct Save
       const link = document.createElement("a");
       link.download = `timetable-wallpaper-${width}x${height}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
 
       const status = document.getElementById("download-status");
-      status.textContent = `Saved for ${width}×${height}px display!`;
+      status.textContent = `Saved (${width}×${height}px)!`;
       status.classList.remove("hidden-ui");
       setTimeout(() => status.classList.add("hidden-ui"), 4000);
     }
