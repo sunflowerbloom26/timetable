@@ -168,7 +168,7 @@
       box-shadow: 0 20px 44px rgba(38, 51, 58, .19);
       transition: width .3s, aspect-ratio .3s, border-radius .3s, background .3s;
     }
-    .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 16; border-radius: 34px; }
+    .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 19.5; border-radius: 34px; }
     .wallpaper-stage.desktop { width: min(100%, 920px); aspect-ratio: 16 / 10; border-radius: 18px; }
     .wallpaper-stage::before, .wallpaper-stage::after {
       content: ""; position: absolute; pointer-events: none; opacity: .72;
@@ -181,7 +181,7 @@
       position: absolute; left: 7%; right: 7%; top: 4%; height: 7%;
       border-top: 1px dashed var(--safe); border-bottom: 1px dashed var(--safe); opacity: .8;
     }
-    .phone .safe-band { top: 7%; height: 9%; }
+    .phone .safe-band { top: 7%; height: 18%; }
     .wallpaper-title { margin: 0; line-height: 1.05; letter-spacing: -.035em; font-family: "Fraunces", serif; font-weight: 700; color: var(--stage-ink); font-size: clamp(1.15rem, 3.2vw, 2.25rem); max-width: 72%; }
     .wallpaper-subtitle { font-size: clamp(.56rem, 1.3vw, .78rem); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; margin-top: .45rem; opacity: .62; }
 
@@ -191,7 +191,7 @@
       min-height: 0;
       margin-top: clamp(0.7rem, 2%, 1.2rem);
       display: grid;
-      grid-template-columns: 50px 1fr;
+      grid-template-columns: 48px 1fr;
       grid-template-rows: 28px 1fr;
       border: 1px solid var(--grid);
       border-radius: 14px;
@@ -270,7 +270,7 @@
       left: 3px;
       right: 3px;
       border-radius: 6px;
-      padding: 3px 4px 3px 6px;
+      padding: 4px 4px 4px 6px;
       background: var(--card);
       color: var(--card-ink);
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -287,9 +287,9 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      font-size: 0.64rem;
+      font-size: 0.65rem;
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.15;
       word-break: break-word;
     }
 
@@ -377,6 +377,31 @@
                 <button type="button" id="desktop-mode" class="option-button text-center" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
               </div>
             </div>
+
+            <!-- Lockscreen Screen Ratio & Safe Spacing -->
+            <div id="phone-fit-controls" class="section-rule mt-5 pt-5">
+              <div class="flex items-center justify-between mb-2">
+                <p class="canva-text field-label">Screen Aspect Ratio</p>
+                <button type="button" id="auto-detect-screen" class="text-xs font-bold text-[#b74a3d] hover:underline flex items-center gap-1">
+                  <i data-lucide="scan" style="width:12px;height:12px"></i> Auto-detect my phone
+                </button>
+              </div>
+              <select id="screen-ratio" class="field-control">
+                <option value="20:9" selected>Modern Android (20:9 / 1080×2400)</option>
+                <option value="19.5:9">iPhone / Tall Flagship (19.5:9 / 1170×2532)</option>
+                <option value="16:9">Classic Wide (16:9 / 1080×1920)</option>
+                <option value="custom" id="custom-ratio-opt" style="display:none">Detected Screen</option>
+              </select>
+
+              <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                  <label for="clock-offset" class="field-label">Top Clock Space</label>
+                  <span id="offset-val" class="text-xs font-bold text-[#687880]">28%</span>
+                </div>
+                <input type="range" id="clock-offset" min="15" max="42" value="28" class="w-full accent-[#d96555]">
+                <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at the top so the phone lock clock doesn't cover your subjects.</p>
+              </div>
+            </div>
           </section>
 
           <!-- Add/Edit Class -->
@@ -389,7 +414,7 @@
             <form id="class-form" class="mt-5 space-y-4" novalidate="">
               <div>
                 <label class="canva-text field-label block mb-2" for="subject">Subject name</label>
-                <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off" placeholder="e.g. Arab, Yoga, Calculus">
+                <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off" placeholder="e.g. ENTEC, ESD, CSP">
               </div>
               <fieldset class="border-0 p-0 m-0">
                 <legend class="canva-text field-label block mb-2">Day of the week</legend>
@@ -446,14 +471,14 @@
                   <i data-lucide="eye" style="width:14px;height:14px"></i> live composition
                 </div>
                 <h2 class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58);">Your live wallpaper</h2>
-                <p class="canva-text text-sm text-[#718084] mt-1">The dashed area keeps important text comfortably away from device UI.</p>
+                <p class="canva-text text-sm text-[#718084] mt-1">Dashed safe band shows where typical phone clocks and indicators sit.</p>
               </div>
-              <span class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64);">Safe margins included</span>
+              <span class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64);">Anti-Crop Active</span>
             </div>
 
             <div id="preview-shell" class="wallpaper-wrap">
               <div id="wallpaper-stage" class="wallpaper-stage phone">
-                <div class="safe-band" aria-hidden="true"></div>
+                <div class="safe-band" id="safe-band" aria-hidden="true"></div>
                 <div class="stage-content">
                   <div id="stage-title-area">
                     <h3 id="stage-title" class="wallpaper-title">My Class Timetable</h3>
@@ -478,7 +503,7 @@
                 <i data-lucide="download" style="width:18px;height:18px"></i>
                 <span class="canva-text">Download wallpaper</span>
               </button>
-              <div id="download-status" class="hidden-ui message message-success sm:max-w-[220px]" aria-live="polite"></div>
+              <div id="download-status" class="hidden-ui message message-success sm:max-w-[260px]" aria-live="polite"></div>
             </div>
           </div>
         </section>
@@ -498,11 +523,18 @@
       charcoal: { stage:"#292e35", ink:"#f4f1e9", soft:"#505966", accent:"#f2b75e", accentDark:"#f2b75e", card:"#f7f4ed", cardInk:"#292e35", grid:"rgba(244,241,233,.25)", safe:"rgba(242,183,94,.6)", shape:"4px", masculine:true }
     };
 
+    const aspectPresets = {
+      "20:9": { w: 1080, h: 2400 },
+      "19.5:9": { w: 1170, h: 2532 },
+      "16:9": { w: 1080, h: 1920 }
+    };
+
     let classes = [];
     let editingId = null;
     let selectedTheme = "pastel";
     let previewMode = "phone";
     let deletingId = null;
+    let customDimensions = null;
 
     const form = document.getElementById("class-form");
     const subject = document.getElementById("subject");
@@ -554,7 +586,7 @@
             </div>
             <div>
               <label class="field-label block mb-1" for="${key}-location">Location</label>
-              <input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" placeholder="e.g. Room 204" value="${value.location || ""}">
+              <input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" placeholder="e.g. BK8" value="${value.location || ""}">
             </div>
           </div>
         </div>`;
@@ -603,8 +635,36 @@
       document.getElementById("desktop-mode").classList.toggle("is-active", mode === "desktop");
       document.getElementById("phone-mode").setAttribute("aria-pressed", String(mode === "phone"));
       document.getElementById("desktop-mode").setAttribute("aria-pressed", String(mode === "desktop"));
+      document.getElementById("phone-fit-controls").style.display = (mode === "phone") ? "block" : "none";
       renderClasses();
     }
+
+    // Auto-detect resolution from user's current screen
+    document.getElementById("auto-detect-screen").addEventListener("click", () => {
+      const dpr = window.devicePixelRatio || 1;
+      const screenW = Math.round(screen.width * dpr);
+      const screenH = Math.round(screen.height * dpr);
+
+      const w = Math.min(screenW, screenH);
+      const h = Math.max(screenW, screenH);
+      customDimensions = { w, h };
+
+      const opt = document.getElementById("custom-ratio-opt");
+      opt.style.display = "block";
+      opt.textContent = `Auto-Detected (${w}×${h}px)`;
+      document.getElementById("screen-ratio").value = "custom";
+
+      const status = document.getElementById("download-status");
+      status.textContent = `Detected screen: ${w}×${h}px`;
+      status.classList.remove("hidden-ui");
+      setTimeout(() => status.classList.add("hidden-ui"), 3500);
+    });
+
+    document.getElementById("clock-offset").addEventListener("input", (e) => {
+      document.getElementById("offset-val").textContent = `${e.target.value}%`;
+      const band = document.getElementById("safe-band");
+      band.style.height = `${e.target.value}%`;
+    });
 
     function getActiveTimeAndDays() {
       const allDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -671,7 +731,7 @@
       }
       timesColumn.innerHTML = timeHtml;
 
-      // Clean day columns
+      // Render Day Columns
       columnsContainer.innerHTML = activeDays.map(d => `
         <div class="day-column" data-day-column="${d}"></div>
       `).join("");
@@ -867,29 +927,48 @@
       classes = [
         {
           id: "sample-1",
-          subject: "Calculus",
-          days: ["Monday", "Wednesday"],
+          subject: "ENTEC",
+          days: ["Monday"],
           schedule: {
-            Monday: { start: "09:00", end: "10:30", location: "Room 204" },
-            Wednesday: { start: "11:00", end: "12:30", location: "Room 102" }
+            Monday: { start: "08:30", end: "10:30", location: "DEWAN" }
           },
           color: "#e76f51"
         },
         {
           id: "sample-2",
-          subject: "Design Studio",
-          days: ["Tuesday"],
+          subject: "ESD",
+          days: ["Wednesday", "Monday"],
           schedule: {
-            Tuesday: { start: "11:00", end: "13:00", location: "Lab B" }
+            Wednesday: { start: "08:30", end: "11:00", location: "M.MIKRO" },
+            Monday: { start: "14:00", end: "16:00", location: "BK8" }
           },
           color: "#457b9d"
         },
         {
           id: "sample-3",
-          subject: "AIoT Lab",
+          subject: "LP SOC",
           days: ["Thursday"],
           schedule: {
-            Thursday: { start: "14:00", end: "16:00", location: "Tech 3" }
+            Thursday: { start: "11:00", end: "13:00", location: "BK8" }
+          },
+          color: "#d97706"
+        },
+        {
+          id: "sample-4",
+          subject: "CSP",
+          days: ["Tuesday", "Thursday"],
+          schedule: {
+            Tuesday: { start: "14:00", end: "16:00", location: "BK8" },
+            Thursday: { start: "16:00", end: "18:00", location: "BK4" }
+          },
+          color: "#7b5ea7"
+        },
+        {
+          id: "sample-5",
+          subject: "PSM",
+          days: ["Wednesday"],
+          schedule: {
+            Wednesday: { start: "14:00", end: "17:00", location: "LAB" }
           },
           color: "#2a9d8f"
         }
@@ -936,56 +1015,91 @@
       const theme = themes[selectedTheme];
       const isPhone = previewMode === "phone";
       const canvas = document.createElement("canvas");
-      canvas.width = isPhone ? 1080 : 1920;
-      canvas.height = isPhone ? 1920 : 1200;
-      const ctx = canvas.getContext("2d");
-      const width = canvas.width, height = canvas.height;
 
+      // Dynamic dimension assignment (Anti-Crop resolution matching)
+      let width, height;
+      if (!isPhone) {
+        width = 1920;
+        height = 1200;
+      } else {
+        const ratioChoice = document.getElementById("screen-ratio").value;
+        if (ratioChoice === "custom" && customDimensions) {
+          width = customDimensions.w;
+          height = customDimensions.h;
+        } else {
+          const preset = aspectPresets[ratioChoice] || aspectPresets["20:9"];
+          width = preset.w;
+          height = preset.h;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+
+      // 1. Background fill
       ctx.fillStyle = theme.stage; 
       ctx.fillRect(0, 0, width, height);
 
-      // Decorative shapes
+      // 2. Corner organic soft bubble
       ctx.fillStyle = theme.soft;
       if (theme.masculine) {
-        ctx.save(); ctx.translate(width * .9, height * .05); ctx.rotate(.48); 
-        ctx.fillRect(-width*.18, -height*.09, width*.42, height*.3); ctx.restore();
+        ctx.save(); 
+        ctx.translate(width * 0.9, height * 0.05); 
+        ctx.rotate(0.48); 
+        ctx.fillRect(-width * 0.18, -height * 0.09, width * 0.42, height * 0.3); 
+        ctx.restore();
       } else {
-        ctx.beginPath(); ctx.arc(width * .91, height * .02, width * .22, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); 
+        ctx.arc(width * 0.92, height * 0.04, width * 0.28, 0, Math.PI * 2); 
+        ctx.fill();
       }
 
-      const padding = isPhone ? 70 : 120;
-      const showTitle = document.getElementById("show-title").checked;
-      let gridTop = padding;
+      // Safe outer margins
+      const sideMargin = isPhone ? Math.round(width * 0.065) : 100;
+      const bottomMargin = isPhone ? Math.round(height * 0.065) : 80;
 
+      // Lock Screen Clock Offset
+      const clockClearancePercent = isPhone ? (parseInt(document.getElementById("clock-offset").value, 10) / 100) : 0.12;
+      const gridTop = Math.round(height * clockClearancePercent);
+
+      // Optional Title (positioned just above timetable box)
+      const showTitle = document.getElementById("show-title").checked;
       if (showTitle) {
+        const titleText = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
         ctx.fillStyle = theme.ink; 
-        ctx.font = "700 " + (isPhone ? 52 : 70) + "px Georgia";
-        const title = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
-        ctx.fillText(title, padding, padding + (isPhone ? 50 : 65));
-        ctx.fillStyle = theme.ink; ctx.globalAlpha = .62; 
-        ctx.font = "700 " + (isPhone ? 20 : 25) + "px DM Sans";
-        ctx.fillText("WEEKLY SCHEDULE", padding, padding + (isPhone ? 85 : 103)); 
-        ctx.globalAlpha = 1;
-        gridTop += isPhone ? 140 : 155;
+        ctx.font = `700 ${isPhone ? Math.round(width * 0.052) : 60}px Georgia`;
+        ctx.textAlign = "left";
+        ctx.fillText(titleText, sideMargin, gridTop - (isPhone ? 38 : 45));
+
+        ctx.fillStyle = theme.ink; 
+        ctx.globalAlpha = 0.55; 
+        ctx.font = `700 ${isPhone ? Math.round(width * 0.022) : 22}px DM Sans`;
+        ctx.fillText("WEEKLY SCHEDULE", sideMargin, gridTop - (isPhone ? 15 : 18)); 
+        ctx.globalAlpha = 1.0;
       }
 
       const { activeDays, windowStart, windowEnd } = getActiveTimeAndDays();
       const windowMinutes = windowEnd - windowStart;
 
-      const gridX = padding, gridY = gridTop, gridW = width - padding * 2, gridH = height - gridTop - padding;
-      const timeW = isPhone ? 120 : 140;
-      const headerH = isPhone ? 64 : 70;
+      const gridX = sideMargin;
+      const gridY = gridTop;
+      const gridW = width - (sideMargin * 2);
+      const gridH = height - gridTop - bottomMargin;
+
+      const timeW = isPhone ? Math.round(gridW * 0.135) : 120;
+      const headerH = isPhone ? Math.round(height * 0.034) : 60;
       const columnW = (gridW - timeW) / activeDays.length;
 
-      // Table grid background & border
+      // Card Grid Backdrop
       ctx.strokeStyle = theme.grid; 
       ctx.lineWidth = 2;
-      ctx.fillStyle = "rgba(255,255,255,.15)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
       roundedRect(ctx, gridX, gridY, gridW, gridH, theme.masculine ? 5 : 20); 
       ctx.fill(); 
       ctx.stroke();
 
-      // Header and column divider lines
+      // Divider Lines
       ctx.beginPath(); 
       ctx.moveTo(gridX, gridY + headerH); 
       ctx.lineTo(gridX + gridW, gridY + headerH);
@@ -993,7 +1107,7 @@
       ctx.lineTo(gridX + timeW, gridY + gridH);
 
       for (let i = 1; i < activeDays.length; i++) { 
-        const x = gridX + timeW + columnW * i; 
+        const x = gridX + timeW + (columnW * i); 
         ctx.moveTo(x, gridY); 
         ctx.lineTo(x, gridY + gridH); 
       }
@@ -1001,36 +1115,35 @@
       const stepMinutes = windowMinutes <= 360 ? 60 : 120;
       const steps = windowMinutes / stepMinutes;
       for (let i = 1; i <= steps; i++) { 
-        const y = gridY + headerH + (gridH - headerH) * (i / steps); 
+        const y = gridY + headerH + ((gridH - headerH) * (i / steps)); 
         ctx.moveTo(gridX, y); 
         ctx.lineTo(gridX + gridW, y); 
       }
       ctx.stroke();
 
-      // Headers (Days)
+      // Day Column Headers
       ctx.fillStyle = theme.ink; 
-      ctx.font = "700 " + (isPhone ? 19 : 22) + "px DM Sans"; 
+      ctx.font = `800 ${isPhone ? Math.round(width * 0.026) : 20}px DM Sans`; 
       ctx.textAlign = "center";
       activeDays.forEach((label, index) => {
-        ctx.fillText(label.substring(0, 3).toUpperCase(), gridX + timeW + columnW * (index + 0.5), gridY + headerH * 0.62);
+        ctx.fillText(label.substring(0, 3).toUpperCase(), gridX + timeW + columnW * (index + 0.5), gridY + (headerH * 0.62));
       });
 
-      // Side Axis (Hours)
+      // Left-Side Hour Axis
       ctx.textAlign = "center"; 
       ctx.globalAlpha = 0.72; 
-      ctx.font = "700 " + (isPhone ? 15 : 18) + "px DM Sans";
+      ctx.font = `700 ${isPhone ? Math.round(width * 0.022) : 16}px DM Sans`;
       for (let t = windowStart; t <= windowEnd; t += stepMinutes) {
         const fraction = (t - windowStart) / windowMinutes;
         const hours = Math.floor(t / 60);
         const suffix = hours >= 12 ? "PM" : "AM";
         const displayHour = hours % 12 || 12;
-        const timeLabel = `${displayHour} ${suffix}`;
-        const y = gridY + headerH + (gridH - headerH) * fraction;
-        ctx.fillText(timeLabel, gridX + (timeW / 2), y + (fraction === 1 ? -6 : 5));
+        const y = gridY + headerH + ((gridH - headerH) * fraction);
+        ctx.fillText(`${displayHour} ${suffix}`, gridX + (timeW / 2), y + (fraction === 1 ? -6 : 5));
       }
-      ctx.globalAlpha = 1;
+      ctx.globalAlpha = 1.0;
 
-      // Cards: Subject & Location ONLY
+      // Cards: Subject Name & Location Only
       classes.forEach(item => {
         const daysList = item.days || [item.day];
         daysList.forEach(dayName => {
@@ -1044,49 +1157,55 @@
           const top = Math.max(0, Math.min(1, (start - windowStart) / windowMinutes));
           const blockHeight = Math.max(0.065, Math.min(1 - top, (end - start) / windowMinutes));
 
-          const x = gridX + timeW + columnW * colIndex + 5;
-          const y = gridY + headerH + (gridH - headerH) * top + 4;
-          const w = columnW - 10;
-          const h = (gridH - headerH) * blockHeight - 8;
+          const cardPadding = 5;
+          const x = gridX + timeW + (columnW * colIndex) + cardPadding;
+          const y = gridY + headerH + ((gridH - headerH) * top) + 3;
+          const w = columnW - (cardPadding * 2);
+          const h = ((gridH - headerH) * blockHeight) - 6;
 
+          // Card background with soft shadow
           ctx.fillStyle = theme.card; 
-          ctx.shadowColor = "rgba(0,0,0,.12)"; 
-          ctx.shadowBlur = 8; 
-          ctx.shadowOffsetY = 3;
-          roundedRect(ctx, x, y, w, h, theme.masculine ? 4 : 10); 
+          ctx.shadowColor = "rgba(0,0,0,0.1)"; 
+          ctx.shadowBlur = 6; 
+          ctx.shadowOffsetY = 2;
+          roundedRect(ctx, x, y, w, h, theme.masculine ? 4 : 8); 
           ctx.fill(); 
           ctx.shadowColor = "transparent";
 
+          // Accent color bar on the left
           ctx.fillStyle = item.color || theme.accent; 
-          ctx.fillRect(x, y, isPhone ? 6 : 7, h);
+          ctx.fillRect(x, y, 6, h);
 
+          // Subject Text
           ctx.fillStyle = theme.cardInk; 
-          ctx.font = "700 " + (isPhone ? 19 : 22) + "px DM Sans"; 
+          ctx.font = `800 ${isPhone ? Math.round(width * 0.026) : 18}px DM Sans`; 
           ctx.textAlign = "left";
 
           ctx.save();
           ctx.beginPath();
-          ctx.rect(x + 10, y + 4, w - 14, h - 8);
+          ctx.rect(x + 10, y + 2, w - 14, h - 4);
           ctx.clip();
-          ctx.fillText(item.subject, x + 14, y + (isPhone ? 25 : 30));
+          ctx.fillText(item.subject, x + 12, y + (isPhone ? 28 : 22));
           
+          // Location Text
           if (h > 42 && detail.location) {
-            ctx.font = "500 " + (isPhone ? 14 : 17) + "px DM Sans";
-            ctx.globalAlpha = 0.75;
-            ctx.fillText(detail.location, x + 14, y + (isPhone ? 48 : 56));
-            ctx.globalAlpha = 1;
+            ctx.font = `500 ${isPhone ? Math.round(width * 0.021) : 14}px DM Sans`;
+            ctx.globalAlpha = 0.72;
+            ctx.fillText(detail.location, x + 12, y + (isPhone ? 52 : 42));
+            ctx.globalAlpha = 1.0;
           }
           ctx.restore();
         });
       });
 
+      // Trigger Direct Save
       const link = document.createElement("a");
-      link.download = "class-timetable-wallpaper.png";
+      link.download = `timetable-wallpaper-${width}x${height}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
 
       const status = document.getElementById("download-status");
-      status.textContent = "Your wallpaper PNG is ready to save.";
+      status.textContent = `Saved for ${width}×${height}px display!`;
       status.classList.remove("hidden-ui");
       setTimeout(() => status.classList.add("hidden-ui"), 4000);
     }
