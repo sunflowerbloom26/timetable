@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260921-05-147306f","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/83d6dfdadcd4750a.telemetry_sdk.js" integrity="sha512-XS4Dvzp6vbagZS9vFErihvr8aO3S0tH78KWUefn06fmL4WYqryBtZj/IOLITYj7dFA4gPVvPg1W/JB1DK3uLNQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Timetable Wallpaper Maker</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #26333a;
+      --muted: #687880;
+      --paper: #f4f1eb;
+      --panel: #fffdfa;
+      --line: #dedbd3;
+      --accent: #e57261;
+      --accent-dark: #b74a3d;
+      --soft: #ffe5dc;
+      --stage: #fff6f1;
+      --stage-ink: #33424a;
+      --grid: rgba(51, 66, 74, .16);
+      --card: #ffffff;
+      --card-ink: #29353a;
+      --safe: rgba(229, 114, 97, .28);
+      --shape: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid rgba(229, 114, 97, .45);
+      outline-offset: 3px;
+    }
+
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 221, 200, .62), transparent 28rem),
+        radial-gradient(circle at 90% 18%, rgba(215, 234, 223, .65), transparent 28rem),
+        var(--paper);
+    }
+
+    .display-font { font-family: "Fraunces", serif; }
+    .app-max { max-width: 1500px; margin: 0 auto; }
+
+    .top-header {
+      border-bottom: 1px solid rgba(38, 51, 58, .1);
+      background: rgba(255, 253, 250, .78);
+      backdrop-filter: blur(16px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+
+    .control-card {
+      background: rgba(255, 253, 250, .92);
+      border: 1px solid rgba(38, 51, 58, .1);
+      border-radius: 22px;
+      box-shadow: 0 14px 34px rgba(49, 57, 56, .07);
+    }
+
+    .section-rule { border-top: 1px solid var(--line); }
+    .field-label { font-size: .82rem; font-weight: 700; color: #425157; }
+    .field-control {
+      width: 100%;
+      border: 1px solid #d7d2ca;
+      border-radius: 12px;
+      background: #fff;
+      color: #26333a;
+      min-height: 44px;
+      padding: .65rem .75rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field-control:hover { border-color: #b8afa4; }
+    .field-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(229, 114, 97, .13); outline: none; }
+
+    .option-button {
+      border: 1px solid #d8d3ca;
+      padding: .72rem .76rem;
+      border-radius: 13px;
+      background: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      color: #48545a;
+      text-align: left;
+      transition: transform .18s, border-color .18s, box-shadow .18s;
+    }
+    .option-button:hover { transform: translateY(-1px); border-color: var(--accent); }
+    .option-button.is-active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(229, 114, 97, .19); color: var(--accent-dark); }
+
+    .theme-swatch {
+      width: 18px; height: 18px; border-radius: 6px; display: inline-block; vertical-align: middle; margin-right: .38rem;
+      border: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .main-button {
+      min-height: 48px;
+      border-radius: 13px;
+      padding: .75rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: .55rem;
+      transition: transform .18s, background .18s, box-shadow .18s;
+    }
+    .main-button:hover { transform: translateY(-1px); background: var(--accent-dark); box-shadow: 0 8px 16px rgba(183, 74, 61, .2); }
+    .secondary-button {
+      min-height: 44px; padding: .62rem .85rem; border-radius: 12px;
+      background: #fff; border: 1px solid #d8d3ca; color: #47555b; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+    }
+    .secondary-button:hover { background: #faf7f1; border-color: #bfb6ab; }
+    .danger-button { color: #a63d34; border-color: #e6b9b1; background: #fff8f7; }
+    .danger-button:hover { background: #fff0ed; }
+
+    .message {
+      border-radius: 11px;
+      padding: .7rem .8rem;
+      font-size: .83rem;
+      line-height: 1.35;
+    }
+    .message-error { background: #fff0ee; color: #9b3028; border: 1px solid #f0c1ba; }
+    .message-success { background: #edf8f0; color: #276742; border: 1px solid #c9e6d2; }
+    .hidden-ui { display: none !important; }
+
+    .entry-group { border-top: 1px solid #ebe6de; padding-top: .8rem; margin-top: .8rem; }
+    .entry-day { font-size: .77rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #69777b; margin-bottom: .5rem; }
+    .entry-row {
+      border: 1px solid #e3ded5; border-radius: 13px; padding: .7rem;
+      background: #fff; display: grid; grid-template-columns: 1fr auto; gap: .7rem; align-items: center;
+    }
+    .entry-subject { font-weight: 700; color: #2d3c43; font-size: .88rem; }
+    .entry-meta { font-size: .75rem; color: #718084; margin-top: .16rem; }
+    .icon-action { width: 35px; height: 35px; display: inline-flex; justify-content: center; align-items: center; border: 1px solid #ddd7cf; background: #fff; border-radius: 9px; color: #56666d; }
+    .icon-action:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+    .preview-panel { min-width: 0; }
+    .wallpaper-wrap { overflow: auto; padding: .75rem; background: rgba(35, 46, 52, .06); border-radius: 22px; }
+    .wallpaper-stage {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--stage);
+      color: var(--stage-ink);
+      box-shadow: 0 20px 44px rgba(38, 51, 58, .19);
+      transition: width .3s, aspect-ratio .3s, border-radius .3s, background .3s;
+    }
+    .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 16; border-radius: 34px; }
+    .wallpaper-stage.desktop { width: min(100%, 920px); aspect-ratio: 16 / 10; border-radius: 18px; }
+    .wallpaper-stage::before, .wallpaper-stage::after {
+      content: ""; position: absolute; pointer-events: none; opacity: .72;
+    }
+    .wallpaper-stage::before { width: 42%; height: 36%; background: var(--soft); border-radius: 50%; top: -14%; right: -12%; }
+    .wallpaper-stage::after { width: 26%; aspect-ratio: 1; border: 2px solid var(--accent); border-radius: 50%; bottom: -13%; left: -9%; opacity: .24; }
+
+    .stage-content { position: absolute; inset: 0; z-index: 1; padding: clamp(1rem, 3.1%, 2.1rem); display: flex; flex-direction: column; }
+    .safe-band {
+      position: absolute; left: 7%; right: 7%; top: 4%; height: 7%;
+      border-top: 1px dashed var(--safe); border-bottom: 1px dashed var(--safe); opacity: .8;
+    }
+    .phone .safe-band { top: 7%; height: 9%; }
+    .wallpaper-title { margin: 0; line-height: 1.05; letter-spacing: -.035em; font-family: "Fraunces", serif; font-weight: 700; color: var(--stage-ink); font-size: clamp(1.15rem, 3.2vw, 2.25rem); max-width: 72%; }
+    .wallpaper-subtitle { font-size: clamp(.56rem, 1.3vw, .78rem); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; margin-top: .45rem; opacity: .62; }
+
+    .week-grid {
+      flex: 1; min-height: 0; margin-top: clamp(.8rem, 2.5%, 1.45rem);
+      display: grid; grid-template-columns: 14% repeat(7, 1fr); grid-template-rows: auto 1fr;
+      border: 1px solid var(--grid); border-radius: calc(var(--shape) - 5px); overflow: hidden;
+      background: rgba(255,255,255,.21);
+    }
+    .grid-corner, .day-head { border-bottom: 1px solid var(--grid); background: rgba(255,255,255,.22); }
+    .day-head { display: flex; align-items: center; justify-content: center; padding: .45rem .1rem; font-size: clamp(.46rem, 1vw, .72rem); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .times-column { position: relative; border-right: 1px solid var(--grid); }
+    .time-label { position: absolute; left: 10%; font-size: clamp(.43rem, .83vw, .63rem); font-weight: 700; opacity: .64; transform: translateY(-48%); }
+    .day-column { position: relative; border-right: 1px solid var(--grid); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(20% - 1px), var(--grid) calc(20% - 1px), var(--grid) 20%); }
+    .day-column:last-child { border-right: none; }
+
+    .class-block {
+      position: absolute; left: 6%; right: 6%; border-radius: clamp(5px, 1vw, 10px);
+      padding: clamp(.24rem, .65vw, .48rem); overflow: hidden;
+      background: var(--card); color: var(--card-ink);
+      box-shadow: 0 3px 8px rgba(35, 45, 45, .12); border-left: 3px solid var(--accent);
+      font-size: clamp(.42rem, .82vw, .68rem); line-height: 1.15;
+    }
+    .class-block strong { display: block; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .class-block span { display: block; margin-top: .15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .76; font-size: .88em; }
+    .stage-empty { position: absolute; inset: 37% 12% auto; text-align: center; font-size: clamp(.62rem, 1.2vw, .85rem); font-weight: 700; opacity: .68; line-height: 1.4; }
+
+    .masculine .wallpaper-stage::before { border-radius: 0; transform: rotate(28deg); }
+    .masculine .wallpaper-stage::after { border-radius: 0; transform: rotate(45deg); }
+    .masculine .wallpaper-stage { border-radius: 8px; }
+    .masculine .week-grid { border-radius: 4px; }
+    .masculine .class-block { border-radius: 3px; box-shadow: 4px 4px 0 rgba(0,0,0,.16); }
+
+    @media (max-width: 1023px) {
+      .wallpaper-stage.desktop { width: min(100%, 790px); }
+    }
+    @media (max-width: 540px) {
+      .wallpaper-wrap { padding: .5rem; }
+      .wallpaper-stage.desktop { min-width: 520px; }
+      .entry-row { padding: .6rem; }
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/8de366929c5f3b48.data_sdk.js" type="text/javascript" integrity="sha512-TyQ8k8cZj66xe/aENmn6RyZpdOFZXbAo5+KBG3PeFM+Q4qMTHU8xAqmq4ADClNfPrstgQYV6OzZHwLTnElzB2g=="></script>
+  <script src="/_sdk/0ddbbee1c66b1212.editing_sdk.js" type="text/javascript" integrity="sha512-HQn5LM1yruQSbY78ATUril6QeOJ9xj7KqO64ltLtb4vBwI5Qv3/tloFFOndBPZTNZoeV5xKzuth5y6FTi9crsg=="></script>
+  <script src="/_sdk/765e1fea0cec97ce.resizing_sdk.js" type="text/javascript" integrity="sha512-IRTJnqww0+HQ5V/LlWEQrlD5SrYHaVvaeVoNe8HYQXoaguzUGheSd9+n9s6WOgaTcEH0g37DuINHZ9aqfzWjlw=="></script>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(244, 241, 235);">
+  <div class="app-shell">
+   <header data-template-id="header-section" class="canva-header top-header" style="background: rgb(255, 253, 250);">
+    <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
+     <div class="flex items-start gap-4">
+      <div class="mt-1 w-11 h-11 rounded-2xl bg-[#ffe2d8] text-[#b94f40] flex items-center justify-center shadow-sm" aria-hidden="true">
+       <i data-lucide="calendar-days" style="width:22px;height:22px"></i>
+      </div>
+      <div>
+       <div class="eyebrow"><i data-lucide="sparkles" style="width:14px;height:14px"></i> wallpaper maker
+       </div>
+       <h1 data-template-id="app-title" class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 32px;">Class Timetable</h1>
+       <p data-template-id="app-subtitle" class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2" style="color: rgb(98, 113, 119); font-weight: 400; font-style: normal; font-size: 16px;">Create your weekly schedule, style it your way, and download it as a phone or desktop wallpaper.</p>
+      </div>
+     </div>
+    </div>
+   </header>
+   <main class="app-max px-4 sm:px-6 lg:px-8 py-6 lg:py-9">
+    <div class="grid grid-cols-1 xl:grid-cols-[430px_minmax(0,1fr)] gap-6 lg:gap-8">
+     <aside aria-label="Timetable controls" class="space-y-5">
+      <section data-template-id="settings-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+       <div class="flex items-center gap-2">
+        <i data-lucide="palette" class="text-[#bc5546]" style="width:19px;height:19px"></i>
+        <h2 data-template-id="settings-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Wallpaper settings</h2>
+       </div>
+       <div class="mt-5">
+        <label data-template-id="wallpaper-title-label" class="canva-text field-label block mb-2" for="wallpaper-title" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Wallpaper title</label> <input id="wallpaper-title" class="field-control" type="text" value="My Class Timetable" maxlength="50"> <label class="mt-3 inline-flex items-center gap-2 text-sm text-[#536268] cursor-pointer"> <input id="show-title" type="checkbox" checked="" class="w-4 h-4 accent-[#d96555]"> <span data-template-id="show-title-label" class="canva-text" style="color: rgb(83, 98, 104); font-weight: 400; font-style: normal; font-size: 16px;">Show title on wallpaper</span> </label>
+       </div>
+       <div class="section-rule mt-5 pt-5">
+        <p data-template-id="theme-label" class="canva-text field-label mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Choose a theme</p>
+        <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme">
+         <button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffc8be]"></span>Blush Pink</button> <button type="button" class="option-button" data-theme="lavender"><span class="theme-swatch bg-[#d9ccff]"></span>Lavender Purple</button> <button type="button" class="option-button" data-theme="peach"><span class="theme-swatch bg-[#ffc49d]"></span>Peach Orange</button> <button type="button" class="option-button" data-theme="midnight"><span class="theme-swatch bg-[#1b2951]"></span>Midnight Blue</button> <button type="button" class="option-button" data-theme="forest"><span class="theme-swatch bg-[#21483a]"></span>Forest Green</button> <button type="button" class="option-button" data-theme="charcoal"><span class="theme-swatch bg-[#3a414b]"></span>Charcoal Black</button>
+        </div>
+       </div>
+       <div class="section-rule mt-5 pt-5">
+        <p data-template-id="layout-label" class="canva-text field-label mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Wallpaper layout</p>
+        <div class="grid grid-cols-2 gap-2">
+         <button type="button" id="phone-mode" class="option-button is-active text-center" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button> <button type="button" id="desktop-mode" class="option-button text-center" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
+        </div>
+       </div>
+      </section>
+      <section data-template-id="class-form-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+       <div class="flex items-center gap-2">
+        <i data-lucide="plus-circle" class="text-[#bc5546]" style="width:19px;height:19px"></i>
+        <h2 data-template-id="class-form-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Add a class</h2>
+       </div>
+       <p data-template-id="class-form-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Build your week one class at a time.</p>
+       <form id="class-form" class="mt-5 space-y-4" novalidate="">
+        <div>
+         <label data-template-id="subject-label" class="canva-text field-label block mb-2" for="subject" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Subject name</label> <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off">
+        </div>
+        <fieldset class="border-0 p-0 m-0">
+         <legend data-template-id="day-label" class="canva-text field-label block mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Day of the week</legend>
+         <div id="day-picker" class="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-describedby="day-help">
+          <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Monday" class="w-4 h-4 accent-[#d96555]">Monday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Tuesday" class="w-4 h-4 accent-[#d96555]">Tuesday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Wednesday" class="w-4 h-4 accent-[#d96555]">Wednesday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Thursday" class="w-4 h-4 accent-[#d96555]">Thursday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Friday" class="w-4 h-4 accent-[#d96555]">Friday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Saturday" class="w-4 h-4 accent-[#d96555]">Saturday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Sunday" class="w-4 h-4 accent-[#d96555]">Sunday</label>
+         </div>
+         <p id="day-help" data-template-id="class-form-helper" class="canva-text text-sm text-[#718084] mt-2" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Build your week one class at a time.</p>
+        </fieldset>
+        <div class="grid grid-cols-2 gap-3">
+         <div>
+          <label data-template-id="start-label" class="canva-text field-label block mb-2" for="start-time" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Start time</label> <input id="start-time" class="field-control" type="time" value="09:00">
+         </div>
+         <div>
+          <label data-template-id="end-label" class="canva-text field-label block mb-2" for="end-time" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">End time</label> <input id="end-time" class="field-control" type="time" value="10:00">
+         </div>
+        </div>
+        <div>
+         <label data-template-id="location-label" class="canva-text field-label block mb-2" for="location" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Location</label> <input id="location" class="field-control" type="text" maxlength="40" autocomplete="off">
+        </div>
+        <div id="validation-message" class="hidden-ui message message-error" aria-live="polite"></div><button data-template-id="add-class-button" id="submit-class" class="canva-button main-button w-full" type="submit" style="background: rgb(229, 114, 97); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Add class</button> <button data-template-id="cancel-edit-button" id="cancel-edit" class="canva-button secondary-button w-full hidden-ui" type="button" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Cancel edit</button>
+       </form>
+      </section>
+      <section data-template-id="class-list-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+       <div class="flex items-center justify-between gap-3">
+        <div>
+         <h2 data-template-id="class-list-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Your classes</h2>
+         <p data-template-id="class-list-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Edit or remove anything before you download.</p>
+        </div><button data-template-id="load-samples-button" id="load-samples" class="canva-button secondary-button text-sm shrink-0" type="button" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Load samples</button>
+       </div>
+       <div id="class-list" class="mt-4" aria-live="polite"></div>
+       <div id="list-empty" class="text-center py-5 text-sm text-[#778489]">
+        <i data-lucide="notebook-tabs" class="mx-auto mb-2 opacity-60" style="width:25px;height:25px"></i>
+        <p data-template-id="list-empty-text" class="canva-text" style="color: rgb(119, 132, 137); font-weight: 400; font-style: normal; font-size: 16px;">No classes yet. Add your first class or load the examples above.</p>
+       </div>
+       <div class="section-rule mt-4 pt-4">
+        <button data-template-id="reset-button" id="reset-button" class="canva-button secondary-button danger-button w-full" type="button" style="background: rgb(255, 248, 247); color: rgb(166, 61, 52); font-weight: 700; font-style: normal; font-size: 16px;">Reset timetable</button>
+        <div id="reset-confirmation" class="hidden-ui mt-3 message message-error">
+         <p data-template-id="reset-confirm-text" class="canva-text font-semibold" style="color: rgb(155, 48, 40); font-weight: 700; font-style: normal; font-size: 16px;">Reset everything? Your current classes will be removed.</p>
+         <div class="grid grid-cols-2 gap-2 mt-3">
+          <button data-template-id="confirm-reset-button" id="confirm-reset" type="button" class="canva-button secondary-button danger-button text-sm" style="background: rgb(255, 248, 247); color: rgb(166, 61, 52); font-weight: 700; font-style: normal; font-size: 16px;">Yes, reset</button> <button data-template-id="cancel-reset-button" id="cancel-reset" type="button" class="canva-button secondary-button text-sm" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Keep timetable</button>
+         </div>
+        </div>
+       </div>
+      </section>
+     </aside>
+     <section class="preview-panel">
+      <div data-template-id="preview-panel" class="canva-panel control-card p-4 sm:p-6 lg:p-7 h-full" style="background: rgb(255, 253, 250);">
+       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
+        <div>
+         <div class="eyebrow"><i data-lucide="eye" style="width:14px;height:14px"></i> live composition
+         </div>
+         <h2 data-template-id="preview-heading" class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Your live wallpaper</h2>
+         <p data-template-id="preview-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">The dashed area keeps important text comfortably away from device UI.</p>
+        </div><span data-template-id="safe-area-tag" class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64); font-weight: 700; font-style: normal; font-size: 16px;">Safe margins included</span>
+       </div>
+       <div id="preview-shell" class="wallpaper-wrap">
+        <div id="wallpaper-stage" class="wallpaper-stage phone">
+         <div class="safe-band" aria-hidden="true"></div>
+         <div class="stage-content">
+          <div id="stage-title-area">
+           <h3 id="stage-title" class="wallpaper-title">My Class Timetable</h3>
+           <div class="wallpaper-subtitle">
+            Weekly schedule
+           </div>
+          </div>
+          <div id="stage-empty" class="stage-empty">
+           <span data-template-id="preview-empty-text" class="canva-text" style="color: rgb(83, 98, 104); font-weight: 700; font-style: normal; font-size: 16px;">Your timetable will appear here. Add a class to start designing your wallpaper.</span>
+          </div>
+          <div class="week-grid" aria-label="Weekly timetable preview">
+           <div class="grid-corner"></div>
+           <div class="day-head">
+            Mon
+           </div>
+           <div class="day-head">
+            Tue
+           </div>
+           <div class="day-head">
+            Wed
+           </div>
+           <div class="day-head">
+            Thu
+           </div>
+           <div class="day-head">
+            Fri
+           </div>
+           <div class="day-head">
+            Sat
+           </div>
+           <div class="day-head">
+            Sun
+           </div>
+           <div class="times-column">
+            <span class="time-label" style="top:0%">8 AM</span> <span class="time-label" style="top:20%">10 AM</span> <span class="time-label" style="top:40%">12 PM</span> <span class="time-label" style="top:60%">2 PM</span> <span class="time-label" style="top:80%">4 PM</span> <span class="time-label" style="top:100%">6 PM</span>
+           </div>
+           <div class="day-column" data-day-column="Monday"></div>
+           <div class="day-column" data-day-column="Tuesday"></div>
+           <div class="day-column" data-day-column="Wednesday"></div>
+           <div class="day-column" data-day-column="Thursday"></div>
+           <div class="day-column" data-day-column="Friday"></div>
+           <div class="day-column" data-day-column="Saturday"></div>
+           <div class="day-column" data-day-column="Sunday"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="mt-5 flex flex-col sm:flex-row gap-3">
+        <button data-template-id="download-button" id="download-button" class="canva-button main-button flex-1" type="button" style="background: rgb(229, 114, 97); color: rgb(255, 255, 255); font-weight: 700;"> <i data-lucide="download" style="width:18px;height:18px"></i><span data-template-id="download-button-label" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Download wallpaper</span> </button>
+        <div id="download-status" class="hidden-ui message message-success sm:max-w-[220px]" aria-live="polite"></div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </main>
+  </div>
+  <script>
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const subjectColors = ["#e76f51", "#457b9d", "#7b5ea7", "#2a9d8f", "#d97706", "#c44569", "#386641"];
+    const themes = {
+      pastel: { stage:"#fff5f0", ink:"#36434a", soft:"#ffd9d0", accent:"#df7160", accentDark:"#ad4c40", card:"#ffffff", cardInk:"#354248", grid:"rgba(54,67,74,.17)", safe:"rgba(223,113,96,.35)", shape:"22px", masculine:false },
+      lavender: { stage:"#f6f1ff", ink:"#413a5e", soft:"#dfd2ff", accent:"#8168c9", accentDark:"#5e4a9d", card:"#ffffff", cardInk:"#413a5e", grid:"rgba(65,58,94,.16)", safe:"rgba(129,104,201,.35)", shape:"24px", masculine:false },
+      peach: { stage:"#fff0e5", ink:"#5b3d32", soft:"#ffcda8", accent:"#d87951", accentDark:"#a74e32", card:"#fffaf5", cardInk:"#5b3d32", grid:"rgba(91,61,50,.17)", safe:"rgba(216,121,81,.35)", shape:"23px", masculine:false },
+      midnight: { stage:"#131d3c", ink:"#f2f5ff", soft:"#263f7d", accent:"#78b7ff", accentDark:"#78b7ff", card:"#edf4ff", cardInk:"#172343", grid:"rgba(222,234,255,.25)", safe:"rgba(120,183,255,.55)", shape:"5px", masculine:true },
+      forest: { stage:"#12382d", ink:"#f1f8ed", soft:"#286047", accent:"#c6dd76", accentDark:"#c6dd76", card:"#f1f7ea", cardInk:"#18362d", grid:"rgba(231,248,222,.24)", safe:"rgba(198,221,118,.55)", shape:"5px", masculine:true },
+      charcoal: { stage:"#292e35", ink:"#f4f1e9", soft:"#505966", accent:"#f2b75e", accentDark:"#f2b75e", card:"#f7f4ed", cardInk:"#292e35", grid:"rgba(244,241,233,.25)", safe:"rgba(242,183,94,.6)", shape:"4px", masculine:true }
+    };
+
+    let classes = [];
+    let editingId = null;
+    let selectedTheme = "pastel";
+    let previewMode = "phone";
+    let deletingId = null;
+
+    const form = document.getElementById("class-form");
+    const subject = document.getElementById("subject");
+    const day = document.getElementById("day");
+    const startTime = document.getElementById("start-time");
+    const endTime = document.getElementById("end-time");
+    const locationInput = document.getElementById("location");
+    const validationMessage = document.getElementById("validation-message");
+    const stage = document.getElementById("wallpaper-stage");
+    const stageTitle = document.getElementById("stage-title");
+    const stageTitleArea = document.getElementById("stage-title-area");
+    const stageEmpty = document.getElementById("stage-empty");
+
+    function timeToMinutes(time) {
+      const parts = time.split(":").map(Number);
+      return parts[0] * 60 + parts[1];
+    }
+
+    function formatTime(time) {
+      const [hourString, minute] = time.split(":");
+      let hour = Number(hourString);
+      const suffix = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12 || 12;
+      return hour + ":" + minute + " " + suffix;
+    }
+
+    function friendlyError(message) {
+      validationMessage.textContent = message;
+      validationMessage.classList.remove("hidden-ui");
+    }
+
+    function clearError() {
+      validationMessage.textContent = "";
+      validationMessage.classList.add("hidden-ui");
+    }
+
+    function updateTheme() {
+      const theme = themes[selectedTheme];
+      const root = document.documentElement;
+      root.style.setProperty("--stage", theme.stage);
+      root.style.setProperty("--stage-ink", theme.ink);
+      root.style.setProperty("--soft", theme.soft);
+      root.style.setProperty("--accent", theme.accent);
+      root.style.setProperty("--accent-dark", theme.accentDark);
+      root.style.setProperty("--card", theme.card);
+      root.style.setProperty("--card-ink", theme.cardInk);
+      root.style.setProperty("--grid", theme.grid);
+      root.style.setProperty("--safe", theme.safe);
+      root.style.setProperty("--shape", theme.shape);
+      document.getElementById("preview-panel").classList.toggle("masculine", theme.masculine);
+      document.querySelectorAll("[data-theme]").forEach(button => {
+        button.classList.toggle("is-active", button.dataset.theme === selectedTheme);
+      });
+    }
+
+    function setPreviewMode(mode) {
+      previewMode = mode;
+      stage.classList.toggle("phone", mode === "phone");
+      stage.classList.toggle("desktop", mode === "desktop");
+      document.getElementById("phone-mode").classList.toggle("is-active", mode === "phone");
+      document.getElementById("desktop-mode").classList.toggle("is-active", mode === "desktop");
+      document.getElementById("phone-mode").setAttribute("aria-pressed", String(mode === "phone"));
+      document.getElementById("desktop-mode").setAttribute("aria-pressed", String(mode === "desktop"));
+    }
+
+    function renderClasses() {
+      document.querySelectorAll("[data-day-column]").forEach(column => column.innerHTML = "");
+      const visibleClasses = classes.slice().sort((a, b) => days.indexOf((a.days || [a.day])[0]) - days.indexOf((b.days || [b.day])[0]) || timeToMinutes(a.start) - timeToMinutes(b.start));
+      stageEmpty.classList.toggle("hidden-ui", visibleClasses.length > 0);
+
+      visibleClasses.forEach(item => {
+        const start = timeToMinutes(item.start);
+        const end = timeToMinutes(item.end);
+        const windowStart = 480;
+        const windowMinutes = 600;
+        const top = Math.max(0, Math.min(100, ((start - windowStart) / windowMinutes) * 100));
+        const height = Math.max(8, Math.min(100 - top, ((end - start) / windowMinutes) * 100));
+        (item.days || [item.day]).forEach(dayName => {
+        const column = document.querySelector('[data-day-column="' + dayName + '"]');
+        if (!column) return;
+        const block = document.createElement("div");
+        block.className = "class-block";
+        block.style.top = top + "%";
+        block.style.height = height + "%";
+        block.style.borderLeftColor = item.color || "var(--accent)";
+        block.innerHTML = "<strong></strong><span></span><span></span>";
+        block.querySelector("strong").textContent = item.subject;
+        block.querySelectorAll("span")[0].textContent = formatTime(item.start) + " – " + formatTime(item.end);
+        block.querySelectorAll("span")[1].textContent = item.location || "Class location";
+        column.appendChild(block);
+        });
+      });
+      renderList();
+    }
+
+    function renderList() {
+      const list = document.getElementById("class-list");
+      const empty = document.getElementById("list-empty");
+      list.innerHTML = "";
+      empty.classList.toggle("hidden-ui", classes.length > 0);
+
+      days.forEach(dayName => {
+        const items = classes.filter(item => (item.days || [item.day]).includes(dayName)).sort((a,b) => timeToMinutes(a.start) - timeToMinutes(b.start));
+        if (!items.length) return;
+        const group = document.createElement("section");
+        group.className = "entry-group";
+        const heading = document.createElement("h3");
+        heading.className = "entry-day";
+        heading.textContent = dayName;
+        group.appendChild(heading);
+
+        items.forEach(item => {
+          const row = document.createElement("div");
+          row.className = "entry-row";
+          const content = document.createElement("div");
+          content.innerHTML = "<div class='entry-subject'></div><div class='entry-meta'></div>";
+          content.querySelector(".entry-subject").textContent = item.subject;
+          content.querySelector(".entry-subject").style.color = item.color || "var(--card-ink)";
+          content.querySelector(".entry-meta").textContent = formatTime(item.start) + " – " + formatTime(item.end) + (item.location ? " · " + item.location : "");
+          const actions = document.createElement("div");
+          actions.className = "flex gap-1";
+          const edit = document.createElement("button");
+          edit.type = "button"; edit.className = "icon-action"; edit.setAttribute("aria-label", "Edit " + item.subject);
+          edit.innerHTML = "<i data-lucide='pencil' style='width:15px;height:15px'></i>";
+          edit.addEventListener("click", () => editClass(item.id));
+          const remove = document.createElement("button");
+          remove.type = "button"; remove.className = "icon-action"; remove.setAttribute("aria-label", "Delete " + item.subject);
+          remove.innerHTML = "<i data-lucide='trash-2' style='width:15px;height:15px'></i>";
+          remove.addEventListener("click", () => deleteClass(item.id, row));
+          actions.append(edit, remove);
+          row.append(content, actions);
+          group.appendChild(row);
+        });
+        list.appendChild(group);
+      });
+      lucide.createIcons();
+    }
+
+    function editClass(id) {
+      const item = classes.find(entry => entry.id === id);
+      if (!item) return;
+      editingId = id;
+      subject.value = item.subject; document.querySelectorAll('input[name="days"]').forEach(box => box.checked = (item.days || [item.day]).includes(box.value)); startTime.value = item.start; endTime.value = item.end; locationInput.value = item.location;
+      document.getElementById("submit-class").textContent = "Save changes";
+      document.getElementById("cancel-edit").classList.remove("hidden-ui");
+      clearError();
+      subject.focus();
+      document.getElementById("class-form-panel").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function cancelEdit() {
+      editingId = null;
+      form.reset();
+      document.querySelectorAll('input[name="days"]').forEach(box => box.checked = false); startTime.value = "09:00"; endTime.value = "10:00";
+      document.getElementById("submit-class").textContent = "Add class";
+      document.getElementById("cancel-edit").classList.add("hidden-ui");
+      clearError();
+    }
+
+    function deleteClass(id, row) {
+      if (deletingId === id) {
+        classes = classes.filter(item => item.id !== id);
+        deletingId = null;
+        renderClasses();
+        return;
+      }
+      deletingId = id;
+      row.querySelector(".entry-meta").textContent = "Tap the bin again to confirm deletion";
+      setTimeout(() => {
+        if (deletingId === id) { deletingId = null; renderList(); }
+      }, 3000);
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      clearError();
+      const subjectValue = subject.value.trim();
+      const locationValue = locationInput.value.trim();
+      if (!subjectValue) return friendlyError("Please add a subject name so your class is easy to spot.");
+      const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(box => box.value);
+      if (!selectedDays.length) return friendlyError("Please select at least one day for this class.");
+      if (!startTime.value || !endTime.value) return friendlyError("Please choose both a start time and an end time.");
+      if (timeToMinutes(endTime.value) <= timeToMinutes(startTime.value)) return friendlyError("Your class needs to end after it starts.");
+
+      const existing = editingId ? classes.find(item => item.id === editingId) : null;
+      const record = { id: editingId || String(Date.now()), subject: subjectValue, days: selectedDays, start: startTime.value, end: endTime.value, location: locationValue, color: existing?.color || subjectColors[classes.filter(item => item.color).length % subjectColors.length] };
+      if (editingId) classes = classes.map(item => item.id === editingId ? record : item);
+      else classes.push(record);
+      cancelEdit();
+      renderClasses();
+    });
+
+    document.getElementById("cancel-edit").addEventListener("click", cancelEdit);
+
+    document.getElementById("load-samples").addEventListener("click", () => {
+      classes = [
+        { id:"sample-1", subject:"Calculus", days:["Monday","Wednesday"], start:"09:00", end:"10:30", location:"Room 204", color:"#e76f51" },
+        { id:"sample-2", subject:"Design Studio", days:["Tuesday"], start:"11:00", end:"13:00", location:"Lab B", color:"#457b9d" },
+        { id:"sample-3", subject:"Economics", days:["Wednesday"], start:"10:00", end:"11:30", location:"Hall 1", color:"#7b5ea7" },
+        { id:"sample-4", subject:"Computer Science", days:["Thursday"], start:"14:00", end:"16:00", location:"Tech 3", color:"#2a9d8f" },
+        { id:"sample-5", subject:"Literature", days:["Friday"], start:"09:30", end:"11:00", location:"Library", color:"#d97706" }
+      ];
+      cancelEdit(); renderClasses();
+    });
+
+    document.getElementById("wallpaper-title").addEventListener("input", event => {
+      stageTitle.textContent = event.target.value.trim() || "My Class Timetable";
+    });
+    document.getElementById("show-title").addEventListener("change", event => {
+      stageTitleArea.classList.toggle("hidden-ui", !event.target.checked);
+    });
+
+    document.querySelectorAll("[data-theme]").forEach(button => button.addEventListener("click", () => {
+      selectedTheme = button.dataset.theme; updateTheme();
+    }));
+    document.getElementById("phone-mode").addEventListener("click", () => setPreviewMode("phone"));
+    document.getElementById("desktop-mode").addEventListener("click", () => setPreviewMode("desktop"));
+
+    document.getElementById("reset-button").addEventListener("click", () => document.getElementById("reset-confirmation").classList.remove("hidden-ui"));
+    document.getElementById("cancel-reset").addEventListener("click", () => document.getElementById("reset-confirmation").classList.add("hidden-ui"));
+    document.getElementById("confirm-reset").addEventListener("click", () => {
+      classes = []; cancelEdit(); renderClasses();
+      document.getElementById("reset-confirmation").classList.add("hidden-ui");
+    });
+
+    function roundedRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + width, y, r);
+      ctx.closePath();
+    }
+
+    function downloadWallpaper() {
+      const theme = themes[selectedTheme];
+      const isPhone = previewMode === "phone";
+      const canvas = document.createElement("canvas");
+      canvas.width = isPhone ? 1080 : 1920;
+      canvas.height = isPhone ? 1920 : 1200;
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width, height = canvas.height;
+      ctx.fillStyle = theme.stage; ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = theme.soft;
+      if (theme.masculine) {
+        ctx.save(); ctx.translate(width * .9, height * .05); ctx.rotate(.48); ctx.fillRect(-width*.18, -height*.09, width*.42, height*.3); ctx.restore();
+      } else {
+        ctx.beginPath(); ctx.arc(width * .91, height * .02, width * .22, 0, Math.PI * 2); ctx.fill();
+      }
+
+      const padding = isPhone ? 82 : 120;
+      const showTitle = document.getElementById("show-title").checked;
+      let gridTop = padding;
+      if (showTitle) {
+        ctx.fillStyle = theme.ink; ctx.font = "700 " + (isPhone ? 55 : 70) + "px Georgia";
+        const title = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
+        ctx.fillText(title, padding, padding + (isPhone ? 54 : 65));
+        ctx.fillStyle = theme.ink; ctx.globalAlpha = .62; ctx.font = "700 " + (isPhone ? 21 : 25) + "px DM Sans";
+        ctx.fillText("WEEKLY SCHEDULE", padding, padding + (isPhone ? 89 : 103)); ctx.globalAlpha = 1;
+        gridTop += isPhone ? 150 : 155;
+      }
+
+      const gridX = padding, gridY = gridTop, gridW = width - padding * 2, gridH = height - gridTop - padding;
+      const timeW = gridW * .14, headerH = isPhone ? 58 : 65, columnW = (gridW - timeW) / 7;
+      ctx.strokeStyle = theme.grid; ctx.lineWidth = 2;
+      ctx.fillStyle = "rgba(255,255,255,.12)";
+      roundedRect(ctx, gridX, gridY, gridW, gridH, theme.masculine ? 5 : 24); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(gridX, gridY + headerH); ctx.lineTo(gridX + gridW, gridY + headerH);
+      ctx.moveTo(gridX + timeW, gridY); ctx.lineTo(gridX + timeW, gridY + gridH);
+      for(let i=1;i<5;i++){ const x=gridX+timeW+columnW*i; ctx.moveTo(x,gridY);ctx.lineTo(x,gridY+gridH); }
+      for(let i=1;i<5;i++){ const y=gridY+headerH+(gridH-headerH)*(i/5);ctx.moveTo(gridX,y);ctx.lineTo(gridX+gridW,y); } ctx.stroke();
+
+      ctx.fillStyle = theme.ink; ctx.font = "700 " + (isPhone ? 17 : 20) + "px DM Sans"; ctx.textAlign = "center";
+      ["MON","TUE","WED","THU","FRI"].forEach((label,index)=>ctx.fillText(label, gridX+timeW+columnW*(index+.5), gridY+headerH*.62));
+      ctx.textAlign = "left"; ctx.globalAlpha=.67; ctx.font = "700 " + (isPhone ? 14 : 16) + "px DM Sans";
+      ["8 AM","10 AM","12 PM","2 PM","4 PM","6 PM"].forEach((label,index)=>ctx.fillText(label, gridX+14, gridY+headerH+(gridH-headerH)*(index/5)+(index === 5 ? -2 : 5)));
+      ctx.globalAlpha=1;
+
+      classes.forEach(item => {
+        const selectedDays = item.days || [item.day];
+        selectedDays.forEach(dayName => {
+        const index=days.indexOf(dayName); if(index<0)return;
+        const start=timeToMinutes(item.start), end=timeToMinutes(item.end), windowStart=480, windowMins=600;
+        const top=Math.max(0,Math.min(1,(start-windowStart)/windowMins));
+        const blockHeight=Math.max(.08,Math.min(1-top,(end-start)/windowMins));
+        const x=gridX+timeW+columnW*index+columnW*.06, y=gridY+headerH+(gridH-headerH)*top+4, w=columnW*.88, h=(gridH-headerH)*blockHeight-7;
+        ctx.fillStyle=theme.card; ctx.shadowColor="rgba(0,0,0,.18)";ctx.shadowBlur=10;ctx.shadowOffsetY=4;
+        roundedRect(ctx,x,y,w,h,theme.masculine?3:12);ctx.fill();ctx.shadowColor="transparent";
+        ctx.fillStyle=item.color || theme.accent;ctx.fillRect(x,y,isPhone?5:6,h);
+        ctx.fillStyle=theme.cardInk;ctx.font="700 "+(isPhone?16:20)+"px DM Sans";ctx.textAlign="left";
+        ctx.save();ctx.beginPath();ctx.rect(x+12,y+9,w-20,h-12);ctx.clip();ctx.fillText(item.subject,x+12,y+(isPhone?26:30));ctx.font="500 "+(isPhone?12:15)+"px DM Sans";
+        if(h>50)ctx.fillText(formatTime(item.start)+" – "+formatTime(item.end),x+12,y+(isPhone?45:52));
+        if(h>75 && item.location)ctx.fillText(item.location,x+12,y+(isPhone?62:74));ctx.restore();
+        });
+      });
+
+      const link=document.createElement("a");
+      link.download="class-timetable-wallpaper.png";
+      link.href=canvas.toDataURL("image/png");
+      link.click();
+      const status=document.getElementById("download-status");
+      status.textContent="Your wallpaper PNG is ready to save.";
+      status.classList.remove("hidden-ui");
+      setTimeout(()=>status.classList.add("hidden-ui"),4000);
+    }
+
+    document.getElementById("download-button").addEventListener("click", downloadWallpaper);
+    document.addEventListener("DOMContentLoaded", () => { lucide.createIcons(); updateTheme(); renderClasses(); });
+  </script>
+ 
+</body></html>
