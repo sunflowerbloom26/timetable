@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260921-05-147306f","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/83d6dfdadcd4750a.telemetry_sdk.js" integrity="sha512-XS4Dvzp6vbagZS9vFErihvr8aO3S0tH78KWUefn06fmL4WYqryBtZj/IOLITYj7dFA4gPVvPg1W/JB1DK3uLNQ=="></script>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Timetable Wallpaper Maker</title>
@@ -184,28 +185,124 @@
     .wallpaper-title { margin: 0; line-height: 1.05; letter-spacing: -.035em; font-family: "Fraunces", serif; font-weight: 700; color: var(--stage-ink); font-size: clamp(1.15rem, 3.2vw, 2.25rem); max-width: 72%; }
     .wallpaper-subtitle { font-size: clamp(.56rem, 1.3vw, .78rem); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; margin-top: .45rem; opacity: .62; }
 
+    /* Timetable Grid System */
     .week-grid {
-      flex: 1; min-height: 0; margin-top: clamp(.8rem, 2.5%, 1.45rem);
-      display: grid; grid-template-columns: 14% repeat(7, 1fr); grid-template-rows: auto 1fr;
-      border: 1px solid var(--grid); border-radius: calc(var(--shape) - 5px); overflow: hidden;
-      background: rgba(255,255,255,.21);
+      flex: 1;
+      min-height: 0;
+      margin-top: clamp(0.7rem, 2%, 1.2rem);
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      grid-template-rows: 28px 1fr;
+      border: 1px solid var(--grid);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.25);
+      position: relative;
     }
-    .grid-corner, .day-head { border-bottom: 1px solid var(--grid); background: rgba(255,255,255,.22); }
-    .day-head { display: flex; align-items: center; justify-content: center; padding: .45rem .1rem; font-size: clamp(.46rem, 1vw, .72rem); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
-    .times-column { position: relative; border-right: 1px solid var(--grid); }
-    .time-label { position: absolute; left: 10%; font-size: clamp(.43rem, .83vw, .63rem); font-weight: 700; opacity: .64; transform: translateY(-48%); }
-    .day-column { position: relative; border-right: 1px solid var(--grid); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(20% - 1px), var(--grid) calc(20% - 1px), var(--grid) 20%); }
-    .day-column:last-child { border-right: none; }
 
-    .class-block {
-      position: absolute; left: 6%; right: 6%; border-radius: clamp(5px, 1vw, 10px);
-      padding: clamp(.24rem, .65vw, .48rem); overflow: hidden;
-      background: var(--card); color: var(--card-ink);
-      box-shadow: 0 3px 8px rgba(35, 45, 45, .12); border-left: 3px solid var(--accent);
-      font-size: clamp(.42rem, .82vw, .68rem); line-height: 1.15;
+    .grid-corner {
+      border-bottom: 1px solid var(--grid);
+      border-right: 1px solid var(--grid);
+      background: rgba(255, 255, 255, 0.3);
     }
-    .class-block strong { display: block; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .class-block span { display: block; margin-top: .15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .76; font-size: .88em; }
+
+    #grid-day-headers {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      border-bottom: 1px solid var(--grid);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .day-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-right: 1px solid var(--grid);
+    }
+    .day-head:last-child {
+      border-right: none;
+    }
+
+    .times-column {
+      position: relative;
+      border-right: 1px solid var(--grid);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .time-label {
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      text-align: center;
+      font-size: 0.52rem;
+      font-weight: 700;
+      line-height: 1;
+      opacity: 0.72;
+      transform: translateY(-50%);
+      white-space: nowrap;
+    }
+
+    #grid-day-columns {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      position: relative;
+      height: 100%;
+    }
+
+    .day-column {
+      position: relative;
+      height: 100%;
+      border-right: 1px solid var(--grid);
+    }
+    .day-column:last-child {
+      border-right: none;
+    }
+
+    /* Clean Card: Subject & Location Only */
+    .class-block {
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      border-radius: 6px;
+      padding: 3px 4px 3px 6px;
+      background: var(--card);
+      color: var(--card-ink);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      border-left: 3px solid var(--accent);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+    }
+
+    .class-block strong {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 0.64rem;
+      font-weight: 800;
+      line-height: 1.1;
+      word-break: break-word;
+    }
+
+    .class-block span {
+      display: block;
+      font-size: 0.52rem;
+      margin-top: 2px;
+      opacity: 0.75;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .stage-empty { position: absolute; inset: 37% 12% auto; text-align: center; font-size: clamp(.62rem, 1.2vw, .85rem); font-weight: 700; opacity: .68; line-height: 1.4; }
 
     .masculine .wallpaper-stage::before { border-radius: 0; transform: rotate(28deg); }
@@ -225,151 +322,170 @@
   </style>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/8de366929c5f3b48.data_sdk.js" type="text/javascript" integrity="sha512-TyQ8k8cZj66xe/aENmn6RyZpdOFZXbAo5+KBG3PeFM+Q4qMTHU8xAqmq4ADClNfPrstgQYV6OzZHwLTnElzB2g=="></script>
-  <script src="/_sdk/0ddbbee1c66b1212.editing_sdk.js" type="text/javascript" integrity="sha512-HQn5LM1yruQSbY78ATUril6QeOJ9xj7KqO64ltLtb4vBwI5Qv3/tloFFOndBPZTNZoeV5xKzuth5y6FTi9crsg=="></script>
-  <script src="/_sdk/765e1fea0cec97ce.resizing_sdk.js" type="text/javascript" integrity="sha512-IRTJnqww0+HQ5V/LlWEQrlD5SrYHaVvaeVoNe8HYQXoaguzUGheSd9+n9s6WOgaTcEH0g37DuINHZ9aqfzWjlw=="></script>
- </head>
- <body data-template-id="__page-root" style="background: rgb(244, 241, 235);">
+</head>
+<body style="background: rgb(244, 241, 235);">
   <div class="app-shell">
-   <header data-template-id="header-section" class="canva-header top-header" style="background: rgb(255, 253, 250);">
-    <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
-     <div class="flex items-start gap-4">
-      <div class="mt-1 w-11 h-11 rounded-2xl bg-[#ffe2d8] text-[#b94f40] flex items-center justify-center shadow-sm" aria-hidden="true"><i data-lucide="calendar-days" style="width:22px;height:22px"></i>
-      </div>
-      <div>
-       <div class="eyebrow">
-        <i data-lucide="sparkles" style="width:14px;height:14px"></i> wallpaper maker
-       </div>
-       <h1 data-template-id="app-title" class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 32px;">Class Timetable</h1>
-       <p data-template-id="app-subtitle" class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2" style="color: rgb(98, 113, 119); font-weight: 400; font-style: normal; font-size: 16px;">Create your weekly schedule, style it your way, and download it as a phone or desktop wallpaper.</p>
-      </div>
-     </div>
-    </div>
-   </header>
-   <main class="app-max px-4 sm:px-6 lg:px-8 py-6 lg:py-9">
-    <div class="grid grid-cols-1 xl:grid-cols-[430px_minmax(0,1fr)] gap-6 lg:gap-8">
-     <aside aria-label="Timetable controls" class="space-y-5">
-      <section data-template-id="settings-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
-       <div class="flex items-center gap-2"><i data-lucide="palette" class="text-[#bc5546]" style="width:19px;height:19px"></i>
-        <h2 data-template-id="settings-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Wallpaper settings</h2>
-       </div>
-       <div class="mt-5"><label data-template-id="wallpaper-title-label" class="canva-text field-label block mb-2" for="wallpaper-title" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Wallpaper title</label> <input id="wallpaper-title" class="field-control" type="text" value="My Class Timetable" maxlength="50"> <label class="mt-3 inline-flex items-center gap-2 text-sm text-[#536268] cursor-pointer"> <input id="show-title" type="checkbox" checked="" class="w-4 h-4 accent-[#d96555]"> <span data-template-id="show-title-label" class="canva-text" style="color: rgb(83, 98, 104); font-weight: 400; font-style: normal; font-size: 16px;">Show title on wallpaper</span> </label>
-       </div>
-       <div class="section-rule mt-5 pt-5">
-        <p data-template-id="theme-label" class="canva-text field-label mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Choose a theme</p>
-        <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme"><button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffc8be]"></span>Blush Pink</button> <button type="button" class="option-button" data-theme="lavender"><span class="theme-swatch bg-[#d9ccff]"></span>Lavender Purple</button> <button type="button" class="option-button" data-theme="peach"><span class="theme-swatch bg-[#ffc49d]"></span>Peach Orange</button> <button type="button" class="option-button" data-theme="midnight"><span class="theme-swatch bg-[#1b2951]"></span>Midnight Blue</button> <button type="button" class="option-button" data-theme="forest"><span class="theme-swatch bg-[#21483a]"></span>Forest Green</button> <button type="button" class="option-button" data-theme="charcoal"><span class="theme-swatch bg-[#3a414b]"></span>Charcoal Black</button>
-        </div>
-       </div>
-       <div class="section-rule mt-5 pt-5">
-        <p data-template-id="layout-label" class="canva-text field-label mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Wallpaper layout</p>
-        <div class="grid grid-cols-2 gap-2"><button type="button" id="phone-mode" class="option-button is-active text-center" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button> <button type="button" id="desktop-mode" class="option-button text-center" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
-        </div>
-       </div>
-      </section>
-      <section data-template-id="class-form-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
-       <div class="flex items-center gap-2"><i data-lucide="plus-circle" class="text-[#bc5546]" style="width:19px;height:19px"></i>
-        <h2 data-template-id="class-form-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Add a class</h2>
-       </div>
-       <p data-template-id="class-form-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Use one subject across multiple days, with different times and locations for each day.</p>
-       <form id="class-form" class="mt-5 space-y-4" novalidate="">
-        <div><label data-template-id="subject-label" class="canva-text field-label block mb-2" for="subject" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Subject name</label> <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off">
-        </div>
-        <fieldset class="border-0 p-0 m-0"><legend data-template-id="day-label" class="canva-text field-label block mb-2" style="color: rgb(66, 81, 87); font-weight: 700; font-style: normal; font-size: 16px;">Day of the week</legend>
-         <div id="day-picker" class="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-describedby="day-help"><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Monday" class="w-4 h-4 accent-[#d96555]">Monday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Tuesday" class="w-4 h-4 accent-[#d96555]">Tuesday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Wednesday" class="w-4 h-4 accent-[#d96555]">Wednesday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Thursday" class="w-4 h-4 accent-[#d96555]">Thursday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Friday" class="w-4 h-4 accent-[#d96555]">Friday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Saturday" class="w-4 h-4 accent-[#d96555]">Saturday</label><label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Sunday" class="w-4 h-4 accent-[#d96555]">Sunday</label>
-         </div>
-         <p id="day-help" data-template-id="class-form-helper" class="canva-text text-sm text-[#718084] mt-2" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Use one subject across multiple days, with different times and locations for each day.</p>
-         <div id="day-schedules" class="mt-3 space-y-3" aria-live="polite"></div>
-        </fieldset>
-        <div id="validation-message" class="hidden-ui message message-error" aria-live="polite"></div><button data-template-id="add-class-button" id="submit-class" class="canva-button main-button w-full" type="submit" style="background: rgb(229, 114, 97); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Add class</button> <button data-template-id="cancel-edit-button" id="cancel-edit" class="canva-button secondary-button w-full hidden-ui" type="button" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Cancel edit</button>
-       </form>
-      </section>
-      <section data-template-id="class-list-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
-       <div class="flex items-center justify-between gap-3">
-        <div>
-         <h2 data-template-id="class-list-heading" class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Your classes</h2>
-         <p data-template-id="class-list-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">Edit or remove anything before you download.</p>
-        </div><button data-template-id="load-samples-button" id="load-samples" class="canva-button secondary-button text-sm shrink-0" type="button" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Load samples</button>
-       </div>
-       <div id="class-list" class="mt-4" aria-live="polite"></div>
-       <div id="list-empty" class="text-center py-5 text-sm text-[#778489]"><i data-lucide="notebook-tabs" class="mx-auto mb-2 opacity-60" style="width:25px;height:25px"></i>
-        <p data-template-id="list-empty-text" class="canva-text" style="color: rgb(119, 132, 137); font-weight: 400; font-style: normal; font-size: 16px;">No classes yet. Add your first class or load the examples above.</p>
-       </div>
-       <div class="section-rule mt-4 pt-4"><button data-template-id="reset-button" id="reset-button" class="canva-button secondary-button danger-button w-full" type="button" style="background: rgb(255, 248, 247); color: rgb(166, 61, 52); font-weight: 700; font-style: normal; font-size: 16px;">Reset timetable</button>
-        <div id="reset-confirmation" class="hidden-ui mt-3 message message-error">
-         <p data-template-id="reset-confirm-text" class="canva-text font-semibold" style="color: rgb(155, 48, 40); font-weight: 700; font-style: normal; font-size: 16px;">Reset everything? Your current classes will be removed.</p>
-         <div class="grid grid-cols-2 gap-2 mt-3"><button data-template-id="confirm-reset-button" id="confirm-reset" type="button" class="canva-button secondary-button danger-button text-sm" style="background: rgb(255, 248, 247); color: rgb(166, 61, 52); font-weight: 700; font-style: normal; font-size: 16px;">Yes, reset</button> <button data-template-id="cancel-reset-button" id="cancel-reset" type="button" class="canva-button secondary-button text-sm" style="background: rgb(255, 255, 255); color: rgb(71, 85, 91); font-weight: 700; font-style: normal; font-size: 16px;">Keep timetable</button>
-         </div>
-        </div>
-       </div>
-      </section>
-     </aside>
-     <section class="preview-panel">
-      <div data-template-id="preview-panel" class="canva-panel control-card p-4 sm:p-6 lg:p-7 h-full" style="background: rgb(255, 253, 250);">
-       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
-        <div>
-         <div class="eyebrow">
-          <i data-lucide="eye" style="width:14px;height:14px"></i> live composition
-         </div>
-         <h2 data-template-id="preview-heading" class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58); font-weight: 700; font-style: normal; font-size: 24px;">Your live wallpaper</h2>
-         <p data-template-id="preview-helper" class="canva-text text-sm text-[#718084] mt-1" style="color: rgb(113, 128, 132); font-weight: 400; font-style: normal; font-size: 16px;">The dashed area keeps important text comfortably away from device UI.</p>
-        </div><span data-template-id="safe-area-tag" class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64); font-weight: 700; font-style: normal; font-size: 16px;">Safe margins included</span>
-       </div>
-       <div id="preview-shell" class="wallpaper-wrap">
-        <div id="wallpaper-stage" class="wallpaper-stage phone">
-         <div class="safe-band" aria-hidden="true"></div>
-         <div class="stage-content">
-          <div id="stage-title-area">
-           <h3 id="stage-title" class="wallpaper-title">My Class Timetable</h3>
-           <div class="wallpaper-subtitle">
-            Weekly schedule
-           </div>
+    <header class="canva-header top-header" style="background: rgb(255, 253, 250);">
+      <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
+        <div class="flex items-start gap-4">
+          <div class="mt-1 w-11 h-11 rounded-2xl bg-[#ffe2d8] text-[#b94f40] flex items-center justify-center shadow-sm" aria-hidden="true">
+            <i data-lucide="calendar-days" style="width:22px;height:22px"></i>
           </div>
-          <div id="stage-empty" class="stage-empty"><span data-template-id="preview-empty-text" class="canva-text" style="color: rgb(83, 98, 104); font-weight: 700; font-style: normal; font-size: 16px;">Your timetable will appear here. Add a class to start designing your wallpaper.</span>
+          <div>
+            <div class="eyebrow">
+              <i data-lucide="sparkles" style="width:14px;height:14px"></i> wallpaper maker
+            </div>
+            <h1 class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58);">Class Timetable</h1>
+            <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Create your weekly schedule, style it your way, and download it as a phone or desktop wallpaper.</p>
           </div>
-          <div class="week-grid" aria-label="Weekly timetable preview">
-           <div class="grid-corner"></div>
-           <div class="day-head">
-            Mon
-           </div>
-           <div class="day-head">
-            Tue
-           </div>
-           <div class="day-head">
-            Wed
-           </div>
-           <div class="day-head">
-            Thu
-           </div>
-           <div class="day-head">
-            Fri
-           </div>
-           <div class="day-head">
-            Sat
-           </div>
-           <div class="day-head">
-            Sun
-           </div>
-           <div class="times-column"><span class="time-label" style="top:0%">8 AM</span> <span class="time-label" style="top:20%">10 AM</span> <span class="time-label" style="top:40%">12 PM</span> <span class="time-label" style="top:60%">2 PM</span> <span class="time-label" style="top:80%">4 PM</span> <span class="time-label" style="top:100%">6 PM</span>
-           </div>
-           <div class="day-column" data-day-column="Monday"></div>
-           <div class="day-column" data-day-column="Tuesday"></div>
-           <div class="day-column" data-day-column="Wednesday"></div>
-           <div class="day-column" data-day-column="Thursday"></div>
-           <div class="day-column" data-day-column="Friday"></div>
-           <div class="day-column" data-day-column="Saturday"></div>
-           <div class="day-column" data-day-column="Sunday"></div>
-          </div>
-         </div>
         </div>
-       </div>
-       <div class="mt-5 flex flex-col sm:flex-row gap-3"><button data-template-id="download-button" id="download-button" class="canva-button main-button flex-1" type="button" style="background: rgb(229, 114, 97); color: rgb(255, 255, 255); font-weight: 700;"> <i data-lucide="download" style="width:18px;height:18px"></i><span data-template-id="download-button-label" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Download wallpaper</span> </button>
-        <div id="download-status" class="hidden-ui message message-success sm:max-w-[220px]" aria-live="polite"></div>
-       </div>
       </div>
-     </section>
-    </div>
-   </main>
+    </header>
+
+    <main class="app-max px-4 sm:px-6 lg:px-8 py-6 lg:py-9">
+      <div class="grid grid-cols-1 xl:grid-cols-[430px_minmax(0,1fr)] gap-6 lg:gap-8">
+        <aside aria-label="Timetable controls" class="space-y-5">
+          <!-- Wallpaper Settings -->
+          <section class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+            <div class="flex items-center gap-2">
+              <i data-lucide="palette" class="text-[#bc5546]" style="width:19px;height:19px"></i>
+              <h2 class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58);">Wallpaper settings</h2>
+            </div>
+            <div class="mt-5">
+              <label class="canva-text field-label block mb-2" for="wallpaper-title">Wallpaper title</label>
+              <input id="wallpaper-title" class="field-control" type="text" value="My Class Timetable" maxlength="50">
+              <label class="mt-3 inline-flex items-center gap-2 text-sm text-[#536268] cursor-pointer">
+                <input id="show-title" type="checkbox" checked="" class="w-4 h-4 accent-[#d96555]">
+                <span class="canva-text">Show title on wallpaper</span>
+              </label>
+            </div>
+            <div class="section-rule mt-5 pt-5">
+              <p class="canva-text field-label mb-2">Choose a theme</p>
+              <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme">
+                <button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffc8be]"></span>Blush Pink</button>
+                <button type="button" class="option-button" data-theme="lavender"><span class="theme-swatch bg-[#d9ccff]"></span>Lavender Purple</button>
+                <button type="button" class="option-button" data-theme="peach"><span class="theme-swatch bg-[#ffc49d]"></span>Peach Orange</button>
+                <button type="button" class="option-button" data-theme="midnight"><span class="theme-swatch bg-[#1b2951]"></span>Midnight Blue</button>
+                <button type="button" class="option-button" data-theme="forest"><span class="theme-swatch bg-[#21483a]"></span>Forest Green</button>
+                <button type="button" class="option-button" data-theme="charcoal"><span class="theme-swatch bg-[#3a414b]"></span>Charcoal Black</button>
+              </div>
+            </div>
+            <div class="section-rule mt-5 pt-5">
+              <p class="canva-text field-label mb-2">Wallpaper layout</p>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" id="phone-mode" class="option-button is-active text-center" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button>
+                <button type="button" id="desktop-mode" class="option-button text-center" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Add/Edit Class -->
+          <section id="class-form-panel" class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+            <div class="flex items-center gap-2">
+              <i data-lucide="plus-circle" class="text-[#bc5546]" style="width:19px;height:19px"></i>
+              <h2 class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58);">Add a class</h2>
+            </div>
+            <p class="canva-text text-sm text-[#718084] mt-1">Use one subject across multiple days, with different times and locations for each day.</p>
+            <form id="class-form" class="mt-5 space-y-4" novalidate="">
+              <div>
+                <label class="canva-text field-label block mb-2" for="subject">Subject name</label>
+                <input id="subject" class="field-control" type="text" maxlength="45" autocomplete="off" placeholder="e.g. Arab, Yoga, Calculus">
+              </div>
+              <fieldset class="border-0 p-0 m-0">
+                <legend class="canva-text field-label block mb-2">Day of the week</legend>
+                <div id="day-picker" class="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group">
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Monday" class="w-4 h-4 accent-[#d96555]">Monday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Tuesday" class="w-4 h-4 accent-[#d96555]">Tuesday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Wednesday" class="w-4 h-4 accent-[#d96555]">Wednesday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Thursday" class="w-4 h-4 accent-[#d96555]">Thursday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Friday" class="w-4 h-4 accent-[#d96555]">Friday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Saturday" class="w-4 h-4 accent-[#d96555]">Saturday</label>
+                  <label class="option-button flex items-center gap-2"><input type="checkbox" name="days" value="Sunday" class="w-4 h-4 accent-[#d96555]">Sunday</label>
+                </div>
+                <div id="day-schedules" class="mt-3 space-y-3" aria-live="polite"></div>
+              </fieldset>
+              <div id="validation-message" class="hidden-ui message message-error" aria-live="polite"></div>
+              <button id="submit-class" class="canva-button main-button w-full" type="submit">Add class</button>
+              <button id="cancel-edit" class="canva-button secondary-button w-full hidden-ui" type="button">Cancel edit</button>
+            </form>
+          </section>
+
+          <!-- Class List -->
+          <section class="canva-panel control-card p-5 sm:p-6" style="background: rgb(255, 253, 250);">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h2 class="canva-text text-lg font-bold" style="color: rgb(38, 51, 58);">Your classes</h2>
+                <p class="canva-text text-sm text-[#718084] mt-1">Edit or remove anything before you download.</p>
+              </div>
+              <button id="load-samples" class="canva-button secondary-button text-sm shrink-0" type="button">Load samples</button>
+            </div>
+            <div id="class-list" class="mt-4" aria-live="polite"></div>
+            <div id="list-empty" class="text-center py-5 text-sm text-[#778489]">
+              <i data-lucide="notebook-tabs" class="mx-auto mb-2 opacity-60" style="width:25px;height:25px"></i>
+              <p class="canva-text">No classes yet. Add your first class or load the examples above.</p>
+            </div>
+            <div class="section-rule mt-4 pt-4">
+              <button id="reset-button" class="canva-button secondary-button danger-button w-full" type="button">Reset timetable</button>
+              <div id="reset-confirmation" class="hidden-ui mt-3 message message-error">
+                <p class="canva-text font-semibold">Reset everything? Your current classes will be removed.</p>
+                <div class="grid grid-cols-2 gap-2 mt-3">
+                  <button id="confirm-reset" type="button" class="canva-button secondary-button danger-button text-sm">Yes, reset</button>
+                  <button id="cancel-reset" type="button" class="canva-button secondary-button text-sm">Keep timetable</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <!-- Preview Stage -->
+        <section class="preview-panel">
+          <div id="preview-panel" class="canva-panel control-card p-4 sm:p-6 lg:p-7 h-full" style="background: rgb(255, 253, 250);">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
+              <div>
+                <div class="eyebrow">
+                  <i data-lucide="eye" style="width:14px;height:14px"></i> live composition
+                </div>
+                <h2 class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58);">Your live wallpaper</h2>
+                <p class="canva-text text-sm text-[#718084] mt-1">The dashed area keeps important text comfortably away from device UI.</p>
+              </div>
+              <span class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64);">Safe margins included</span>
+            </div>
+
+            <div id="preview-shell" class="wallpaper-wrap">
+              <div id="wallpaper-stage" class="wallpaper-stage phone">
+                <div class="safe-band" aria-hidden="true"></div>
+                <div class="stage-content">
+                  <div id="stage-title-area">
+                    <h3 id="stage-title" class="wallpaper-title">My Class Timetable</h3>
+                    <div class="wallpaper-subtitle">Weekly schedule</div>
+                  </div>
+                  <div id="stage-empty" class="stage-empty">
+                    <span class="canva-text">Your timetable will appear here. Add a class to start designing your wallpaper.</span>
+                  </div>
+                  
+                  <div class="week-grid" id="week-grid" aria-label="Weekly timetable preview">
+                    <div class="grid-corner"></div>
+                    <div id="grid-day-headers"></div>
+                    <div class="times-column" id="times-column"></div>
+                    <div id="grid-day-columns"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+              <button id="download-button" class="canva-button main-button flex-1" type="button">
+                <i data-lucide="download" style="width:18px;height:18px"></i>
+                <span class="canva-text">Download wallpaper</span>
+              </button>
+              <div id="download-status" class="hidden-ui message message-success sm:max-w-[220px]" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   </div>
+
   <script>
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     const subjectColors = ["#e76f51", "#457b9d", "#7b5ea7", "#2a9d8f", "#d97706", "#c44569", "#386641"];
@@ -390,30 +506,8 @@
 
     const form = document.getElementById("class-form");
     const subject = document.getElementById("subject");
-    const day = document.getElementById("day");
-    const startTime = document.getElementById("start-time");
-    const endTime = document.getElementById("end-time");
-    const locationInput = document.getElementById("location");
     const daySchedules = document.getElementById("day-schedules");
     const validationMessage = document.getElementById("validation-message");
-
-    function renderDaySchedules(saved = {}) {
-      const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(box => box.value);
-      daySchedules.innerHTML = selectedDays.map(dayName => {
-        const value = saved[dayName] || {};
-        const key = dayName.toLowerCase();
-        return `<div class="control-card p-3" data-schedule-day="${dayName}">
-          <div class="font-bold text-sm mb-2">${dayName}</div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <div><label class="field-label block mb-1" for="${key}-start">Start time</label><input id="${key}-start" data-schedule="start" class="field-control" type="time" value="${value.start || "09:00"}"></div>
-            <div><label class="field-label block mb-1" for="${key}-end">End time</label><input id="${key}-end" data-schedule="end" class="field-control" type="time" value="${value.end || "10:00"}"></div>
-            <div><label class="field-label block mb-1" for="${key}-location">Location</label><input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" value="${value.location || ""}"></div>
-          </div>
-        </div>`;
-      }).join("");
-    }
-
-    document.querySelectorAll('input[name="days"]').forEach(box => box.addEventListener("change", () => renderDaySchedules()));
     const stage = document.getElementById("wallpaper-stage");
     const stageTitle = document.getElementById("stage-title");
     const stageTitleArea = document.getElementById("stage-title-area");
@@ -442,6 +536,46 @@
       validationMessage.classList.add("hidden-ui");
     }
 
+    function renderDaySchedules(saved = {}) {
+      const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(box => box.value);
+      daySchedules.innerHTML = selectedDays.map(dayName => {
+        const value = saved[dayName] || {};
+        const key = dayName.toLowerCase();
+        return `<div class="control-card p-3" data-schedule-day="${dayName}">
+          <div class="font-bold text-sm mb-2 text-[#425157]">${dayName}</div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div>
+              <label class="field-label block mb-1" for="${key}-start">Start time</label>
+              <input id="${key}-start" data-schedule="start" class="field-control" type="time" value="${value.start || "09:00"}">
+            </div>
+            <div>
+              <label class="field-label block mb-1" for="${key}-end">End time</label>
+              <input id="${key}-end" data-schedule="end" class="field-control" type="time" value="${value.end || "10:00"}">
+            </div>
+            <div>
+              <label class="field-label block mb-1" for="${key}-location">Location</label>
+              <input id="${key}-location" data-schedule="location" class="field-control" type="text" maxlength="40" placeholder="e.g. Room 204" value="${value.location || ""}">
+            </div>
+          </div>
+        </div>`;
+      }).join("");
+    }
+
+    document.querySelectorAll('input[name="days"]').forEach(box => {
+      box.addEventListener("change", () => {
+        const currentData = {};
+        daySchedules.querySelectorAll('[data-schedule-day]').forEach(row => {
+          const d = row.getAttribute("data-schedule-day");
+          currentData[d] = {
+            start: row.querySelector('[data-schedule="start"]').value,
+            end: row.querySelector('[data-schedule="end"]').value,
+            location: row.querySelector('[data-schedule="location"]').value.trim()
+          };
+        });
+        renderDaySchedules(currentData);
+      });
+    });
+
     function updateTheme() {
       const theme = themes[selectedTheme];
       const root = document.documentElement;
@@ -469,42 +603,109 @@
       document.getElementById("desktop-mode").classList.toggle("is-active", mode === "desktop");
       document.getElementById("phone-mode").setAttribute("aria-pressed", String(mode === "phone"));
       document.getElementById("desktop-mode").setAttribute("aria-pressed", String(mode === "desktop"));
+      renderClasses();
+    }
+
+    function getActiveTimeAndDays() {
+      const allDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      
+      if (classes.length === 0) {
+        return {
+          activeDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          windowStart: 480, // 8:00 AM
+          windowEnd: 1080   // 6:00 PM
+        };
+      }
+
+      const presentDays = new Set();
+      let minTime = 24 * 60;
+      let maxTime = 0;
+
+      classes.forEach(item => {
+        const daysList = item.days || [item.day];
+        daysList.forEach(dayName => {
+          presentDays.add(dayName);
+          const detail = item.schedule?.[dayName] || item;
+          const s = timeToMinutes(detail.start);
+          const e = timeToMinutes(detail.end);
+          if (s < minTime) minTime = s;
+          if (e > maxTime) maxTime = e;
+        });
+      });
+
+      const activeDays = allDays.filter(d => presentDays.has(d));
+      let windowStart = Math.floor(minTime / 60) * 60;
+      let windowEnd = Math.ceil(maxTime / 60) * 60;
+
+      if (windowEnd - windowStart < 240) {
+        windowEnd = windowStart + 240;
+      }
+
+      return { activeDays, windowStart, windowEnd };
     }
 
     function renderClasses() {
-      document.querySelectorAll("[data-day-column]").forEach(column => column.innerHTML = "");
-      const visibleClasses = classes.slice().sort((a, b) => days.indexOf((a.days || [a.day])[0]) - days.indexOf((b.days || [b.day])[0]) || timeToMinutes(a.start) - timeToMinutes(b.start));
-      stageEmpty.classList.toggle("hidden-ui", visibleClasses.length > 0);
+      const { activeDays, windowStart, windowEnd } = getActiveTimeAndDays();
+      const windowMinutes = windowEnd - windowStart;
 
-      visibleClasses.forEach(item => {
-        const firstDay = (item.days || [item.day])[0];
-        const firstDetail = item.schedule?.[firstDay] || item;
-        const start = timeToMinutes(firstDetail.start);
-        const end = timeToMinutes(firstDetail.end);
-        const windowStart = 480;
-        const windowMinutes = 600;
-        const top = Math.max(0, Math.min(100, ((start - windowStart) / windowMinutes) * 100));
-        const height = Math.max(8, Math.min(100 - top, ((end - start) / windowMinutes) * 100));
-        (item.days || [item.day]).forEach(dayName => {
-        const detail = item.schedule?.[dayName] || item;
-        const dayStart = timeToMinutes(detail.start);
-        const dayEnd = timeToMinutes(detail.end);
-        const dayTop = Math.max(0, Math.min(100, ((dayStart - windowStart) / windowMinutes) * 100));
-        const dayHeight = Math.max(8, Math.min(100 - dayTop, ((dayEnd - dayStart) / windowMinutes) * 100));
-        const column = document.querySelector('[data-day-column="' + dayName + '"]');
-        if (!column) return;
-        const block = document.createElement("div");
-        block.className = "class-block";
-        block.style.top = dayTop + "%";
-        block.style.height = dayHeight + "%";
-        block.style.borderLeftColor = item.color || "var(--accent)";
-        block.innerHTML = "<strong></strong><span></span><span></span>";
-        block.querySelector("strong").textContent = item.subject;
-        block.querySelectorAll("span")[0].textContent = formatTime(detail.start) + " – " + formatTime(detail.end);
-        block.querySelectorAll("span")[1].textContent = detail.location || "Class location";
-        column.appendChild(block);
+      const headersContainer = document.getElementById("grid-day-headers");
+      const columnsContainer = document.getElementById("grid-day-columns");
+      const timesColumn = document.getElementById("times-column");
+
+      stageEmpty.classList.toggle("hidden-ui", classes.length > 0);
+
+      // Day headers
+      headersContainer.innerHTML = activeDays.map(d => `
+        <div class="day-head">${d.substring(0, 3)}</div>
+      `).join("");
+
+      // Left axis time markers (every 1-2 hours)
+      const stepMinutes = windowMinutes <= 360 ? 60 : 120;
+      let timeHtml = "";
+      for (let t = windowStart; t <= windowEnd; t += stepMinutes) {
+        const percent = ((t - windowStart) / windowMinutes) * 100;
+        const hours = Math.floor(t / 60);
+        const suffix = hours >= 12 ? "PM" : "AM";
+        const displayHour = hours % 12 || 12;
+        timeHtml += `<span class="time-label" style="top: ${percent}%">${displayHour} ${suffix}</span>`;
+      }
+      timesColumn.innerHTML = timeHtml;
+
+      // Clean day columns
+      columnsContainer.innerHTML = activeDays.map(d => `
+        <div class="day-column" data-day-column="${d}"></div>
+      `).join("");
+
+      // Render cards: ONLY Subject Name and Location
+      classes.forEach(item => {
+        const daysList = item.days || [item.day];
+        daysList.forEach(dayName => {
+          if (!activeDays.includes(dayName)) return;
+
+          const detail = item.schedule?.[dayName] || item;
+          const start = timeToMinutes(detail.start);
+          const end = timeToMinutes(detail.end);
+
+          const top = Math.max(0, Math.min(100, ((start - windowStart) / windowMinutes) * 100));
+          const height = Math.max(6.5, Math.min(100 - top, ((end - start) / windowMinutes) * 100));
+
+          const column = document.querySelector(`[data-day-column="${dayName}"]`);
+          if (!column) return;
+
+          const block = document.createElement("div");
+          block.className = "class-block";
+          block.style.top = top + "%";
+          block.style.height = height + "%";
+          block.style.borderLeftColor = item.color || "var(--accent)";
+
+          block.innerHTML = `
+            <strong>${item.subject}</strong>
+            ${detail.location ? `<span>${detail.location}</span>` : ""}
+          `;
+          column.appendChild(block);
         });
       });
+
       renderList();
     }
 
@@ -515,7 +716,12 @@
       empty.classList.toggle("hidden-ui", classes.length > 0);
 
       days.forEach(dayName => {
-        const items = classes.filter(item => (item.days || [item.day]).includes(dayName)).sort((a,b) => timeToMinutes(a.start) - timeToMinutes(b.start));
+        const items = classes.filter(item => (item.days || [item.day]).includes(dayName)).sort((a,b) => {
+          const startA = timeToMinutes((a.schedule?.[dayName] || a).start);
+          const startB = timeToMinutes((b.schedule?.[dayName] || b).start);
+          return startA - startB;
+        });
+
         if (!items.length) return;
         const group = document.createElement("section");
         group.className = "entry-group";
@@ -531,18 +737,27 @@
           content.innerHTML = "<div class='entry-subject'></div><div class='entry-meta'></div>";
           content.querySelector(".entry-subject").textContent = item.subject;
           content.querySelector(".entry-subject").style.color = item.color || "var(--card-ink)";
+          
           const detail = item.schedule?.[dayName] || item;
           content.querySelector(".entry-meta").textContent = formatTime(detail.start) + " – " + formatTime(detail.end) + (detail.location ? " · " + detail.location : "");
+          
           const actions = document.createElement("div");
           actions.className = "flex gap-1";
+          
           const edit = document.createElement("button");
-          edit.type = "button"; edit.className = "icon-action"; edit.setAttribute("aria-label", "Edit " + item.subject);
+          edit.type = "button"; 
+          edit.className = "icon-action"; 
+          edit.setAttribute("aria-label", "Edit " + item.subject);
           edit.innerHTML = "<i data-lucide='pencil' style='width:15px;height:15px'></i>";
           edit.addEventListener("click", () => editClass(item.id));
+          
           const remove = document.createElement("button");
-          remove.type = "button"; remove.className = "icon-action"; remove.setAttribute("aria-label", "Delete " + item.subject);
+          remove.type = "button"; 
+          remove.className = "icon-action"; 
+          remove.setAttribute("aria-label", "Delete " + item.subject);
           remove.innerHTML = "<i data-lucide='trash-2' style='width:15px;height:15px'></i>";
           remove.addEventListener("click", () => deleteClass(item.id, row));
+          
           actions.append(edit, remove);
           row.append(content, actions);
           group.appendChild(row);
@@ -556,7 +771,24 @@
       const item = classes.find(entry => entry.id === id);
       if (!item) return;
       editingId = id;
-      subject.value = item.subject; document.querySelectorAll('input[name="days"]').forEach(box => box.checked = (item.days || [item.day]).includes(box.value)); renderDaySchedules(item.schedule || {});
+      subject.value = item.subject;
+
+      const activeDays = item.days || [item.day];
+      document.querySelectorAll('input[name="days"]').forEach(box => {
+        box.checked = activeDays.includes(box.value);
+      });
+
+      const savedSchedule = {};
+      activeDays.forEach(d => {
+        savedSchedule[d] = (item.schedule && item.schedule[d]) || {
+          start: item.start || "09:00",
+          end: item.end || "10:00",
+          location: item.location || ""
+        };
+      });
+
+      renderDaySchedules(savedSchedule);
+
       document.getElementById("submit-class").textContent = "Save changes";
       document.getElementById("cancel-edit").classList.remove("hidden-ui");
       clearError();
@@ -567,7 +799,8 @@
     function cancelEdit() {
       editingId = null;
       form.reset();
-      document.querySelectorAll('input[name="days"]').forEach(box => box.checked = false); renderDaySchedules();
+      document.querySelectorAll('input[name="days"]').forEach(box => box.checked = false);
+      renderDaySchedules();
       document.getElementById("submit-class").textContent = "Add class";
       document.getElementById("cancel-edit").classList.add("hidden-ui");
       clearError();
@@ -590,26 +823,40 @@
     form.addEventListener("submit", event => {
       event.preventDefault();
       clearError();
+
       const subjectValue = subject.value.trim();
-      const locationValue = locationInput.value.trim();
       if (!subjectValue) return friendlyError("Please add a subject name so your class is easy to spot.");
+
       const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(box => box.value);
       if (!selectedDays.length) return friendlyError("Please select at least one day for this class.");
+
       const schedule = {};
       for (const dayName of selectedDays) {
         const row = daySchedules.querySelector(`[data-schedule-day="${dayName}"]`);
+        if (!row) continue;
+
         const start = row.querySelector('[data-schedule="start"]').value;
         const end = row.querySelector('[data-schedule="end"]').value;
         const location = row.querySelector('[data-schedule="location"]').value.trim();
+
         if (!start || !end) return friendlyError(`Please choose start and end times for ${dayName}.`);
         if (timeToMinutes(end) <= timeToMinutes(start)) return friendlyError(`${dayName} must end after it starts.`);
+
         schedule[dayName] = { start, end, location };
       }
 
       const existing = editingId ? classes.find(item => item.id === editingId) : null;
-      const record = { id: editingId || String(Date.now()), subject: subjectValue, days: selectedDays, schedule, color: existing?.color || subjectColors[classes.filter(item => item.color).length % subjectColors.length] };
+      const record = {
+        id: editingId || String(Date.now()),
+        subject: subjectValue,
+        days: selectedDays,
+        schedule,
+        color: existing?.color || subjectColors[classes.filter(item => item.color).length % subjectColors.length]
+      };
+
       if (editingId) classes = classes.map(item => item.id === editingId ? record : item);
       else classes.push(record);
+
       cancelEdit();
       renderClasses();
     });
@@ -618,13 +865,37 @@
 
     document.getElementById("load-samples").addEventListener("click", () => {
       classes = [
-        { id:"sample-1", subject:"Calculus", days:["Monday","Wednesday"], start:"09:00", end:"10:30", location:"Room 204", color:"#e76f51" },
-        { id:"sample-2", subject:"Design Studio", days:["Tuesday"], start:"11:00", end:"13:00", location:"Lab B", color:"#457b9d" },
-        { id:"sample-3", subject:"Economics", days:["Wednesday"], start:"10:00", end:"11:30", location:"Hall 1", color:"#7b5ea7" },
-        { id:"sample-4", subject:"Computer Science", days:["Thursday"], start:"14:00", end:"16:00", location:"Tech 3", color:"#2a9d8f" },
-        { id:"sample-5", subject:"Literature", days:["Friday"], start:"09:30", end:"11:00", location:"Library", color:"#d97706" }
+        {
+          id: "sample-1",
+          subject: "Calculus",
+          days: ["Monday", "Wednesday"],
+          schedule: {
+            Monday: { start: "09:00", end: "10:30", location: "Room 204" },
+            Wednesday: { start: "11:00", end: "12:30", location: "Room 102" }
+          },
+          color: "#e76f51"
+        },
+        {
+          id: "sample-2",
+          subject: "Design Studio",
+          days: ["Tuesday"],
+          schedule: {
+            Tuesday: { start: "11:00", end: "13:00", location: "Lab B" }
+          },
+          color: "#457b9d"
+        },
+        {
+          id: "sample-3",
+          subject: "AIoT Lab",
+          days: ["Thursday"],
+          schedule: {
+            Thursday: { start: "14:00", end: "16:00", location: "Tech 3" }
+          },
+          color: "#2a9d8f"
+        }
       ];
-      cancelEdit(); renderClasses();
+      cancelEdit();
+      renderClasses();
     });
 
     document.getElementById("wallpaper-title").addEventListener("input", event => {
@@ -635,7 +906,8 @@
     });
 
     document.querySelectorAll("[data-theme]").forEach(button => button.addEventListener("click", () => {
-      selectedTheme = button.dataset.theme; updateTheme();
+      selectedTheme = button.dataset.theme;
+      updateTheme();
     }));
     document.getElementById("phone-mode").addEventListener("click", () => setPreviewMode("phone"));
     document.getElementById("desktop-mode").addEventListener("click", () => setPreviewMode("desktop"));
@@ -643,7 +915,9 @@
     document.getElementById("reset-button").addEventListener("click", () => document.getElementById("reset-confirmation").classList.remove("hidden-ui"));
     document.getElementById("cancel-reset").addEventListener("click", () => document.getElementById("reset-confirmation").classList.add("hidden-ui"));
     document.getElementById("confirm-reset").addEventListener("click", () => {
-      classes = []; cancelEdit(); renderClasses();
+      classes = [];
+      cancelEdit();
+      renderClasses();
       document.getElementById("reset-confirmation").classList.add("hidden-ui");
     });
 
@@ -666,74 +940,163 @@
       canvas.height = isPhone ? 1920 : 1200;
       const ctx = canvas.getContext("2d");
       const width = canvas.width, height = canvas.height;
-      ctx.fillStyle = theme.stage; ctx.fillRect(0, 0, width, height);
 
+      ctx.fillStyle = theme.stage; 
+      ctx.fillRect(0, 0, width, height);
+
+      // Decorative shapes
       ctx.fillStyle = theme.soft;
       if (theme.masculine) {
-        ctx.save(); ctx.translate(width * .9, height * .05); ctx.rotate(.48); ctx.fillRect(-width*.18, -height*.09, width*.42, height*.3); ctx.restore();
+        ctx.save(); ctx.translate(width * .9, height * .05); ctx.rotate(.48); 
+        ctx.fillRect(-width*.18, -height*.09, width*.42, height*.3); ctx.restore();
       } else {
         ctx.beginPath(); ctx.arc(width * .91, height * .02, width * .22, 0, Math.PI * 2); ctx.fill();
       }
 
-      const padding = isPhone ? 82 : 120;
+      const padding = isPhone ? 70 : 120;
       const showTitle = document.getElementById("show-title").checked;
       let gridTop = padding;
+
       if (showTitle) {
-        ctx.fillStyle = theme.ink; ctx.font = "700 " + (isPhone ? 55 : 70) + "px Georgia";
+        ctx.fillStyle = theme.ink; 
+        ctx.font = "700 " + (isPhone ? 52 : 70) + "px Georgia";
         const title = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
-        ctx.fillText(title, padding, padding + (isPhone ? 54 : 65));
-        ctx.fillStyle = theme.ink; ctx.globalAlpha = .62; ctx.font = "700 " + (isPhone ? 21 : 25) + "px DM Sans";
-        ctx.fillText("WEEKLY SCHEDULE", padding, padding + (isPhone ? 89 : 103)); ctx.globalAlpha = 1;
-        gridTop += isPhone ? 150 : 155;
+        ctx.fillText(title, padding, padding + (isPhone ? 50 : 65));
+        ctx.fillStyle = theme.ink; ctx.globalAlpha = .62; 
+        ctx.font = "700 " + (isPhone ? 20 : 25) + "px DM Sans";
+        ctx.fillText("WEEKLY SCHEDULE", padding, padding + (isPhone ? 85 : 103)); 
+        ctx.globalAlpha = 1;
+        gridTop += isPhone ? 140 : 155;
       }
 
+      const { activeDays, windowStart, windowEnd } = getActiveTimeAndDays();
+      const windowMinutes = windowEnd - windowStart;
+
       const gridX = padding, gridY = gridTop, gridW = width - padding * 2, gridH = height - gridTop - padding;
-      const timeW = gridW * .14, headerH = isPhone ? 58 : 65, columnW = (gridW - timeW) / 7;
-      ctx.strokeStyle = theme.grid; ctx.lineWidth = 2;
-      ctx.fillStyle = "rgba(255,255,255,.12)";
-      roundedRect(ctx, gridX, gridY, gridW, gridH, theme.masculine ? 5 : 24); ctx.fill(); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(gridX, gridY + headerH); ctx.lineTo(gridX + gridW, gridY + headerH);
-      ctx.moveTo(gridX + timeW, gridY); ctx.lineTo(gridX + timeW, gridY + gridH);
-      for(let i=1;i<5;i++){ const x=gridX+timeW+columnW*i; ctx.moveTo(x,gridY);ctx.lineTo(x,gridY+gridH); }
-      for(let i=1;i<5;i++){ const y=gridY+headerH+(gridH-headerH)*(i/5);ctx.moveTo(gridX,y);ctx.lineTo(gridX+gridW,y); } ctx.stroke();
+      const timeW = isPhone ? 120 : 140;
+      const headerH = isPhone ? 64 : 70;
+      const columnW = (gridW - timeW) / activeDays.length;
 
-      ctx.fillStyle = theme.ink; ctx.font = "700 " + (isPhone ? 17 : 20) + "px DM Sans"; ctx.textAlign = "center";
-      ["MON","TUE","WED","THU","FRI"].forEach((label,index)=>ctx.fillText(label, gridX+timeW+columnW*(index+.5), gridY+headerH*.62));
-      ctx.textAlign = "left"; ctx.globalAlpha=.67; ctx.font = "700 " + (isPhone ? 14 : 16) + "px DM Sans";
-      ["8 AM","10 AM","12 PM","2 PM","4 PM","6 PM"].forEach((label,index)=>ctx.fillText(label, gridX+14, gridY+headerH+(gridH-headerH)*(index/5)+(index === 5 ? -2 : 5)));
-      ctx.globalAlpha=1;
+      // Table grid background & border
+      ctx.strokeStyle = theme.grid; 
+      ctx.lineWidth = 2;
+      ctx.fillStyle = "rgba(255,255,255,.15)";
+      roundedRect(ctx, gridX, gridY, gridW, gridH, theme.masculine ? 5 : 20); 
+      ctx.fill(); 
+      ctx.stroke();
 
+      // Header and column divider lines
+      ctx.beginPath(); 
+      ctx.moveTo(gridX, gridY + headerH); 
+      ctx.lineTo(gridX + gridW, gridY + headerH);
+      ctx.moveTo(gridX + timeW, gridY); 
+      ctx.lineTo(gridX + timeW, gridY + gridH);
+
+      for (let i = 1; i < activeDays.length; i++) { 
+        const x = gridX + timeW + columnW * i; 
+        ctx.moveTo(x, gridY); 
+        ctx.lineTo(x, gridY + gridH); 
+      }
+
+      const stepMinutes = windowMinutes <= 360 ? 60 : 120;
+      const steps = windowMinutes / stepMinutes;
+      for (let i = 1; i <= steps; i++) { 
+        const y = gridY + headerH + (gridH - headerH) * (i / steps); 
+        ctx.moveTo(gridX, y); 
+        ctx.lineTo(gridX + gridW, y); 
+      }
+      ctx.stroke();
+
+      // Headers (Days)
+      ctx.fillStyle = theme.ink; 
+      ctx.font = "700 " + (isPhone ? 19 : 22) + "px DM Sans"; 
+      ctx.textAlign = "center";
+      activeDays.forEach((label, index) => {
+        ctx.fillText(label.substring(0, 3).toUpperCase(), gridX + timeW + columnW * (index + 0.5), gridY + headerH * 0.62);
+      });
+
+      // Side Axis (Hours)
+      ctx.textAlign = "center"; 
+      ctx.globalAlpha = 0.72; 
+      ctx.font = "700 " + (isPhone ? 15 : 18) + "px DM Sans";
+      for (let t = windowStart; t <= windowEnd; t += stepMinutes) {
+        const fraction = (t - windowStart) / windowMinutes;
+        const hours = Math.floor(t / 60);
+        const suffix = hours >= 12 ? "PM" : "AM";
+        const displayHour = hours % 12 || 12;
+        const timeLabel = `${displayHour} ${suffix}`;
+        const y = gridY + headerH + (gridH - headerH) * fraction;
+        ctx.fillText(timeLabel, gridX + (timeW / 2), y + (fraction === 1 ? -6 : 5));
+      }
+      ctx.globalAlpha = 1;
+
+      // Cards: Subject & Location ONLY
       classes.forEach(item => {
-        const selectedDays = item.days || [item.day];
-        selectedDays.forEach(dayName => {
-        const index=days.indexOf(dayName); if(index<0)return;
-        const detail=item.schedule?.[dayName] || item;
-        const start=timeToMinutes(detail.start), end=timeToMinutes(detail.end), windowStart=480, windowMins=600;
-        const top=Math.max(0,Math.min(1,(start-windowStart)/windowMins));
-        const blockHeight=Math.max(.08,Math.min(1-top,(end-start)/windowMins));
-        const x=gridX+timeW+columnW*index+columnW*.06, y=gridY+headerH+(gridH-headerH)*top+4, w=columnW*.88, h=(gridH-headerH)*blockHeight-7;
-        ctx.fillStyle=theme.card; ctx.shadowColor="rgba(0,0,0,.18)";ctx.shadowBlur=10;ctx.shadowOffsetY=4;
-        roundedRect(ctx,x,y,w,h,theme.masculine?3:12);ctx.fill();ctx.shadowColor="transparent";
-        ctx.fillStyle=item.color || theme.accent;ctx.fillRect(x,y,isPhone?5:6,h);
-        ctx.fillStyle=theme.cardInk;ctx.font="700 "+(isPhone?16:20)+"px DM Sans";ctx.textAlign="left";
-        ctx.save();ctx.beginPath();ctx.rect(x+12,y+9,w-20,h-12);ctx.clip();ctx.fillText(item.subject,x+12,y+(isPhone?26:30));ctx.font="500 "+(isPhone?12:15)+"px DM Sans";
-        if(h>50)ctx.fillText(formatTime(detail.start)+" – "+formatTime(detail.end),x+12,y+(isPhone?45:52));
-        if(h>75 && detail.location)ctx.fillText(detail.location,x+12,y+(isPhone?62:74));ctx.restore();
+        const daysList = item.days || [item.day];
+        daysList.forEach(dayName => {
+          const colIndex = activeDays.indexOf(dayName);
+          if (colIndex < 0) return;
+
+          const detail = item.schedule?.[dayName] || item;
+          const start = timeToMinutes(detail.start);
+          const end = timeToMinutes(detail.end);
+
+          const top = Math.max(0, Math.min(1, (start - windowStart) / windowMinutes));
+          const blockHeight = Math.max(0.065, Math.min(1 - top, (end - start) / windowMinutes));
+
+          const x = gridX + timeW + columnW * colIndex + 5;
+          const y = gridY + headerH + (gridH - headerH) * top + 4;
+          const w = columnW - 10;
+          const h = (gridH - headerH) * blockHeight - 8;
+
+          ctx.fillStyle = theme.card; 
+          ctx.shadowColor = "rgba(0,0,0,.12)"; 
+          ctx.shadowBlur = 8; 
+          ctx.shadowOffsetY = 3;
+          roundedRect(ctx, x, y, w, h, theme.masculine ? 4 : 10); 
+          ctx.fill(); 
+          ctx.shadowColor = "transparent";
+
+          ctx.fillStyle = item.color || theme.accent; 
+          ctx.fillRect(x, y, isPhone ? 6 : 7, h);
+
+          ctx.fillStyle = theme.cardInk; 
+          ctx.font = "700 " + (isPhone ? 19 : 22) + "px DM Sans"; 
+          ctx.textAlign = "left";
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(x + 10, y + 4, w - 14, h - 8);
+          ctx.clip();
+          ctx.fillText(item.subject, x + 14, y + (isPhone ? 25 : 30));
+          
+          if (h > 42 && detail.location) {
+            ctx.font = "500 " + (isPhone ? 14 : 17) + "px DM Sans";
+            ctx.globalAlpha = 0.75;
+            ctx.fillText(detail.location, x + 14, y + (isPhone ? 48 : 56));
+            ctx.globalAlpha = 1;
+          }
+          ctx.restore();
         });
       });
 
-      const link=document.createElement("a");
-      link.download="class-timetable-wallpaper.png";
-      link.href=canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = "class-timetable-wallpaper.png";
+      link.href = canvas.toDataURL("image/png");
       link.click();
-      const status=document.getElementById("download-status");
-      status.textContent="Your wallpaper PNG is ready to save.";
+
+      const status = document.getElementById("download-status");
+      status.textContent = "Your wallpaper PNG is ready to save.";
       status.classList.remove("hidden-ui");
-      setTimeout(()=>status.classList.add("hidden-ui"),4000);
+      setTimeout(() => status.classList.add("hidden-ui"), 4000);
     }
 
     document.getElementById("download-button").addEventListener("click", downloadWallpaper);
-    document.addEventListener("DOMContentLoaded", () => { lucide.createIcons(); updateTheme(); renderClasses(); });
+    document.addEventListener("DOMContentLoaded", () => { 
+      lucide.createIcons(); 
+      updateTheme(); 
+      renderClasses(); 
+    });
   </script>
- 
-</body></html>
+</body>
+</html>
