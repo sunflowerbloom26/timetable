@@ -172,7 +172,7 @@
       box-shadow: 0 20px 44px rgba(38, 51, 58, .19);
       transition: width .3s, aspect-ratio .3s, border-radius .3s;
     }
-    .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 19.5; border-radius: 34px; }
+    .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 20; border-radius: 34px; }
     .wallpaper-stage.desktop { width: min(100%, 920px); aspect-ratio: 16 / 10; border-radius: 18px; }
     
     .stage-overlay {
@@ -430,7 +430,7 @@
             <div class="section-rule mt-5 pt-5">
               <div class="flex items-center justify-between mb-2">
                 <p class="canva-text field-label">Soft Pastel Themes</p>
-                <span class="text-[0.7rem] text-[#718084] font-semibold">Pastels & Neutral</span>
+                <span class="text-[0.7rem] text-[#718084] font-semibold">Pastels &amp; Neutral</span>
               </div>
               <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme">
                 <button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffdcd4]"></span>Blush Pink</button>
@@ -445,7 +445,7 @@
 
               <!-- Interactive Color Wheel Picker -->
               <div class="mt-3">
-                <label class="field-label block mb-1 text-xs">Custom Color Wheel</label>
+                <label class="field-label block mb-1 text-xs" for="custom-color-picker">Custom Color Wheel</label>
                 <div class="color-wheel-wrapper">
                   <input type="color" id="custom-color-picker" class="color-wheel-input" value="#e2e8f0" title="Choose custom background color">
                   <div class="flex-1 text-xs">
@@ -485,27 +485,44 @@
               </div>
             </div>
 
-            <!-- Screen Ratio & Safe Spacing -->
+            <!-- Phone Model & Fit Controls -->
             <div id="phone-fit-controls" class="section-rule mt-5 pt-5">
               <div class="flex items-center justify-between mb-2">
-                <p class="canva-text field-label">Screen Aspect Ratio</p>
+                <label class="canva-text field-label" for="phone-preset">Choose Your Phone Model</label>
                 <button type="button" id="auto-detect-screen" class="text-xs font-bold text-[#b74a3d] hover:underline flex items-center gap-1">
-                  <i data-lucide="scan" style="width:12px;height:12px"></i> Auto-detect my phone
+                  <i data-lucide="smartphone" style="width:12px;height:12px"></i> Detect this device
                 </button>
               </div>
-              <select id="screen-ratio" class="field-control">
-                <option value="20:9" selected>Modern Android (20:9 / 1080×2400)</option>
-                <option value="19.5:9">iPhone / Tall Flagship (19.5:9 / 1170×2532)</option>
-                <option value="16:9">Classic Wide (16:9 / 1080×1920)</option>
-                <option value="custom" id="custom-ratio-opt" style="display:none">Detected Screen</option>
+              
+              <select id="phone-preset" class="field-control font-medium">
+                <optgroup label="Popular Android (Vivo, Oppo, Xiaomi, Realme)">
+                  <option value="1080x2400" selected>Standard Android (20:9 · 1080 × 2400)</option>
+                  <option value="1080x2460">Tall Android (20.5:9 · 1080 × 2460)</option>
+                  <option value="720x1600">Budget Android (20:9 HD+ · 720 × 1600)</option>
+                </optgroup>
+                <optgroup label="Samsung Galaxy">
+                  <option value="1080x2340">Galaxy S22 / S23 / S24 / A54 (19.5:9 · 1080 × 2340)</option>
+                  <option value="1440x3088">Galaxy S22/S23/S24 Ultra (19.3:9 · 1440 × 3088)</option>
+                  <option value="1080x2400">Galaxy A-Series / S20 / S21 (20:9 · 1080 × 2400)</option>
+                </optgroup>
+                <optgroup label="Apple iPhone">
+                  <option value="1179x2556">iPhone 14 Pro / 15 / 15 Pro / 16 (1179 × 2556)</option>
+                  <option value="1290x2796">iPhone 14/15/16 Pro Max / Plus (1290 × 2796)</option>
+                  <option value="1170x2532">iPhone 12 / 12 Pro / 13 / 13 Pro / 14 (1170 × 2532)</option>
+                  <option value="828x1792">iPhone 11 / XR (828 × 1792)</option>
+                </optgroup>
+                <optgroup label="Classic Screens &amp; Tablets">
+                  <option value="1080x1920">Standard 16:9 Screen (1080 × 1920)</option>
+                  <option value="custom" id="custom-ratio-opt" style="display:none;">Auto-Detected</option>
+                </optgroup>
               </select>
 
               <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
-                  <label for="clock-offset" class="field-label">Top Clock Space</label>
+                  <label for="clock-offset" class="field-label">Top Clock Clearance</label>
                   <span id="offset-val" class="text-xs font-bold text-[#687880]">28%</span>
                 </div>
-                <input type="range" id="clock-offset" min="15" max="42" value="28" class="w-full accent-[#d96555]">
+                <input type="range" id="clock-offset" min="15" max="45" value="28" class="w-full accent-[#d96555]">
                 <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at the top so lockscreen clock/notifications won't cover classes.</p>
               </div>
             </div>
@@ -635,12 +652,6 @@
       charcoal: { stage:"#242933", ink:"#f8fafc", soft:"#3b4252", accent:"#f4bf75", accentDark:"#f4bf75", card:"#2e3440", cardInk:"#eceff4", grid:"rgba(248,250,252,.2)",safe:"rgba(244,191,117,.5)", shape:"6px",  masculine:true }
     };
 
-    const aspectPresets = {
-      "20:9": { w: 1080, h: 2400 },
-      "19.5:9": { w: 1170, h: 2532 },
-      "16:9": { w: 1080, h: 1920 }
-    };
-
     let classes = [];
     let editingId = null;
     let selectedTheme = "pastel";
@@ -681,7 +692,7 @@
       validationMessage.classList.add("hidden-ui");
     }
 
-    // Helper functions to generate harmonic themes from any custom hex color
+    // Dynamic contrast & harmony engine for custom color wheel
     function hexToRgb(hex) {
       hex = hex.replace(/^#/, '');
       if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
@@ -696,7 +707,6 @@
 
     function generateHarmonicTheme(baseHex) {
       const { r, g, b } = hexToRgb(baseHex);
-      // Perceived luminance (ITU-R BT.709)
       const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
       const isLight = luminance > 0.55;
 
@@ -721,6 +731,39 @@
         masculine: !isLight
       };
     }
+
+    // Phone dimensions & stage aspect ratio
+    function getTargetDimensions() {
+      if (previewMode === "desktop") {
+        return { width: 1920, height: 1200, ratio: 16 / 10 };
+      }
+      
+      const val = document.getElementById("phone-preset").value;
+      if (val === "custom" && customDimensions) {
+        return { 
+          width: customDimensions.w, 
+          height: customDimensions.h, 
+          ratio: customDimensions.w / customDimensions.h 
+        };
+      }
+
+      const [w, h] = val.split("x").map(Number);
+      return { width: w, height: h, ratio: w / h };
+    }
+
+    function updateStageAspectRatio() {
+      if (previewMode === "phone") {
+        const { width, height } = getTargetDimensions();
+        stage.style.aspectRatio = `${width} / ${height}`;
+      } else {
+        stage.style.aspectRatio = "16 / 10";
+      }
+    }
+
+    document.getElementById("phone-preset").addEventListener("change", () => {
+      updateStageAspectRatio();
+      renderClasses();
+    });
 
     function renderDaySchedules(saved = {}) {
       const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(box => box.value);
@@ -775,7 +818,7 @@
     });
 
     function updateTheme() {
-      const theme = themes[selectedTheme];
+      const theme = themes[selectedTheme] || themes["pastel"];
       const root = document.documentElement;
       root.style.setProperty("--stage", theme.stage);
       root.style.setProperty("--stage-ink", theme.ink);
@@ -793,7 +836,7 @@
       });
     }
 
-    // Color Wheel Event Listener
+    // Interactive Color Wheel
     const colorPicker = document.getElementById("custom-color-picker");
     colorPicker.addEventListener("input", (e) => {
       const hex = e.target.value;
@@ -804,7 +847,7 @@
       renderClasses();
     });
 
-    // Photo Upload Handlers
+    // Custom Photo Upload
     document.getElementById("upload-trigger-btn").addEventListener("click", () => {
       document.getElementById("bg-upload").click();
     });
@@ -857,6 +900,7 @@
       document.getElementById("phone-mode").setAttribute("aria-pressed", String(mode === "phone"));
       document.getElementById("desktop-mode").setAttribute("aria-pressed", String(mode === "desktop"));
       document.getElementById("phone-fit-controls").style.display = (mode === "phone") ? "block" : "none";
+      updateStageAspectRatio();
       renderClasses();
     }
 
@@ -871,11 +915,15 @@
 
       const opt = document.getElementById("custom-ratio-opt");
       opt.style.display = "block";
-      opt.textContent = `Auto-Detected (${w}×${h}px)`;
-      document.getElementById("screen-ratio").value = "custom";
+      opt.value = "custom";
+      opt.textContent = `Current Device Screen (${w} × ${h})`;
+      document.getElementById("phone-preset").value = "custom";
+
+      updateStageAspectRatio();
+      renderClasses();
 
       const status = document.getElementById("download-status");
-      status.textContent = `Screen detected: ${w}×${h}px`;
+      status.textContent = `Detected screen: ${w}×${h}px`;
       status.classList.remove("hidden-ui");
       setTimeout(() => status.classList.add("hidden-ui"), 3500);
     });
@@ -1250,22 +1298,7 @@
       const isPhone = previewMode === "phone";
       const canvas = document.createElement("canvas");
 
-      let width, height;
-      if (!isPhone) {
-        width = 1920;
-        height = 1200;
-      } else {
-        const ratioChoice = document.getElementById("screen-ratio").value;
-        if (ratioChoice === "custom" && customDimensions) {
-          width = customDimensions.w;
-          height = customDimensions.h;
-        } else {
-          const preset = aspectPresets[ratioChoice] || aspectPresets["20:9"];
-          width = preset.w;
-          height = preset.h;
-        }
-      }
-
+      const { width, height } = getTargetDimensions();
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext("2d");
@@ -1313,7 +1346,7 @@
         }
       }
 
-      const sideMargin = isPhone ? Math.round(width * 0.065) : 100;
+      const sideMargin = isPhone ? Math.round(width * 0.06) : 100;
       const bottomMargin = isPhone ? Math.round(height * 0.065) : 80;
 
       const clockClearancePercent = isPhone ? (parseInt(document.getElementById("clock-offset").value, 10) / 100) : 0.12;
@@ -1325,12 +1358,12 @@
         ctx.fillStyle = customBgImage ? "#ffffff" : theme.ink; 
         ctx.font = `700 ${isPhone ? Math.round(width * 0.052) : 60}px Georgia`;
         ctx.textAlign = "left";
-        ctx.fillText(titleText, sideMargin, gridTop - (isPhone ? 38 : 45));
+        ctx.fillText(titleText, sideMargin, gridTop - (isPhone ? Math.round(height * 0.018) : 45));
 
         ctx.fillStyle = customBgImage ? "#ffffff" : theme.ink; 
         ctx.globalAlpha = customBgImage ? 0.8 : 0.55; 
         ctx.font = `700 ${isPhone ? Math.round(width * 0.022) : 22}px DM Sans`;
-        ctx.fillText("WEEKLY SCHEDULE", sideMargin, gridTop - (isPhone ? 15 : 18)); 
+        ctx.fillText("WEEKLY SCHEDULE", sideMargin, gridTop - (isPhone ? Math.round(height * 0.007) : 18)); 
         ctx.globalAlpha = 1.0;
       }
 
@@ -1438,25 +1471,25 @@
           ctx.rect(x + 10, y + 2, w - 14, h - 4);
           ctx.clip();
           
-          ctx.fillText(item.subject, x + 12, y + (isPhone ? 28 : 22));
+          ctx.fillText(item.subject, x + 12, y + (isPhone ? Math.round(width * 0.028) : 22));
 
           if (detail.type === "Lab") {
             const subjWidth = ctx.measureText(item.subject).width;
             ctx.fillStyle = "#0284c7";
             ctx.font = `800 ${isPhone ? Math.round(width * 0.019) : 13}px DM Sans`;
-            ctx.fillText(" • LAB", x + 14 + subjWidth, y + (isPhone ? 28 : 22));
+            ctx.fillText(" • LAB", x + 14 + subjWidth, y + (isPhone ? Math.round(width * 0.028) : 22));
           } else if (detail.type === "Tutorial") {
             const subjWidth = ctx.measureText(item.subject).width;
             ctx.fillStyle = "#b45309";
             ctx.font = `800 ${isPhone ? Math.round(width * 0.019) : 13}px DM Sans`;
-            ctx.fillText(" • TUT", x + 14 + subjWidth, y + (isPhone ? 28 : 22));
+            ctx.fillText(" • TUT", x + 14 + subjWidth, y + (isPhone ? Math.round(width * 0.028) : 22));
           }
           
           if (h > 42 && detail.location) {
             ctx.font = `500 ${isPhone ? Math.round(width * 0.021) : 14}px DM Sans`;
             ctx.fillStyle = theme.cardInk;
             ctx.globalAlpha = 0.72;
-            ctx.fillText(detail.location, x + 12, y + (isPhone ? 52 : 42));
+            ctx.fillText(detail.location, x + 12, y + (isPhone ? Math.round(width * 0.05) : 42));
             ctx.globalAlpha = 1.0;
           }
           ctx.restore();
@@ -1477,6 +1510,7 @@
     document.getElementById("download-button").addEventListener("click", downloadWallpaper);
     document.addEventListener("DOMContentLoaded", () => { 
       lucide.createIcons(); 
+      updateStageAspectRatio();
       updateTheme(); 
       renderClasses(); 
     });
