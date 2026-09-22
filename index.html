@@ -95,21 +95,23 @@
 
     .option-button {
       border: 1px solid #d8d3ca;
-      padding: .72rem .76rem;
-      border-radius: 13px;
+      padding: .55rem .65rem;
+      border-radius: 12px;
       background: #fff;
-      font-size: .8rem;
+      font-size: .76rem;
       font-weight: 700;
       color: #48545a;
       text-align: left;
       transition: transform .18s, border-color .18s, box-shadow .18s;
+      display: flex;
+      align-items: center;
     }
     .option-button:hover { transform: translateY(-1px); border-color: var(--accent); }
     .option-button.is-active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(229, 114, 97, .19); color: var(--accent-dark); }
 
     .theme-swatch {
-      width: 18px; height: 18px; border-radius: 6px; display: inline-block; vertical-align: middle; margin-right: .38rem;
-      border: 1px solid rgba(0, 0, 0, .08);
+      width: 16px; height: 16px; border-radius: 5px; display: inline-block; flex-shrink: 0; margin-right: .45rem;
+      border: 1px solid rgba(0, 0, 0, .12);
     }
 
     .main-button {
@@ -163,29 +165,41 @@
       position: relative;
       margin: 0 auto;
       overflow: hidden;
-      background: var(--stage);
+      background-color: var(--stage);
+      background-size: cover;
+      background-position: center;
       color: var(--stage-ink);
       box-shadow: 0 20px 44px rgba(38, 51, 58, .19);
-      transition: width .3s, aspect-ratio .3s, border-radius .3s, background .3s;
+      transition: width .3s, aspect-ratio .3s, border-radius .3s;
     }
     .wallpaper-stage.phone { width: min(100%, 390px); aspect-ratio: 9 / 19.5; border-radius: 34px; }
     .wallpaper-stage.desktop { width: min(100%, 920px); aspect-ratio: 16 / 10; border-radius: 18px; }
+    
+    .stage-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      pointer-events: none;
+      transition: background .2s;
+    }
+
     .wallpaper-stage::before, .wallpaper-stage::after {
       content: ""; position: absolute; pointer-events: none; opacity: .72;
     }
     .wallpaper-stage::before { width: 42%; height: 36%; background: var(--soft); border-radius: 50%; top: -14%; right: -12%; }
     .wallpaper-stage::after { width: 26%; aspect-ratio: 1; border: 2px solid var(--accent); border-radius: 50%; bottom: -13%; left: -9%; opacity: .24; }
+    .wallpaper-stage.has-bg-img::before, .wallpaper-stage.has-bg-img::after { display: none; }
 
     .stage-content { position: absolute; inset: 0; z-index: 1; padding: clamp(1rem, 3.1%, 2.1rem); display: flex; flex-direction: column; }
     .safe-band {
-      position: absolute; left: 7%; right: 7%; top: 4%; height: 7%;
+      position: absolute; left: 7%; right: 7%; top: 7%; height: 21%;
       border-top: 1px dashed var(--safe); border-bottom: 1px dashed var(--safe); opacity: .8; pointer-events: none;
     }
-    .phone .safe-band { top: 7%; height: 21%; }
+
     .wallpaper-title { margin: 0; line-height: 1.05; letter-spacing: -.035em; font-family: "Fraunces", serif; font-weight: 700; color: var(--stage-ink); font-size: clamp(1.15rem, 3.2vw, 2.25rem); max-width: 72%; }
     .wallpaper-subtitle { font-size: clamp(.56rem, 1.3vw, .78rem); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; margin-top: .45rem; opacity: .62; }
 
-    /* Timetable Grid Container */
+    /* Timetable Grid System */
     .week-grid {
       flex: 1;
       min-height: 0;
@@ -196,7 +210,8 @@
       border: 1px solid var(--grid);
       border-radius: 14px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.32);
+      backdrop-filter: blur(8px);
       position: relative;
     }
 
@@ -231,7 +246,7 @@
     .times-column {
       position: relative;
       border-right: 1px solid var(--grid);
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
     }
 
     .time-label {
@@ -273,7 +288,7 @@
       padding: 3px 4px 3px 6px;
       background: var(--card);
       color: var(--card-ink);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       border-left: 3px solid var(--accent);
       overflow: hidden;
       display: flex;
@@ -303,7 +318,7 @@
       display: block;
       font-size: 0.52rem;
       margin-top: 2px;
-      opacity: 0.75;
+      opacity: 0.78;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -332,6 +347,36 @@
     .masculine .week-grid { border-radius: 4px; }
     .masculine .class-block { border-radius: 3px; box-shadow: 4px 4px 0 rgba(0,0,0,.16); }
 
+    /* Custom Color Wheel Control Styles */
+    .color-wheel-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #d8d3ca;
+      border-radius: 12px;
+      padding: 6px 10px;
+    }
+    .color-wheel-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: none;
+      padding: 0;
+    }
+    .color-wheel-input::-webkit-color-swatch-wrapper { padding: 0; }
+    .color-wheel-input::-webkit-color-swatch {
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
     @media (max-width: 1023px) {
       .wallpaper-stage.desktop { width: min(100%, 790px); }
     }
@@ -357,7 +402,7 @@
               <i data-lucide="sparkles" style="width:14px;height:14px"></i> wallpaper maker
             </div>
             <h1 class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58);">Class Timetable</h1>
-            <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Create your weekly schedule, differentiate Lectures and Labs, and generate a crop-free phone lockscreen.</p>
+            <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Design your weekly schedule with soft pastels, custom color wheels, or personal photos.</p>
           </div>
         </div>
       </div>
@@ -380,26 +425,67 @@
                 <span class="canva-text">Show title on wallpaper</span>
               </label>
             </div>
+
+            <!-- Soft Pastels & Color Wheel Palette -->
             <div class="section-rule mt-5 pt-5">
-              <p class="canva-text field-label mb-2">Choose a theme</p>
-              <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme">
-                <button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffc8be]"></span>Blush Pink</button>
-                <button type="button" class="option-button" data-theme="lavender"><span class="theme-swatch bg-[#d9ccff]"></span>Lavender Purple</button>
-                <button type="button" class="option-button" data-theme="peach"><span class="theme-swatch bg-[#ffc49d]"></span>Peach Orange</button>
-                <button type="button" class="option-button" data-theme="midnight"><span class="theme-swatch bg-[#1b2951]"></span>Midnight Blue</button>
-                <button type="button" class="option-button" data-theme="forest"><span class="theme-swatch bg-[#21483a]"></span>Forest Green</button>
-                <button type="button" class="option-button" data-theme="charcoal"><span class="theme-swatch bg-[#3a414b]"></span>Charcoal Black</button>
+              <div class="flex items-center justify-between mb-2">
+                <p class="canva-text field-label">Soft Pastel Themes</p>
+                <span class="text-[0.7rem] text-[#718084] font-semibold">Pastels & Neutral</span>
               </div>
-            </div>
-            <div class="section-rule mt-5 pt-5">
-              <p class="canva-text field-label mb-2">Wallpaper layout</p>
-              <div class="grid grid-cols-2 gap-2">
-                <button type="button" id="phone-mode" class="option-button is-active text-center" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button>
-                <button type="button" id="desktop-mode" class="option-button text-center" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
+              <div class="grid grid-cols-2 gap-2" role="group" aria-label="Wallpaper theme">
+                <button type="button" class="option-button is-active" data-theme="pastel"><span class="theme-swatch bg-[#ffdcd4]"></span>Blush Pink</button>
+                <button type="button" class="option-button" data-theme="powder"><span class="theme-swatch bg-[#dbeafe]"></span>Powder Blue</button>
+                <button type="button" class="option-button" data-theme="lavender"><span class="theme-swatch bg-[#ede9fe]"></span>Soft Lilac</button>
+                <button type="button" class="option-button" data-theme="butter"><span class="theme-swatch bg-[#fef3c7]"></span>Buttercream</button>
+                <button type="button" class="option-button" data-theme="sage"><span class="theme-swatch bg-[#dcfce7]"></span>Sage Mint</button>
+                <button type="button" class="option-button" data-theme="peach"><span class="theme-swatch bg-[#ffedd5]"></span>Warm Peach</button>
+                <button type="button" class="option-button" data-theme="rose"><span class="theme-swatch bg-[#fce7f3]"></span>Dusty Rose</button>
+                <button type="button" class="option-button" data-theme="charcoal"><span class="theme-swatch bg-[#2d3748]"></span>Charcoal</button>
+              </div>
+
+              <!-- Interactive Color Wheel Picker -->
+              <div class="mt-3">
+                <label class="field-label block mb-1 text-xs">Custom Color Wheel</label>
+                <div class="color-wheel-wrapper">
+                  <input type="color" id="custom-color-picker" class="color-wheel-input" value="#e2e8f0" title="Choose custom background color">
+                  <div class="flex-1 text-xs">
+                    <span id="custom-color-label" class="font-bold text-[#425157]">Pick any custom shade</span>
+                    <p class="text-[0.68rem] text-[#718084]">Auto-adjusts contrast for perfect readability</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Custom Photo Upload Section -->
+              <div class="mt-4 p-3.5 rounded-xl border border-dashed border-[#d8d3ca] bg-[#faf8f5]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="field-label flex items-center gap-1.5"><i data-lucide="image" style="width:15px;height:15px"></i> Photo Background</span>
+                  <button type="button" id="remove-bg-photo" class="text-xs font-bold text-[#b74a3d] hover:underline hidden-ui">Remove photo</button>
+                </div>
+                <input type="file" id="bg-upload" accept="image/*" class="hidden">
+                <button type="button" id="upload-trigger-btn" class="secondary-button w-full text-xs">
+                  <i data-lucide="upload-cloud" style="width:15px;height:15px"></i> Upload photo from device
+                </button>
+                
+                <div id="photo-dim-box" class="mt-3 hidden-ui">
+                  <div class="flex justify-between items-center text-[0.72rem] font-bold text-[#687880] mb-1">
+                    <span>Photo Dimming (keeps timetable clear)</span>
+                    <span id="dim-val">30%</span>
+                  </div>
+                  <input type="range" id="photo-dim" min="0" max="75" value="30" class="w-full accent-[#d96555]">
+                </div>
               </div>
             </div>
 
-            <!-- Lockscreen Screen Ratio & Safe Spacing -->
+            <!-- Wallpaper Layout -->
+            <div class="section-rule mt-5 pt-5">
+              <p class="canva-text field-label mb-2">Wallpaper layout</p>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" id="phone-mode" class="option-button is-active justify-center font-bold" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button>
+                <button type="button" id="desktop-mode" class="option-button justify-center font-bold" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
+              </div>
+            </div>
+
+            <!-- Screen Ratio & Safe Spacing -->
             <div id="phone-fit-controls" class="section-rule mt-5 pt-5">
               <div class="flex items-center justify-between mb-2">
                 <p class="canva-text field-label">Screen Aspect Ratio</p>
@@ -416,11 +502,11 @@
 
               <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
-                  <label for="clock-offset" class="field-label">Top Clock Clearance</label>
+                  <label for="clock-offset" class="field-label">Top Clock Space</label>
                   <span id="offset-val" class="text-xs font-bold text-[#687880]">28%</span>
                 </div>
                 <input type="range" id="clock-offset" min="15" max="42" value="28" class="w-full accent-[#d96555]">
-                <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at top so phone lock widgets & clock won't cover your classes.</p>
+                <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at the top so lockscreen clock/notifications won't cover classes.</p>
               </div>
             </div>
           </section>
@@ -492,13 +578,14 @@
                   <i data-lucide="eye" style="width:14px;height:14px"></i> live composition
                 </div>
                 <h2 class="canva-text display-font text-2xl sm:text-3xl font-bold mt-1" style="color: rgb(38, 51, 58);">Your live wallpaper</h2>
-                <p class="canva-text text-sm text-[#718084] mt-1">Dynamic view showing differentiated lectures, labs, and time axis.</p>
+                <p class="canva-text text-sm text-[#718084] mt-1">Real-time preview with custom background and safe margins.</p>
               </div>
               <span class="canva-tag inline-flex w-fit rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(255, 229, 220); color: rgb(169, 77, 64);">Anti-Crop Active</span>
             </div>
 
             <div id="preview-shell" class="wallpaper-wrap">
               <div id="wallpaper-stage" class="wallpaper-stage phone">
+                <div class="stage-overlay" id="stage-overlay"></div>
                 <div class="safe-band" id="safe-band" aria-hidden="true"></div>
                 <div class="stage-content">
                   <div id="stage-title-area">
@@ -535,13 +622,17 @@
   <script>
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     const subjectColors = ["#e76f51", "#457b9d", "#7b5ea7", "#2a9d8f", "#d97706", "#c44569", "#386641"];
+    
+    // Curated Soft Pastel & Modern Palettes
     const themes = {
-      pastel: { stage:"#fff5f0", ink:"#36434a", soft:"#ffd9d0", accent:"#df7160", accentDark:"#ad4c40", card:"#ffffff", cardInk:"#354248", grid:"rgba(54,67,74,.17)", safe:"rgba(223,113,96,.35)", shape:"22px", masculine:false },
-      lavender: { stage:"#f6f1ff", ink:"#413a5e", soft:"#dfd2ff", accent:"#8168c9", accentDark:"#5e4a9d", card:"#ffffff", cardInk:"#413a5e", grid:"rgba(65,58,94,.16)", safe:"rgba(129,104,201,.35)", shape:"24px", masculine:false },
-      peach: { stage:"#fff0e5", ink:"#5b3d32", soft:"#ffcda8", accent:"#d87951", accentDark:"#a74e32", card:"#fffaf5", cardInk:"#5b3d32", grid:"rgba(91,61,50,.17)", safe:"rgba(216,121,81,.35)", shape:"23px", masculine:false },
-      midnight: { stage:"#131d3c", ink:"#f2f5ff", soft:"#263f7d", accent:"#78b7ff", accentDark:"#78b7ff", card:"#edf4ff", cardInk:"#172343", grid:"rgba(222,234,255,.25)", safe:"rgba(120,183,255,.55)", shape:"5px", masculine:true },
-      forest: { stage:"#12382d", ink:"#f1f8ed", soft:"#286047", accent:"#c6dd76", accentDark:"#c6dd76", card:"#f1f7ea", cardInk:"#18362d", grid:"rgba(231,248,222,.24)", safe:"rgba(198,221,118,.55)", shape:"5px", masculine:true },
-      charcoal: { stage:"#292e35", ink:"#f4f1e9", soft:"#505966", accent:"#f2b75e", accentDark:"#f2b75e", card:"#f7f4ed", cardInk:"#292e35", grid:"rgba(244,241,233,.25)", safe:"rgba(242,183,94,.6)", shape:"4px", masculine:true }
+      pastel:   { stage:"#fff5f2", ink:"#3b4348", soft:"#ffdcd4", accent:"#e5796a", accentDark:"#b54e41", card:"#ffffff", cardInk:"#333f45", grid:"rgba(59,67,72,.16)", safe:"rgba(229,121,106,.35)", shape:"22px", masculine:false },
+      powder:   { stage:"#f0f7ff", ink:"#1e3a5f", soft:"#dbeafe", accent:"#3b82f6", accentDark:"#1d4ed8", card:"#ffffff", cardInk:"#1e293b", grid:"rgba(30,58,95,.15)",  safe:"rgba(59,130,246,.35)", shape:"22px", masculine:false },
+      lavender: { stage:"#f8f6ff", ink:"#4338ca", soft:"#ede9fe", accent:"#8b5cf6", accentDark:"#6d28d9", card:"#ffffff", cardInk:"#312e81", grid:"rgba(67,56,202,.15)", safe:"rgba(139,92,246,.35)", shape:"24px", masculine:false },
+      butter:   { stage:"#fefdf5", ink:"#453518", soft:"#fef3c7", accent:"#d97706", accentDark:"#b45309", card:"#ffffff", cardInk:"#3b2f15", grid:"rgba(69,53,24,.16)",  safe:"rgba(217,119,6,.35)",  shape:"20px", masculine:false },
+      sage:     { stage:"#f4fbf6", ink:"#1b4332", soft:"#dcfce7", accent:"#2d6a4f", accentDark:"#1b4332", card:"#ffffff", cardInk:"#1b4332", grid:"rgba(27,67,50,.15)",  safe:"rgba(45,106,79,.35)",  shape:"20px", masculine:false },
+      peach:    { stage:"#fff8f4", ink:"#53392f", soft:"#ffedd5", accent:"#f97316", accentDark:"#c2410c", card:"#ffffff", cardInk:"#43281c", grid:"rgba(83,57,47,.16)",  safe:"rgba(249,115,22,.35)", shape:"23px", masculine:false },
+      rose:     { stage:"#fdf2f8", ink:"#4a2034", soft:"#fce7f3", accent:"#db2777", accentDark:"#9d174d", card:"#ffffff", cardInk:"#4a1d34", grid:"rgba(74,32,52,.15)",  safe:"rgba(219,39,119,.35)", shape:"22px", masculine:false },
+      charcoal: { stage:"#242933", ink:"#f8fafc", soft:"#3b4252", accent:"#f4bf75", accentDark:"#f4bf75", card:"#2e3440", cardInk:"#eceff4", grid:"rgba(248,250,252,.2)",safe:"rgba(244,191,117,.5)", shape:"6px",  masculine:true }
     };
 
     const aspectPresets = {
@@ -556,6 +647,7 @@
     let previewMode = "phone";
     let deletingId = null;
     let customDimensions = null;
+    let customBgImage = null;
 
     const form = document.getElementById("class-form");
     const subject = document.getElementById("subject");
@@ -587,6 +679,47 @@
     function clearError() {
       validationMessage.textContent = "";
       validationMessage.classList.add("hidden-ui");
+    }
+
+    // Helper functions to generate harmonic themes from any custom hex color
+    function hexToRgb(hex) {
+      hex = hex.replace(/^#/, '');
+      if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
+      const num = parseInt(hex, 16);
+      return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+    }
+
+    function rgbToHex(r, g, b) {
+      const toHex = c => Math.round(Math.max(0, Math.min(255, c))).toString(16).padStart(2, '0');
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+
+    function generateHarmonicTheme(baseHex) {
+      const { r, g, b } = hexToRgb(baseHex);
+      // Perceived luminance (ITU-R BT.709)
+      const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+      const isLight = luminance > 0.55;
+
+      const ink = isLight ? "#222c31" : "#f8fafc";
+      const soft = isLight ? rgbToHex(r * 0.92, g * 0.92, b * 0.92) : rgbToHex(r + 35, g + 35, b + 35);
+      const card = isLight ? "#ffffff" : rgbToHex(r + 20, g + 20, b + 25);
+      const cardInk = isLight ? "#222c31" : "#f1f5f9";
+      const grid = isLight ? "rgba(34,44,49,0.16)" : "rgba(248,250,252,0.22)";
+      const accent = isLight ? rgbToHex(Math.max(0, r - 50), Math.max(0, g - 50), Math.max(0, b - 50)) : "#f4bf75";
+
+      return {
+        stage: baseHex,
+        ink,
+        soft,
+        accent,
+        accentDark: accent,
+        card,
+        cardInk,
+        grid,
+        safe: isLight ? "rgba(34,44,49,0.25)" : "rgba(244,191,117,0.45)",
+        shape: "20px",
+        masculine: !isLight
+      };
     }
 
     function renderDaySchedules(saved = {}) {
@@ -659,6 +792,61 @@
         button.classList.toggle("is-active", button.dataset.theme === selectedTheme);
       });
     }
+
+    // Color Wheel Event Listener
+    const colorPicker = document.getElementById("custom-color-picker");
+    colorPicker.addEventListener("input", (e) => {
+      const hex = e.target.value;
+      themes["custom"] = generateHarmonicTheme(hex);
+      selectedTheme = "custom";
+      document.getElementById("custom-color-label").textContent = `Active (${hex.toUpperCase()})`;
+      updateTheme();
+      renderClasses();
+    });
+
+    // Photo Upload Handlers
+    document.getElementById("upload-trigger-btn").addEventListener("click", () => {
+      document.getElementById("bg-upload").click();
+    });
+
+    document.getElementById("bg-upload").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          customBgImage = img;
+          stage.style.backgroundImage = `url(${event.target.result})`;
+          stage.classList.add("has-bg-img");
+          document.getElementById("remove-bg-photo").classList.remove("hidden-ui");
+          document.getElementById("photo-dim-box").classList.remove("hidden-ui");
+          updateDimOverlay();
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function updateDimOverlay() {
+      const dim = document.getElementById("photo-dim").value;
+      document.getElementById("dim-val").textContent = `${dim}%`;
+      const overlay = document.getElementById("stage-overlay");
+      overlay.style.background = `rgba(0, 0, 0, ${dim / 100})`;
+    }
+
+    document.getElementById("photo-dim").addEventListener("input", updateDimOverlay);
+
+    document.getElementById("remove-bg-photo").addEventListener("click", () => {
+      customBgImage = null;
+      stage.style.backgroundImage = "none";
+      stage.classList.remove("has-bg-img");
+      document.getElementById("stage-overlay").style.background = "transparent";
+      document.getElementById("remove-bg-photo").classList.add("hidden-ui");
+      document.getElementById("photo-dim-box").classList.add("hidden-ui");
+      document.getElementById("bg-upload").value = "";
+    });
 
     function setPreviewMode(mode) {
       previewMode = mode;
@@ -746,12 +934,10 @@
 
       stageEmpty.classList.toggle("hidden-ui", classes.length > 0);
 
-      // Render Day Headers
       headersContainer.innerHTML = activeDays.map(d => `
         <div class="day-head">${d.substring(0, 3)}</div>
       `).join("");
 
-      // Render Time Axis Markers
       const stepMinutes = windowMinutes <= 360 ? 60 : 120;
       let timeHtml = "";
       for (let t = windowStart; t <= windowEnd; t += stepMinutes) {
@@ -763,12 +949,10 @@
       }
       timesColumn.innerHTML = timeHtml;
 
-      // Render Columns
       columnsContainer.innerHTML = activeDays.map(d => `
         <div class="day-column" data-day-column="${d}"></div>
       `).join("");
 
-      // Render cards: Subject + Badge + Location
       classes.forEach(item => {
         const daysList = item.days || [item.day];
         daysList.forEach(dayName => {
@@ -1035,7 +1219,9 @@
     document.querySelectorAll("[data-theme]").forEach(button => button.addEventListener("click", () => {
       selectedTheme = button.dataset.theme;
       updateTheme();
+      renderClasses();
     }));
+
     document.getElementById("phone-mode").addEventListener("click", () => setPreviewMode("phone"));
     document.getElementById("desktop-mode").addEventListener("click", () => setPreviewMode("desktop"));
 
@@ -1060,7 +1246,7 @@
     }
 
     function downloadWallpaper() {
-      const theme = themes[selectedTheme];
+      const theme = themes[selectedTheme] || themes["pastel"];
       const isPhone = previewMode === "phone";
       const canvas = document.createElement("canvas");
 
@@ -1084,42 +1270,65 @@
       canvas.height = height;
       const ctx = canvas.getContext("2d");
 
-      // 1. Background fill
-      ctx.fillStyle = theme.stage; 
-      ctx.fillRect(0, 0, width, height);
+      // 1. Background Fill: Custom Photo or Color Theme
+      if (customBgImage) {
+        const imgRatio = customBgImage.width / customBgImage.height;
+        const canvasRatio = width / height;
+        let renderW, renderH, offsetX, offsetY;
 
-      // 2. Corner organic soft bubble
-      ctx.fillStyle = theme.soft;
-      if (theme.masculine) {
-        ctx.save(); 
-        ctx.translate(width * 0.9, height * 0.05); 
-        ctx.rotate(0.48); 
-        ctx.fillRect(-width * 0.18, -height * 0.09, width * 0.42, height * 0.3); 
-        ctx.restore();
+        if (imgRatio > canvasRatio) {
+          renderH = height;
+          renderW = height * imgRatio;
+          offsetX = (width - renderW) / 2;
+          offsetY = 0;
+        } else {
+          renderW = width;
+          renderH = width / imgRatio;
+          offsetX = 0;
+          offsetY = (height - renderH) / 2;
+        }
+
+        ctx.drawImage(customBgImage, offsetX, offsetY, renderW, renderH);
+
+        const dimVal = parseInt(document.getElementById("photo-dim").value, 10) / 100;
+        if (dimVal > 0) {
+          ctx.fillStyle = `rgba(0, 0, 0, ${dimVal})`;
+          ctx.fillRect(0, 0, width, height);
+        }
       } else {
-        ctx.beginPath(); 
-        ctx.arc(width * 0.92, height * 0.04, width * 0.28, 0, Math.PI * 2); 
-        ctx.fill();
+        ctx.fillStyle = theme.stage; 
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = theme.soft;
+        if (theme.masculine) {
+          ctx.save(); 
+          ctx.translate(width * 0.9, height * 0.05); 
+          ctx.rotate(0.48); 
+          ctx.fillRect(-width * 0.18, -height * 0.09, width * 0.42, height * 0.3); 
+          ctx.restore();
+        } else {
+          ctx.beginPath(); 
+          ctx.arc(width * 0.92, height * 0.04, width * 0.28, 0, Math.PI * 2); 
+          ctx.fill();
+        }
       }
 
       const sideMargin = isPhone ? Math.round(width * 0.065) : 100;
       const bottomMargin = isPhone ? Math.round(height * 0.065) : 80;
 
-      // Safe Top Offset under Lockscreen Clock
       const clockClearancePercent = isPhone ? (parseInt(document.getElementById("clock-offset").value, 10) / 100) : 0.12;
       const gridTop = Math.round(height * clockClearancePercent);
 
-      // Header Title
       const showTitle = document.getElementById("show-title").checked;
       if (showTitle) {
         const titleText = document.getElementById("wallpaper-title").value.trim() || "My Class Timetable";
-        ctx.fillStyle = theme.ink; 
+        ctx.fillStyle = customBgImage ? "#ffffff" : theme.ink; 
         ctx.font = `700 ${isPhone ? Math.round(width * 0.052) : 60}px Georgia`;
         ctx.textAlign = "left";
         ctx.fillText(titleText, sideMargin, gridTop - (isPhone ? 38 : 45));
 
-        ctx.fillStyle = theme.ink; 
-        ctx.globalAlpha = 0.55; 
+        ctx.fillStyle = customBgImage ? "#ffffff" : theme.ink; 
+        ctx.globalAlpha = customBgImage ? 0.8 : 0.55; 
         ctx.font = `700 ${isPhone ? Math.round(width * 0.022) : 22}px DM Sans`;
         ctx.fillText("WEEKLY SCHEDULE", sideMargin, gridTop - (isPhone ? 15 : 18)); 
         ctx.globalAlpha = 1.0;
@@ -1138,14 +1347,14 @@
       const columnW = (gridW - timeW) / activeDays.length;
 
       // Table grid background
-      ctx.strokeStyle = theme.grid; 
+      ctx.strokeStyle = customBgImage ? "rgba(255,255,255,0.4)" : theme.grid; 
       ctx.lineWidth = 2;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+      ctx.fillStyle = customBgImage ? "rgba(255, 255, 255, 0.75)" : "rgba(255, 255, 255, 0.45)";
       roundedRect(ctx, gridX, gridY, gridW, gridH, theme.masculine ? 5 : 20); 
       ctx.fill(); 
       ctx.stroke();
 
-      // Horizontal and vertical dividers
+      // Dividers
       ctx.beginPath(); 
       ctx.moveTo(gridX, gridY + headerH); 
       ctx.lineTo(gridX + gridW, gridY + headerH);
@@ -1209,20 +1418,17 @@
           const w = columnW - (cardPadding * 2);
           const h = ((gridH - headerH) * blockHeight) - 6;
 
-          // Card background
           ctx.fillStyle = theme.card; 
-          ctx.shadowColor = "rgba(0,0,0,0.1)"; 
+          ctx.shadowColor = "rgba(0,0,0,0.12)"; 
           ctx.shadowBlur = 6; 
           ctx.shadowOffsetY = 2;
           roundedRect(ctx, x, y, w, h, theme.masculine ? 4 : 8); 
           ctx.fill(); 
           ctx.shadowColor = "transparent";
 
-          // Left border strip
           ctx.fillStyle = item.color || theme.accent; 
           ctx.fillRect(x, y, 6, h);
 
-          // Subject Name
           ctx.fillStyle = theme.cardInk; 
           ctx.font = `800 ${isPhone ? Math.round(width * 0.026) : 18}px DM Sans`; 
           ctx.textAlign = "left";
@@ -1234,7 +1440,6 @@
           
           ctx.fillText(item.subject, x + 12, y + (isPhone ? 28 : 22));
 
-          // Draw distinct badge for Lab or Tutorial
           if (detail.type === "Lab") {
             const subjWidth = ctx.measureText(item.subject).width;
             ctx.fillStyle = "#0284c7";
@@ -1247,7 +1452,6 @@
             ctx.fillText(" • TUT", x + 14 + subjWidth, y + (isPhone ? 28 : 22));
           }
           
-          // Location text
           if (h > 42 && detail.location) {
             ctx.font = `500 ${isPhone ? Math.round(width * 0.021) : 14}px DM Sans`;
             ctx.fillStyle = theme.cardInk;
