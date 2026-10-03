@@ -81,7 +81,7 @@ details{font-size:.85rem;margin-top:.9rem}summary{cursor:pointer;font-weight:700
 <div id="phoneCtl" class="stack">
 <div><div class="row"><label for="preset" style="margin:0">Device model</label><button type="button" id="detect" class="link">Detect this device</button></div>
 <select id="preset" class="in"></select>
-<p class="small">Press “Detect” while using your phone. On a laptop it detects the laptop.</p></div>
+<p class="small">Press “Detect” on your phone or tablet. Rotate it first if you want a landscape wallpaper.</p></div>
 <div><div class="row"><label for="clock" style="margin:0">Space for lockscreen clock</label><span id="clockVal" class="small">28%</span></div>
 <input type="range" id="clock" min="10" max="48" value="28" style="width:100%">
 <div class="grid2" style="margin-top:.4rem"><button type="button" class="btn c" data-clock="28">Clock only</button><button type="button" class="btn c" data-clock="40">Clock + widgets</button></div>
@@ -224,7 +224,7 @@ function render(canvas,preview){
   else{ctx.beginPath();ctx.arc(W*.92,H*.04,W*.28,0,7);ctx.fill()}}
  const panelFill=photo?"rgba(255,255,255,.82)":th.dark?"rgba(255,255,255,.07)":"rgba(255,255,255,.45)";
  const panelInk=photo?"#222c31":th.ink,panelLine=photo?"rgba(34,44,49,.2)":th.grid,cardBg=photo?"#fff":th.card,cardInk=photo?"#222c31":th.cardInk;
- const side=phone?W*.06:W*.05,bottom=phone?H*.09:H*.067;
+ const side=phone?W*.06:W*.05,bottom=phone?(H>W?H*.09:H*.08):H*.067;
  const gTop=Math.round(H*(phone?(+$("clock").value/100):.12));
  // title
  if($("showTitle").checked){
@@ -233,16 +233,16 @@ function render(canvas,preview){
   ctx.globalAlpha=.7;ctx.font=`700 ${22*k}px ${SANS}`;ctx.fillText("Weekly schedule",side,gTop-(phone?H*.007:15));ctx.globalAlpha=1}
  // grid
  const{act,ws,we}=windowInfo(),wm=we-ws;
- const gx=side,gy=gTop,gw=W-side*2,gh=H-gTop-bottom,timeW=gw*.135,headH=phone?H*.034:60,colW=(gw-timeW)/act.length;
+ const gx=side,gy=gTop,gw=W-side*2,gh=H-gTop-bottom,timeW=gw*.135,headH=(phone&&H>W)?H*.034:H*.055,colW=(gw-timeW)/act.length,hourH=(gh-headH)/(wm/60);
  ctx.strokeStyle=panelLine;ctx.lineWidth=2;ctx.fillStyle=panelFill;rr(ctx,gx,gy,gw,gh,th.dark?5:20);ctx.fill();ctx.stroke();
  const step=wm<=360?60:120,steps=wm/step;
  ctx.beginPath();ctx.moveTo(gx,gy+headH);ctx.lineTo(gx+gw,gy+headH);ctx.moveTo(gx+timeW,gy);ctx.lineTo(gx+timeW,gy+gh);
  for(let i=1;i<act.length;i++){const x=gx+timeW+colW*i;ctx.moveTo(x,gy);ctx.lineTo(x,gy+gh)}
  for(let i=1;i<=steps;i++){const y=gy+headH+(gh-headH)*i/steps;ctx.moveTo(gx,y);ctx.lineTo(gx+gw,y)}
  ctx.stroke();
- ctx.fillStyle=panelInk;ctx.textAlign="center";ctx.font=`800 ${26*k}px ${SANS}`;
+ ctx.fillStyle=panelInk;ctx.textAlign="center";ctx.font=`800 ${Math.min(26*k,headH*.5)}px ${SANS}`;
  act.forEach((d,i)=>ctx.fillText(d.slice(0,3).toUpperCase(),gx+timeW+colW*(i+.5),gy+headH*.64));
- ctx.globalAlpha=.75;ctx.font=`700 ${21*k}px ${SANS}`;
+ ctx.globalAlpha=.75;ctx.font=`700 ${Math.min(21*k,hourH*.3)}px ${SANS}`;
  for(let t=ws;t<=we;t+=step){const f=(t-ws)/wm,hr=Math.floor(t/60),y=gy+headH+(gh-headH)*f;ctx.fillText((hr%12||12)+(hr>=12?" PM":" AM"),gx+timeW/2,y+(f===1?-8*k:7*k))}
  ctx.globalAlpha=1;
  // class cards
@@ -254,26 +254,34 @@ function render(canvas,preview){
   ctx.save();rr(ctx,x,y,w,h,th.dark?4:9*k);ctx.clip();
   ctx.fillStyle=it.color||th.accent;ctx.fillRect(x,y,6*k,h);
   ctx.beginPath();ctx.rect(x+8*k,y,w-8*k,h);ctx.clip();
-  let fs=26*k;const maxW=w-22*k;ctx.font=`800 ${fs}px ${SANS}`;
+  let fs=Math.min(26*k,hourH*.42);const maxW=w-22*k,minFs=Math.min(15*k,fs);ctx.font=`800 ${fs}px ${SANS}`;
   const longest=()=>Math.max(...it.subject.split(/\s+/).map(s=>ctx.measureText(s).width));
-  while(fs>15*k&&longest()>maxW){fs-=k;ctx.font=`800 ${fs}px ${SANS}`}
-  ctx.fillStyle=cardInk;ctx.textAlign="left";
+  while(fs>minFs&&longest()>maxW){fs-=k;ctx.font=`800 ${fs}px ${SANS}`}
+  const tag=dt.type==="Lab"?"LAB":dt.type==="Tutorial"?"TUT":"",loc=dt.location||"";
+  const parts=[tag&&tag!==loc.toUpperCase()?tag:"",loc].filter(Boolean),ms=Math.min(20*k,fs*.78);
+  ctx.font=`500 ${ms}px ${SANS}`;let ml=parts.length?[parts.join(" · ")]:[];
+  if(parts.length>1&&ctx.measureText(ml[0]).width>maxW)ml=parts;
+  const nl=Math.max(1,Math.min(2,Math.floor((h-10*k-ml.length*ms*1.25)/(fs*1.15))));
+  ctx.font=`800 ${fs}px ${SANS}`;ctx.fillStyle=cardInk;ctx.textAlign="left";
   let ty=y+6*k+fs;
-  wrap(ctx,it.subject,maxW,h>fs*3?2:1).forEach(l=>{ctx.fillText(l,x+16*k,ty);ty+=fs*1.15});
-  const meta=[dt.type==="Lab"?"LAB":dt.type==="Tutorial"?"TUT":"",dt.location].filter(Boolean).join(" · ");
-  if(meta&&ty+18*k<y+h){ctx.globalAlpha=.75;ctx.font=`500 ${20*k}px ${SANS}`;ctx.fillText(wrap(ctx,meta,maxW,1)[0],x+16*k,ty);ctx.globalAlpha=1}
+  wrap(ctx,it.subject,maxW,nl).forEach(l=>{ctx.fillText(l,x+16*k,ty);ty+=fs*1.15});
+  ty=ty-fs*1.15+ms*1.3;ctx.font=`500 ${ms}px ${SANS}`;ctx.globalAlpha=.75;
+  ml.forEach(l=>{if(ty<y+h-2*k){ctx.fillText(wrap(ctx,l,maxW,1)[0],x+16*k,ty);ty+=ms*1.25}});ctx.globalAlpha=1;
   ctx.restore()}));
  // preview-only extras (never in the saved image)
  if(preview&&!classes.length){ctx.fillStyle=panelInk;ctx.globalAlpha=.6;ctx.textAlign="center";ctx.font=`700 ${36*k}px ${SANS}`;ctx.fillText("Add a class to start",W/2,gy+gh*.5);ctx.globalAlpha=1}
  if(preview&&phone&&$("guide").checked)guide(ctx,W,H,gTop/H)}
 function guide(ctx,w,h,cl){
- ctx.save();ctx.fillStyle="rgba(229,114,97,.14)";ctx.fillRect(0,0,w,h*cl);
- ctx.setLineDash([w*.02,w*.015]);ctx.strokeStyle="rgba(229,114,97,.95)";ctx.lineWidth=Math.max(2,w*.003);
+ const land=w>h;ctx.save();ctx.fillStyle="rgba(229,114,97,.14)";ctx.fillRect(0,0,w,h*cl);
+ ctx.setLineDash([w*.012,w*.01]);ctx.strokeStyle="rgba(229,114,97,.95)";ctx.lineWidth=Math.max(2,Math.min(w,h)*.003);
  ctx.beginPath();ctx.moveTo(0,h*cl);ctx.lineTo(w,h*cl);ctx.stroke();ctx.setLineDash([]);
  ctx.textAlign="center";ctx.fillStyle="rgba(0,0,0,.4)";
- ctx.font=`600 ${w*.04}px ${SANS}`;ctx.fillText(new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"}),w/2,h*.075);
- ctx.font=`700 ${w*.2}px ${SANS}`;ctx.fillText("9:41",w/2,h*.075+w*.2);
- [.14,.86].forEach(x=>{ctx.beginPath();ctx.arc(w*x,h*.935,w*.06,0,7);ctx.fill()});ctx.restore()}
+ const date=new Date().toLocaleDateString(undefined,{weekday:"short",day:"numeric",month:"long"});
+ if(land){ctx.font=`700 ${h*.12}px ${SANS}`;ctx.fillText("16:51",w/2,h*.255);ctx.font=`600 ${h*.028}px ${SANS}`;ctx.fillText(date,w/2,h*.295);
+  ctx.beginPath();ctx.arc(w*.965,h*.925,h*.04,0,7);ctx.fill()}
+ else{ctx.font=`600 ${w*.04}px ${SANS}`;ctx.fillText(date,w/2,h*.075);ctx.font=`700 ${w*.2}px ${SANS}`;ctx.fillText("9:41",w/2,h*.075+w*.2);
+  [.14,.86].forEach(x=>{ctx.beginPath();ctx.arc(w*x,h*.935,w*.06,0,7);ctx.fill()})}
+ ctx.restore()}
 
 const pv=$("preview");let raf=0;
 function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{render(pv,true);save()})}
@@ -284,7 +292,11 @@ fontsReady.then(draw);
 function setMode(m,silent){mode=m;pv.className=m;$("mPhone").classList.toggle("on",m==="phone");$("mDesk").classList.toggle("on",m==="desktop");
  $("mPhone").setAttribute("aria-pressed",m==="phone");$("mDesk").setAttribute("aria-pressed",m==="desktop");$("phoneCtl").classList.toggle("hide",m!=="phone");if(!silent)draw()}
 $("mPhone").onclick=()=>setMode("phone");$("mDesk").onclick=()=>setMode("desktop");
-$("preset").onchange=draw;
+function syncOrientation(){
+ if(mode!=="phone")return;const{w,h}=target(),land=w>h,d=land?[36,44]:[28,40],chips=document.querySelectorAll("[data-clock]");
+ chips[0].dataset.clock=d[0];chips[1].dataset.clock=d[1];
+ if([28,40,36,44].includes(+$("clock").value)){$("clock").value=d[0];$("clockVal").textContent=d[0]+"%"}}
+$("preset").onchange=()=>{syncOrientation();draw()};
 document.querySelectorAll("[data-theme]").forEach(b=>b.onclick=()=>{selectedTheme=b.dataset.theme;markTheme();draw()});
 $("color").oninput=e=>{themes.custom=makeTheme(e.target.value);selectedTheme="custom";markTheme();draw()};
 ["title","showTitle","guide"].forEach(i=>$(i).addEventListener("input",draw));
@@ -299,10 +311,10 @@ $("photoIn").onchange=e=>{const f=e.target.files[0];if(!f||!f.type.startsWith("i
 $("rmPhoto").onclick=()=>{bgImg=null;$("photoIn").value="";$("rmPhoto").classList.add("hide");$("dimBox").classList.add("hide");draw()};
 
 $("detect").onclick=()=>{
- const d=window.devicePixelRatio||1,a=Math.round(screen.width*d),b=Math.round(screen.height*d),w=Math.min(a,b),h=Math.max(a,b);
- let hit=null;[...$("preset").options].forEach(o=>{if(o.value==="custom")return;const[pw,ph]=o.value.split("x").map(Number);if(pw<ph&&Math.abs(pw-w)/w<.02&&Math.abs(ph-h)/h<.02)hit=o.value});
+ const d=window.devicePixelRatio||1,a=Math.round(screen.width*d),b=Math.round(screen.height*d),w=a,h=b;
+ let hit=null;[...$("preset").options].forEach(o=>{if(o.value==="custom")return;const[pw,ph]=o.value.split("x").map(Number);if(Math.abs(pw-w)/w<.02&&Math.abs(ph-h)/h<.02)hit=o.value});
  if(hit)$("preset").value=hit;else{custom={w,h};const o=[...$("preset").options].find(o=>o.value==="custom");o.hidden=false;o.textContent=`Detected device (${w} × ${h})`;$("preset").value="custom"}
- draw();status(`Screen detected: ${w}×${h}. Check it matches your phone.`)};
+ syncOrientation();draw();status(`Screen detected: ${w}×${h}. Check it matches your phone.`)};
 
 /* ---------- class form ---------- */
 function readSched(){const o={};$("daySched").querySelectorAll("[data-d]").forEach(r=>{o[r.dataset.d]={type:r.querySelector('[data-f="type"]').value,start:r.querySelector('[data-f="start"]').value,end:r.querySelector('[data-f="end"]').value,location:r.querySelector('[data-f="loc"]').value.trim()}});return o}
@@ -385,7 +397,7 @@ if(navigator.canShare&&!isIOS)$("shareBtn").classList.remove("hide");
 $("shareBtn").onclick=async()=>{const f=await makeFile();if(f&&navigator.canShare({files:[f.file]}))await shareFile(f)};
 
 /* ---------- start ---------- */
-load();markTheme();renderSched();renderList();setMode(mode,true);draw();
+load();markTheme();renderSched();renderList();setMode(mode,true);syncOrientation();draw();
 </script>
 </body>
 </html>
