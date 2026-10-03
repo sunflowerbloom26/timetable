@@ -404,7 +404,7 @@
 <body style="background: rgb(244, 241, 235);">
   <div class="app-shell">
     <header class="canva-header top-header" style="background: rgb(255, 253, 250);">
-      <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
         <div class="flex items-start gap-4">
           <div class="mt-1 w-11 h-11 rounded-2xl bg-[#ffe2d8] text-[#b94f40] flex items-center justify-center shadow-sm" aria-hidden="true">
             <i data-lucide="calendar-days" style="width:22px;height:22px"></i>
@@ -416,13 +416,6 @@
             <h1 class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58);">Class Timetable</h1>
             <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Design your weekly schedule with soft pastels, custom color wheels, or personal photos.</p>
           </div>
-        </div>
-
-        <!-- Add to Home Screen / Install Button -->
-        <div class="flex items-center gap-2">
-          <button type="button" id="pwa-install-btn" class="secondary-button text-xs font-bold shadow-sm border-[#e57261] text-[#b74a3d] hover:bg-[#fff5f2]">
-            <i data-lucide="download-cloud" style="width:15px;height:15px"></i> Add to Home Screen
-          </button>
         </div>
       </div>
     </header>
@@ -667,7 +660,7 @@
   </div>
 
   <script>
-    // --- 1. Service Worker & PWA Install Engine ---
+    // --- 1. Service Worker & PWA Support (Background Only) ---
     const swCode = `
       self.addEventListener('install', e => self.skipWaiting());
       self.addEventListener('activate', e => self.clients.claim());
@@ -677,29 +670,6 @@
       const swBlob = new Blob([swCode], { type: 'application/javascript' });
       navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
     }
-
-    let deferredPrompt = null;
-    const pwaBtn = document.getElementById("pwa-install-btn");
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      pwaBtn.classList.remove("hidden-ui");
-    });
-
-    pwaBtn.addEventListener("click", async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          deferredPrompt = null;
-          pwaBtn.classList.add("hidden-ui");
-        }
-      } else {
-        // Helpful prompt for Safari iOS / iPadOS users
-        alert("To install on iPhone/iPad:\n1. Tap the Share button (box with arrow)\n2. Scroll down & select 'Add to Home Screen'");
-      }
-    });
 
     // --- 2. Data & Themes Engine ---
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -957,8 +927,6 @@
       stage.classList.toggle("desktop", mode === "desktop");
       document.getElementById("phone-mode").classList.toggle("is-active", mode === "phone");
       document.getElementById("desktop-mode").classList.toggle("is-active", mode === "desktop");
-      document.getElementById("phone-mode").setAttribute("aria-pressed", String(mode === "phone"));
-      document.getElementById("desktop-mode").setAttribute("aria-pressed", String(mode === "desktop"));
       document.getElementById("phone-fit-controls").style.display = (mode === "phone") ? "block" : "none";
       updateStageAspectRatio();
       renderClasses();
@@ -970,7 +938,6 @@
       const screenW = Math.round(screen.width * dpr);
       const screenH = Math.round(screen.height * dpr);
 
-      // Support actual orientation of the current tablet or phone
       const w = screenW;
       const h = screenH;
       customDimensions = { w, h };
