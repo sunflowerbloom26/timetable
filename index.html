@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Timetable Wallpaper Maker</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#f4f1eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TimetableMaker">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23e57261'><rect width='512' height='512' rx='128' fill='%23fff5f2'/><path d='M128 160h256M128 256h256M128 352h160' stroke='%23e57261' stroke-width='40' stroke-linecap='round'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23e57261'/><path d='M25 35h50M25 50h50M25 65h30' stroke='white' stroke-width='8' stroke-linecap='round'/></svg>">
+
+  <!-- Embedded Web App Manifest -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Class%20Timetable%20Wallpaper%20Maker%22%2C%22short_name%22%3A%22Timetable%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f1eb%22%2C%22theme_color%22%3A%22%23e57261%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%20fill%3D'%23e57261'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'128'%20fill%3D'%23fff5f2'%2F%3E%3Cpath%20d%3D'M128%20160h256M128%20256h256M128%20352h160'%20stroke%3D'%23e57261'%20stroke-width%3D'40'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
@@ -279,7 +291,7 @@
       border-right: none;
     }
 
-    /* Class Cards with Type Badges */
+    /* Class Cards */
     .class-block {
       position: absolute;
       left: 3px;
@@ -392,7 +404,7 @@
 <body style="background: rgb(244, 241, 235);">
   <div class="app-shell">
     <header class="canva-header top-header" style="background: rgb(255, 253, 250);">
-      <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
+      <div class="app-max px-4 sm:px-6 lg:px-8 py-6 sm:py-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div class="flex items-start gap-4">
           <div class="mt-1 w-11 h-11 rounded-2xl bg-[#ffe2d8] text-[#b94f40] flex items-center justify-center shadow-sm" aria-hidden="true">
             <i data-lucide="calendar-days" style="width:22px;height:22px"></i>
@@ -404,6 +416,13 @@
             <h1 class="canva-text display-font text-3xl sm:text-4xl font-bold tracking-tight mt-1" style="color: rgb(38, 51, 58);">Class Timetable</h1>
             <p class="canva-text max-w-2xl text-sm sm:text-base text-[#627177] mt-2">Design your weekly schedule with soft pastels, custom color wheels, or personal photos.</p>
           </div>
+        </div>
+
+        <!-- Add to Home Screen / Install Button -->
+        <div class="flex items-center gap-2">
+          <button type="button" id="pwa-install-btn" class="secondary-button text-xs font-bold shadow-sm border-[#e57261] text-[#b74a3d] hover:bg-[#fff5f2]">
+            <i data-lucide="download-cloud" style="width:15px;height:15px"></i> Add to Home Screen
+          </button>
         </div>
       </div>
     </header>
@@ -480,27 +499,27 @@
             <div class="section-rule mt-5 pt-5">
               <p class="canva-text field-label mb-2">Wallpaper layout</p>
               <div class="grid grid-cols-2 gap-2">
-                <button type="button" id="phone-mode" class="option-button is-active justify-center font-bold" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone</button>
-                <button type="button" id="desktop-mode" class="option-button justify-center font-bold" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop</button>
+                <button type="button" id="phone-mode" class="option-button is-active justify-center font-bold" aria-pressed="true"><i data-lucide="smartphone" class="inline-block mr-1" style="width:15px;height:15px"></i>Phone / Tablet</button>
+                <button type="button" id="desktop-mode" class="option-button justify-center font-bold" aria-pressed="false"><i data-lucide="monitor" class="inline-block mr-1" style="width:15px;height:15px"></i>Desktop / Laptop</button>
               </div>
             </div>
 
-            <!-- Phone Model & Fit Controls -->
+            <!-- Phone & Tablet Model Selector -->
             <div id="phone-fit-controls" class="section-rule mt-5 pt-5">
               <div class="flex items-center justify-between mb-2">
-                <label class="canva-text field-label" for="phone-preset">Choose Your Phone Model</label>
+                <label class="canva-text field-label" for="phone-preset">Device Model (Phone &amp; Tablet)</label>
                 <button type="button" id="auto-detect-screen" class="text-xs font-bold text-[#b74a3d] hover:underline flex items-center gap-1">
-                  <i data-lucide="smartphone" style="width:12px;height:12px"></i> Detect this device
+                  <i data-lucide="scan" style="width:12px;height:12px"></i> Detect this device
                 </button>
               </div>
               
               <select id="phone-preset" class="field-control font-medium">
-                <optgroup label="Popular Android (Vivo, Oppo, Xiaomi, Realme)">
+                <optgroup label="Popular Android Phone">
                   <option value="1080x2400" selected>Standard Android (20:9 · 1080 × 2400)</option>
                   <option value="1080x2460">Tall Android (20.5:9 · 1080 × 2460)</option>
                   <option value="720x1600">Budget Android (20:9 HD+ · 720 × 1600)</option>
                 </optgroup>
-                <optgroup label="Samsung Galaxy">
+                <optgroup label="Samsung Galaxy Phone">
                   <option value="1080x2340">Galaxy S22 / S23 / S24 / A54 (19.5:9 · 1080 × 2340)</option>
                   <option value="1440x3088">Galaxy S22/S23/S24 Ultra (19.3:9 · 1440 × 3088)</option>
                   <option value="1080x2400">Galaxy A-Series / S20 / S21 (20:9 · 1080 × 2400)</option>
@@ -511,7 +530,18 @@
                   <option value="1170x2532">iPhone 12 / 12 Pro / 13 / 13 Pro / 14 (1170 × 2532)</option>
                   <option value="828x1792">iPhone 11 / XR (828 × 1792)</option>
                 </optgroup>
-                <optgroup label="Classic Screens &amp; Tablets">
+                <optgroup label="Tablet &amp; iPad (Portrait - Menegak)">
+                  <option value="1620x2160">iPad 10.2&quot; / 9th/10th Gen (1620 × 2160)</option>
+                  <option value="1668x2388">iPad Air / iPad Pro 11&quot; (1668 × 2388)</option>
+                  <option value="2048x2732">iPad Pro 12.9&quot; (2048 × 2732)</option>
+                  <option value="1600x2560">Android Tablet (Samsung Tab / Xiaomi Pad - 1600 × 2560)</option>
+                </optgroup>
+                <optgroup label="Tablet &amp; iPad (Landscape - Melintang)">
+                  <option value="2160x1620">iPad 10.2&quot; Melintang (2160 × 1620)</option>
+                  <option value="2388x1668">iPad Air/Pro 11&quot; Melintang (2388 × 1668)</option>
+                  <option value="2560x1600">Android Tablet Melintang (2560 × 1600)</option>
+                </optgroup>
+                <optgroup label="Classic Screens">
                   <option value="1080x1920">Standard 16:9 Screen (1080 × 1920)</option>
                   <option value="custom" id="custom-ratio-opt" style="display:none;">Auto-Detected</option>
                 </optgroup>
@@ -522,7 +552,7 @@
                   <label for="clock-offset" class="field-label">Top Clock Clearance</label>
                   <span id="offset-val" class="text-xs font-bold text-[#687880]">28%</span>
                 </div>
-                <input type="range" id="clock-offset" min="15" max="45" value="28" class="w-full accent-[#d96555]">
+                <input type="range" id="clock-offset" min="10" max="45" value="28" class="w-full accent-[#d96555]">
                 <p class="text-[0.72rem] text-[#718084] mt-1">Leaves room at the top so lockscreen clock/notifications won't cover classes.</p>
               </div>
             </div>
@@ -637,10 +667,44 @@
   </div>
 
   <script>
+    // --- 1. Service Worker & PWA Install Engine ---
+    const swCode = `
+      self.addEventListener('install', e => self.skipWaiting());
+      self.addEventListener('activate', e => self.clients.claim());
+      self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+    `;
+    if ('serviceWorker' in navigator) {
+      const swBlob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+    }
+
+    let deferredPrompt = null;
+    const pwaBtn = document.getElementById("pwa-install-btn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      pwaBtn.classList.remove("hidden-ui");
+    });
+
+    pwaBtn.addEventListener("click", async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          deferredPrompt = null;
+          pwaBtn.classList.add("hidden-ui");
+        }
+      } else {
+        // Helpful prompt for Safari iOS / iPadOS users
+        alert("To install on iPhone/iPad:\n1. Tap the Share button (box with arrow)\n2. Scroll down & select 'Add to Home Screen'");
+      }
+    });
+
+    // --- 2. Data & Themes Engine ---
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     const subjectColors = ["#e76f51", "#457b9d", "#7b5ea7", "#2a9d8f", "#d97706", "#c44569", "#386641"];
     
-    // Curated Soft Pastel & Modern Palettes
     const themes = {
       pastel:   { stage:"#fff5f2", ink:"#3b4348", soft:"#ffdcd4", accent:"#e5796a", accentDark:"#b54e41", card:"#ffffff", cardInk:"#333f45", grid:"rgba(59,67,72,.16)", safe:"rgba(229,121,106,.35)", shape:"22px", masculine:false },
       powder:   { stage:"#f0f7ff", ink:"#1e3a5f", soft:"#dbeafe", accent:"#3b82f6", accentDark:"#1d4ed8", card:"#ffffff", cardInk:"#1e293b", grid:"rgba(30,58,95,.15)",  safe:"rgba(59,130,246,.35)", shape:"22px", masculine:false },
@@ -692,7 +756,6 @@
       validationMessage.classList.add("hidden-ui");
     }
 
-    // Dynamic contrast & harmony engine for custom color wheel
     function hexToRgb(hex) {
       hex = hex.replace(/^#/, '');
       if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
@@ -732,7 +795,6 @@
       };
     }
 
-    // Phone dimensions & stage aspect ratio
     function getTargetDimensions() {
       if (previewMode === "desktop") {
         return { width: 1920, height: 1200, ratio: 16 / 10 };
@@ -836,7 +898,6 @@
       });
     }
 
-    // Interactive Color Wheel
     const colorPicker = document.getElementById("custom-color-picker");
     colorPicker.addEventListener("input", (e) => {
       const hex = e.target.value;
@@ -847,7 +908,6 @@
       renderClasses();
     });
 
-    // Custom Photo Upload
     document.getElementById("upload-trigger-btn").addEventListener("click", () => {
       document.getElementById("bg-upload").click();
     });
@@ -904,26 +964,28 @@
       renderClasses();
     }
 
+    // Auto-detect with orientation & tablet support
     document.getElementById("auto-detect-screen").addEventListener("click", () => {
       const dpr = window.devicePixelRatio || 1;
       const screenW = Math.round(screen.width * dpr);
       const screenH = Math.round(screen.height * dpr);
 
-      const w = Math.min(screenW, screenH);
-      const h = Math.max(screenW, screenH);
+      // Support actual orientation of the current tablet or phone
+      const w = screenW;
+      const h = screenH;
       customDimensions = { w, h };
 
       const opt = document.getElementById("custom-ratio-opt");
       opt.style.display = "block";
       opt.value = "custom";
-      opt.textContent = `Current Device Screen (${w} × ${h})`;
+      opt.textContent = `Current Device (${w} × ${h})`;
       document.getElementById("phone-preset").value = "custom";
 
       updateStageAspectRatio();
       renderClasses();
 
       const status = document.getElementById("download-status");
-      status.textContent = `Detected screen: ${w}×${h}px`;
+      status.textContent = `Screen detected: ${w}×${h}px`;
       status.classList.remove("hidden-ui");
       setTimeout(() => status.classList.add("hidden-ui"), 3500);
     });
@@ -1303,7 +1365,7 @@
       canvas.height = height;
       const ctx = canvas.getContext("2d");
 
-      // 1. Background Fill: Custom Photo or Color Theme
+      // 1. Background Fill
       if (customBgImage) {
         const imgRatio = customBgImage.width / customBgImage.height;
         const canvasRatio = width / height;
