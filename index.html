@@ -55,7 +55,7 @@ details{font-size:.85rem;margin-top:.9rem}summary{cursor:pointer;font-weight:700
 <body>
 <header><div class="wrap">
 <h1>My Timetable</h1>
-<p class="sub">Keep your class schedule handy, right on your lockscreen.</p>
+<p class="sub">Make a wallpaper that fits your phone and keeps your classes clear of the lockscreen clock. Your classes and photos never leave your device.</p>
 </div></header>
 
 <div class="wrap"><main>
@@ -118,6 +118,7 @@ details{font-size:.85rem;margin-top:.9rem}summary{cursor:pointer;font-weight:700
 <div class="stagebox"><canvas id="preview" class="phone"></canvas></div>
 <div class="row" style="margin-top:1rem;flex-wrap:wrap">
 <button id="download" class="btn main" style="flex:1;min-width:200px" type="button">Save wallpaper</button>
+<button id="shareBtn" class="btn c hide" type="button">Share instead</button>
 <div id="status" class="msg ok hide" aria-live="polite"></div></div>
 <details><summary>How to set it as your wallpaper</summary>
 <p><b>iPhone:</b> tap Save Image in the share sheet, open Photos, Share, Use as Wallpaper. Turn off Perspective Zoom so it isn't cropped.</p>
@@ -363,15 +364,25 @@ $("yesReset").onclick=()=>{classes=[];cancelEdit();$("resetBox").classList.add("
 
 /* ---------- save image ---------- */
 function status(m){const s=$("status");s.textContent=m;s.classList.remove("hide");clearTimeout(status.t);status.t=setTimeout(()=>s.classList.add("hide"),6000)}
-$("download").onclick=async()=>{
+const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+async function makeFile(){
  await fontsReady;const cv=document.createElement("canvas");render(cv,false);
- const blob=await new Promise(r=>cv.toBlob(r,"image/png"));if(!blob)return status("Couldn't create the image. Try a smaller photo.");
- const name=`timetable-wallpaper-${cv.width}x${cv.height}.png`,file=new File([blob],name,{type:"image/png"});
- if(navigator.canShare&&navigator.canShare({files:[file]})){
-  try{await navigator.share({files:[file],title:"My timetable"});return status("Tap Save Image, then set it as your wallpaper.")}catch(e){if(e.name==="AbortError")return}}
- const url=URL.createObjectURL(blob),a=Object.assign(document.createElement("a"),{href:url,download:name});
- document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
- status(`Saved ${cv.width}×${cv.height}. If nothing downloaded, open this page in Chrome or Safari.`)};
+ const blob=await new Promise(r=>cv.toBlob(r,"image/png"));if(!blob){status("Couldn't create the image. Try a smaller photo.");return null}
+ const name=`timetable-wallpaper-${cv.width}x${cv.height}.png`;
+ return{blob,name,w:cv.width,h:cv.height,file:new File([blob],name,{type:"image/png"})}}
+function downloadFile(f){
+ const url=URL.createObjectURL(f.blob),a=Object.assign(document.createElement("a"),{href:url,download:f.name});
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000)}
+async function shareFile(f){
+ try{await navigator.share({files:[f.file],title:"My timetable"});return true}catch(e){return e.name==="AbortError"}}
+$("download").onclick=async()=>{
+ const f=await makeFile();if(!f)return;
+ // iPhone: the share sheet is the only way to reach Photos. Android/desktop: download straight to the device.
+ if(isIOS&&navigator.canShare&&navigator.canShare({files:[f.file]})){if(await shareFile(f))return status("Tap Save Image, then set it as your wallpaper.")}
+ downloadFile(f);
+ status(isIOS?`Saved ${f.w}×${f.h} to Files.`:`Saved ${f.w}×${f.h}. Open Gallery or Files → Downloads, then set it as wallpaper.`)};
+if(navigator.canShare&&!isIOS)$("shareBtn").classList.remove("hide");
+$("shareBtn").onclick=async()=>{const f=await makeFile();if(f&&navigator.canShare({files:[f.file]}))await shareFile(f)};
 
 /* ---------- start ---------- */
 load();markTheme();renderSched();renderList();setMode(mode,true);draw();
